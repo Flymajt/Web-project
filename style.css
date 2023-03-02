@@ -142,3 +142,11 @@ top: -1px;
 .Register {
     color: azure;
 }
+
+img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 5px solid #0a0a0a;
+    padding: 20px;
+  }
