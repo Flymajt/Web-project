@@ -172,6 +172,7 @@ img {
     object-fit: cover;
     border: 5px solid #0a0a0a;
     padding: 20px;
+    margin-left: 100px;
   }
 
 .Register {
@@ -219,20 +220,31 @@ img {
 
 .Electro{
     padding: 10px;
+    text-indent: 160px;
+    display: inline-block;
 }
 
 .Jazz{
     padding: 10px;
-}
-
-.Hip-Hop{
-    padding: 10px;
+    text-indent: 240px;
+    display: inline-block;
 }
 
 .My-playlist{
     padding: 10px;
+    text-indent: 220px;
+    display: inline-block;
+}
+
+.Hip-Hop{
+    padding: 10px;
+    text-indent: 187px;
+    margin-bottom: 25px;
+    display: inline-block;
 }
 
 .Country{
     padding: 10px;
+    text-indent: 210px;
+    display: inline-block;
 }
