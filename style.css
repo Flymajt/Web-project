@@ -12,19 +12,16 @@
 
 .nav {
     background-color: rgb(15, 15, 15); 
-    margin: 0;
-  }
-  
-  .nav li {
-    display: inline-block;
     font-size: 20px;
     padding: 20px;
-  }
+    text-align: center;
+}
 
 .title {
     color: azure;
     text-decoration: none;
-    margin-right: 30vw;
+    float: left;
+    line-height: 80%;
 }
 .title:visited {
     color: azure;
@@ -33,6 +30,8 @@
 .btn {
     text-decoration: none;
     color: azure;
+    padding-right: 3vw;
+    line-height: 150%;
 }
 .btn:visited {
     color: azure;
@@ -44,8 +43,7 @@
 .btne {
     text-decoration: none;
     color: azure;
-    text-align: right;
-    margin-left: 30vw;
+    float: right;
 }
 .btne:visited {
     color: azure;
