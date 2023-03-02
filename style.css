@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap%27%27%27');
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Varela+Round&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'varela round', 'dela gothic one', sans-serif;
+}
 .ahoj{
     background-color: aqua;
     text-align: center;
@@ -22,6 +27,8 @@
     text-decoration: none;
     float: left;
     line-height: 80%;
+    font-family: 'dela gothic one';
+    transform: translateY(-5px);
 }
 
 .titleLogin {
@@ -29,6 +36,7 @@
     text-decoration: none;
     float: none;
     line-height: 80%;
+    font-family: 'dela gothic one';
 }
 
 .title:visited {
@@ -56,6 +64,7 @@
     text-decoration: none;
     color: azure;
     float: right;
+    line-height: 150%;
 }
 .btne:visited {
     color: azure;
@@ -64,11 +73,6 @@
     font-weight: bold;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'varela round',sans-serif;
-}
 
 /* celá ta jezdící věc */
 ::-webkit-scrollbar {
@@ -89,15 +93,22 @@
     background-color: rgb(116, 116, 116); 
   }
 
+.profile-button{
+    text-decoration: none;
+    color: azure;
+    padding-right: 3vw;
+    line-height: 150%;
+}  
 
+.profile-button:hover{
+    font-weight: bold;  
+}
+
+.profile-button:visited{
+    color: azure
+}
 
 /*Login*/
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap%27%27');
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'varela round',sans-serif;
-}
 section{
     display: flex;
     justify-content: center;
@@ -111,7 +122,7 @@ section{
     position: relative;
     width: 400px;
     height: 450px;
-    background: rgb(49, 49, 49);
+    background-color: rgb(5, 100, 117);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -149,7 +160,7 @@ top: -1px;
     font-size: 15px;
     padding:0 35px 0 5px;
     color: #fff;
-}¨
+}
 
 .Register {
     color: azure;
@@ -189,4 +200,19 @@ img {
 
 .Login {
     color: azure;
+}
+
+.login-icons {
+    color: azure
+}
+
+.login-button{
+    background-color: #001741;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
