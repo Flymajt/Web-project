@@ -24,7 +24,7 @@
 .title {
     color: azure;
     text-decoration: none;
-    margin-right: 25vw;
+    margin-right: 30vw;
 }
 .title:visited {
     color: azure;
@@ -45,7 +45,7 @@
     text-decoration: none;
     color: azure;
     text-align: right;
-    margin-left: 25vw;
+    margin-left: 30vw;
 }
 .btne:visited {
     color: azure;
