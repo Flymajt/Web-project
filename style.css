@@ -5,7 +5,7 @@
 }
 
 .pozadi {
-    height: 800px;
+    height: 100vh;
     background-color: rgb(20, 20, 20); /* Pro prohlížeče co nepodporují gradient */
     background-image: linear-gradient(rgb(0, 127, 150),rgb(20, 20, 20))
 }
@@ -24,7 +24,7 @@
 .title {
     color: azure;
     text-decoration: none;
-    margin-right: 400px;
+    margin-right: 25vw;
 }
 .title:visited {
     color: azure;
@@ -45,7 +45,7 @@
     text-decoration: none;
     color: azure;
     text-align: right;
-    margin-left: 400px;
+    margin-left: 25vw;
 }
 .btne:visited {
     color: azure;
