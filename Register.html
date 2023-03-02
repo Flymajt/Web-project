@@ -4,19 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="nav">
-        <h1><a href="music_page.html" class="titleLogin">Toney</a></h1>
-        
+        <h1><a href="music_page.html" class="title">Toney</a></h1>
+        <a href="" class="btn">Social</a>
+        <a href="music_page.html" class="btn">Home</a>
+        <a href="Library.html" class="btn">Library</a>
+        <a href="" class="btn">Explore</a>
+        <a href="Login_test.html" class="btne">Login</a>
     </div>
     <section>
         <div class="form-box">
             <div class="form-value">
                 <form action="">
-                    <h2>Login</h2>
+                    <h2>Register</h2>
+                    <div class="inputbox" class="Username">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input type="text" required>
+                        <label for="">Username</label>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
                         <input type="email" required>
@@ -29,11 +37,10 @@
                     </div>
                     <div class="forget">
                         <label for=""><input type="checkbox">Remember me</label>
-                        <a href="#" class="forgot">Forgot password</a>
                     </div>
-                    <button>Login In</button>
-                    <div class="Register">
-                        <p>Don't have an account? <a href="Register.html" class="reg">Register</a></p>
+                    <button>Register</button>
+                    <div class="Login">
+                        <p>Already have an account? <a href="Login_test.html" class="reg">Login</a></p>
                     </div>
                 </form>
             </div>        

@@ -23,7 +23,19 @@
     float: left;
     line-height: 80%;
 }
+
+.titleLogin {
+    color: azure;
+    text-decoration: none;
+    float: none;
+    line-height: 80%;
+}
+
 .title:visited {
+    color: azure;
+}
+
+.titleLogin:visited {
     color: azure;
 }
 
@@ -172,5 +184,9 @@ img {
 }
 
 .forgot:visited {
+    color: azure;
+}
+
+.Login {
     color: azure;
 }
