@@ -216,3 +216,25 @@ img {
     display: inline-block;
     font-size: 16px;
 }
+
+/*Profile*/
+.pozadi-profile{
+    height: 99vh;
+    background-color: rgb(20, 20, 20);
+    background-image: linear-gradient(rgb(216, 150, 63), rgb(20, 20, 20));
+}
+
+.pfp{
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: rgb(20, 20, 20);
+    padding: 15px 15px 0px 15px;
+    
+}
+
+.profile-username{
+    font-family: 'varela round';
+    font-size: 500%;
+    color: azure;
+    transform: translateX(280px) translateY(-250px)
+}
