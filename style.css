@@ -78,3 +78,69 @@
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgb(116, 116, 116); 
   }
+
+
+
+/*Login*/
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap%27%27');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'varela round',sans-serif;
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgb(20, 20, 20); /* Pro prohlížeče co nepodporují gradient */
+    background-image: linear-gradient(rgb(0, 127, 150),rgb(20, 20, 20))
+}
+.form-box{
+    position: relative;
+    width: 400px;
+    height: 450px;
+    background: rgb(49, 49, 49);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h2{
+    font-size: 2em;
+    color: azure;
+    text-align: center;
+}
+.inputbox{
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid #fff;
+}
+.inputbox label{
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    font-size: 15px;
+    pointer-events: none;
+    transition: .2s;
+    margin: -37px 0;
+}
+input:focus ~ label,
+/*input:focus ~ :valid{
+top: -1px;    
+}*/
+.inputbox input{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    padding:0 35px 0 5px;
+    color: #fff;
+}¨
+
+.Register {
+    color: azure;
+}
