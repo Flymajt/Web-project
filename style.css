@@ -170,7 +170,7 @@ img {
     width: 200px;
     height: 200px;
     object-fit: cover;
-    border: 5px solid #0a0a0a;
+    border: 7px solid #0a0a0a;
     padding: 20px;
     margin-left: 100px;
   }
@@ -226,25 +226,25 @@ img {
 
 .Jazz{
     padding: 10px;
-    text-indent: 240px;
+    text-indent: 245px;
     display: inline-block;
 }
 
 .My-playlist{
     padding: 10px;
-    text-indent: 220px;
+    text-indent: 230px;
     display: inline-block;
 }
 
 .Hip-Hop{
     padding: 10px;
-    text-indent: 187px;
+    text-indent: 190px;
     margin-bottom: 25px;
     display: inline-block;
 }
 
 .Country{
     padding: 10px;
-    text-indent: 210px;
+    text-indent: 220px;
     display: inline-block;
 }
