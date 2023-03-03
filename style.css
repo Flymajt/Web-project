@@ -220,31 +220,39 @@ img {
 
 .Electro{
     padding: 10px;
-    text-indent: 160px;
+    text-indent: 110px;
     display: inline-block;
 }
 
 .Jazz{
     padding: 10px;
-    text-indent: 245px;
+    text-indent: 240px;
     display: inline-block;
 }
 
 .My-playlist{
     padding: 10px;
-    text-indent: 230px;
+    text-indent: 227px;
     display: inline-block;
 }
 
 .Hip-Hop{
     padding: 10px;
-    text-indent: 190px;
+    text-indent: 193px;
     margin-bottom: 25px;
     display: inline-block;
 }
 
 .Country{
     padding: 10px;
-    text-indent: 220px;
+    text-indent: 215px;
     display: inline-block;
 }
+
+.Easter{
+    padding: 10px;
+    display: inline-block;
+    font-size: 10px;
+    color: rgb(0, 127, 150);
+}
+
