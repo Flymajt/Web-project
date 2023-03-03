@@ -13,15 +13,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    height: 100vh;
+    background-color: rgb(20, 20, 20);
+    background-image: linear-gradient(rgb(0, 127, 150),rgb(20, 20, 20))
   }
   canvas {
-    border: 1px solid white;
+    border: 5px solid rgb(0, 0, 0);
   }
   </style>
 </head>
 <body>
-<canvas width="400" height="400" id="game"></canvas>
+<canvas width="500" height="500" id="game"></canvas>
 <script>
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
