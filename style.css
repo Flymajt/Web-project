@@ -166,15 +166,6 @@ top: -1px;
     color: azure;
 }
 
-img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border: 7px solid #0a0a0a;
-    padding: 20px;
-    margin-left: 100px;
-  }
-
 .Register {
     color: azure;
 }
@@ -219,6 +210,45 @@ img {
 }
 
 /*--------------------------------------------Library---------------------------------------------------------*/
+.img-obrazky-jedn{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border: 7px solid #0a0a0a;
+    padding: 20px;
+    margin-left: 100px;
+    position: absolute; top: 150px;
+}
+
+.img-obrazky {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 7px solid #0a0a0a;
+    padding: 20px;
+    margin-left: 100px;
+  }
+.Pojmenovani{
+    margin-left: 505px;
+    margin-bottom: 100px;
+    position: absolute; top: 170px;
+    font-size: 23px;
+}
+
+.Info-o-playlistu{
+    margin-left: 507px;
+    margin-bottom: 100px;
+    position: absolute; top: 400px;
+    font-size: 20px;
+    color: rgb(44, 44, 44);
+}
+
+.Nadpisy-playlistu{
+    margin-left: 500px;
+    margin-bottom: 100px;
+    position: absolute; top: 200px;
+    font-size: 70px;
+}
 
 .Electro{
     padding: 10px;
@@ -257,6 +287,7 @@ img {
     font-size: 10px;
     color: rgb(0, 127, 150);
 }
+
 
 /*--------------------------------------------Social-------------------------------------------------------*/
 
