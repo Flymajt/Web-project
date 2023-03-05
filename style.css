@@ -2,7 +2,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'varela round', 'dela gothic one', sans-serif;
+    font-family: 'varela round', 'dela gothic one', 'sans-serif';
 }
 .ahoj{
     background-color: aqua;
@@ -108,7 +108,7 @@
     color: azure
 }
 
-/*Login*/
+/*------------------------------------Login-------------------------------------------*/
 section{
     display: flex;
     justify-content: center;
@@ -218,6 +218,8 @@ img {
     font-size: 16px;
 }
 
+/*--------------------------------------------Library---------------------------------------------------------*/
+
 .Electro{
     padding: 10px;
     text-indent: 110px;
@@ -256,6 +258,8 @@ img {
     color: rgb(0, 127, 150);
 }
 
+/*--------------------------------------------Social-------------------------------------------------------*/
+
 .ChatList {
     text-align: left;
     background-color: rgb(0, 127, 150);
@@ -293,3 +297,49 @@ img {
     text-decoration: none;
     font-weight: bold;
 }
+
+/*--------------------------Profile-----------------------------*/
+
+.pozadi-profile{
+    background-image: linear-gradient(rgb(216, 158, 0), rgb(40, 40, 40));
+    height: 100vh;
+    
+}
+
+.pfp{
+    background-color: rgb(40, 40, 40);
+    margin-top: 5vh;
+    margin-left: 5vh;
+    margin-right: 5vh;
+    margin-bottom: 5vh;
+    display: flex;
+}
+
+.profile-image{
+    margin-top: 3vh;
+    margin-left: 3vh;
+    margin-bottom: 3vh;
+    margin-right: 3vh;
+    
+}
+
+.profile-username{
+    font-size: 100px;
+    margin-top: 1vh;
+    color: azure;
+
+}
+
+.profile-followers{
+    color: azure;
+    padding-right: 5%;
+    margin-top: 9vh;
+    margin-left: 1vh;
+}
+
+.profile-following{
+    color: azure;
+    padding-right: 5%;
+    margin-top: 9vh;
+}
+
