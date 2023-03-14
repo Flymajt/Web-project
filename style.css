@@ -316,16 +316,13 @@ img {
 }
 
 .profile-image{
-    margin-top: 3vh;
-    margin-left: 3vh;
-    margin-bottom: 3vh;
-    margin-right: 3vh;
+    margin: 3vh
     
 }
 
 .profile-username{
     font-size: 100px;
-    margin-top: 1vh;
+    margin-top: 1vw;
     color: azure;
 
 }
@@ -335,6 +332,7 @@ img {
     padding-right: 5%;
     margin-top: 9vh;
     margin-left: 1vh;
+    
 }
 
 .profile-following{
