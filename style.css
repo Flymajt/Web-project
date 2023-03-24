@@ -287,6 +287,34 @@ top: -1px;
     font-size: 10px;
     color: rgb(0, 127, 150);
 }
+/*--------------------------------------------Jednotlive zanry-------------------------------------------------------*/
+
+.Music{
+    position: relative;
+    padding-left: 500px;
+    padding-top: 50px;
+}
+
+.Odsazení-název-playlist{
+    padding-left: 500px;
+    padding-top: 400px;
+}
+
+.Odsazení-album-playlist{
+    padding-left: 350px;
+    padding-top: 400px;
+}
+
+.Odsazení-time-playlist{
+    padding-left: 800px;
+    padding-top: 400px;
+}
+
+
+
+
+
+
 
 
 /*--------------------------------------------Social-------------------------------------------------------*/
