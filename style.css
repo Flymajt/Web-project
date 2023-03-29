@@ -366,12 +366,30 @@ top: -1px;
 }
 
 .pfp{
-    background-color: rgb(40, 40, 40);
+    background-color: rgb(26, 26, 26);
     margin-top: 5vh;
     margin-left: 5vh;
     margin-right: 5vh;
     margin-bottom: 5vh;
     display: flex;
+}
+
+.logout-btn{
+    position: absolute;
+    color: orange;
+    background-color: rgb(40, 40, 40);
+    margin-left: 1650px;
+    margin-top: 25px;
+    width: 150px;
+    height: 50px;
+    font-size: 150%;
+    font-family: 'Dela Gothic One';
+    
+}
+
+.logout-btn:hover{
+    font-weight: bolder;
+    font-size: 99%;
 }
 
 .profile-image{
@@ -387,18 +405,43 @@ top: -1px;
 }
 
 .profile-followers{
-    color: azure;
-    padding-right: 5%;
-    margin-top: 9vh;
-    margin-left: 1vh;
+    color: rgb(170, 170, 170);
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 360px;
+
     
 }
 
 .profile-following{
-    color: azure;
-    padding-right: 5%;
-    margin-top: 9vh;
+    color: rgb(170, 170, 170);
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 700px;
 }
 
+.profile-bio{
+    color: rgb(170, 170, 170);
+    position: absolute;
+    font-size: 100%;
+    margin-top: 220px;
+    margin-left: 360px;
+}
 
+.profile-settings-bg{
+    background-color: rgb(26, 26, 26);
+    margin: 5vh;
+    padding: 2vh;
+    padding-bottom: 300px;
+}
 
+.user-settings{
+    color:azure;
+    margin-top: 1vh;
+    margin-left: 1vh;
+}
+
+.sound-quality{
+    color: azure;
+
+}
