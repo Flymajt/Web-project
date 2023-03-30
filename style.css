@@ -389,7 +389,8 @@ top: -1px;
 
 .logout-btn:hover{
     font-weight: bolder;
-    font-size: 99%;
+    transform: translateY(-5px);
+    transition: 100ms;
 }
 
 .profile-image{
@@ -441,7 +442,9 @@ top: -1px;
     margin-left: 1vh;
 }
 
-.sound-quality{
+.snd-quality{
     color: azure;
-
+    margin-left: 1vh;
+    margin-top: 2vh;
+    font-size: 150%;
 }
