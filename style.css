@@ -138,6 +138,11 @@ h2{
     width: 310px;
     border-bottom: 2px solid #fff;
 }
+
+.NameLabel{
+    margin: -37px -50px;
+}
+
 .inputbox label{
     position: absolute;
     top: 50%;
@@ -147,6 +152,7 @@ h2{
     transition: .2s;
     margin: -37px 0;
 }
+
 input:focus ~ label,
 /*input:focus ~ :valid{
 top: -1px;    
@@ -166,7 +172,7 @@ top: -1px;
     color: azure;
 }
 
-.Register {
+.Username {
     color: azure;
 }
 
@@ -321,7 +327,7 @@ top: -1px;
 
 .ChatList {
     text-align: left;
-    background-color: rgb(0, 127, 150);
+    background-color: rgb(77, 77, 77);
     color:  azure;
     width: 30vw;
     height: 40vw;
@@ -332,7 +338,7 @@ top: -1px;
 }
 
 .chats {
-    background-color: rgb(0, 89, 104);
+    background-color: rgb(37, 37, 37);
     color: azure;
     text-align: right;
     font-family: 'dela gothic one';
