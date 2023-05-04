@@ -112,7 +112,24 @@
 /*----------------------------------------Main Page----------------------------------------------*/
 .nadpisy{
     padding: 50px;
+    padding-left: 100px;
     color: azure;
+}
+
+.songs{
+    text-align: left;
+}
+
+.popisky{
+    color: rgb(155, 152, 152);
+}
+
+.Music_MP{
+    height: 30px;
+}
+
+.QP_MP{
+    width:100%
 }
 
 /*------------------------------------Login & Register-------------------------------------------*/
