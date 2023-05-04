@@ -108,7 +108,7 @@
     color: azure
 }
 
-/*------------------------------------Login-------------------------------------------*/
+/*------------------------------------Login & Register-------------------------------------------*/
 section{
     display: flex;
     justify-content: center;
@@ -126,6 +126,21 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: rgb(15, 15, 15);
+}
+.Regform-box{
+    position: relative;
+    width: 400px;
+    height: 500px;
+    background-color: rgb(5, 100, 117);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: rgb(15, 15, 15);
 }
 h2{
     font-size: 2em;
@@ -136,14 +151,28 @@ h2{
     position: relative;
     margin: 30px 0;
     width: 310px;
-    border-bottom: 2px solid #fff;
+
+}
+
+.Usernameinputbox{
+    position: relative;
+    margin: 25px 0;
+    width: 310px;
+
+    
 }
 
 .NameLabel{
-    margin: -37px -50px;
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    font-size: 15px;
+    pointer-events: none;
+    transition: .2s;
+    margin: -180px 0;
 }
 
-.inputbox label{
+.EmailLabel{
     position: absolute;
     top: 50%;
     left: 30px;
@@ -153,12 +182,32 @@ h2{
     margin: -37px 0;
 }
 
+.PasswordLabel{
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    font-size: 15px;
+    pointer-events: none;
+    transition: .2s;
+    margin: -37px 0;
+}
+
+/*.inputbox label{
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    font-size: 15px;
+    pointer-events: none;
+    transition: .2s;
+    margin: -37px 0;
+}*/
+
 input:focus ~ label,
 /*input:focus ~ :valid{
 top: -1px;    
 }*/
 .inputbox input{
-    width: 100%;
+    width: 85%;
     height: 50px;
     background: transparent;
     border: none;
@@ -166,6 +215,19 @@ top: -1px;
     font-size: 15px;
     padding:0 35px 0 5px;
     color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.Usernameinputbox input{
+    width: 85%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    padding:0 35px 0 5px;
+    color: #fff;
+    border-bottom: 2px solid #fff;
 }
 
 .Register {
@@ -334,7 +396,7 @@ top: -1px;
     margin-left: 69vw;
     border-style: solid;
     border-width: 0,1vw;
-    border-color: black;
+    border-color: rgb(15, 15, 15);
 }
 
 .chats {
