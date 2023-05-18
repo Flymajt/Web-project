@@ -203,6 +203,7 @@ h2{
     pointer-events: none;
     transition: .2s;
     margin: -180px 0;
+    color: azure;
 }
 
 .EmailLabel{
@@ -213,6 +214,7 @@ h2{
     pointer-events: none;
     transition: .2s;
     margin: -37px 0;
+    color: azure;
 }
 
 .PasswordLabel{
@@ -223,6 +225,7 @@ h2{
     pointer-events: none;
     transition: .2s;
     margin: -37px 0;
+    color: azure;
 }
 
 /*.inputbox label{
@@ -235,7 +238,7 @@ h2{
     margin: -37px 0;
 }*/
 
-input:focus ~ label,
+/*input:focus ~ label,*/
 /*input:focus ~ :valid{
 top: -1px;    
 }*/
