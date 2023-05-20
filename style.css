@@ -392,12 +392,19 @@ top: -1px;
     color: rgb(0, 127, 150);
 }
 
+.Librarysongs-R1{
+    
+}
+
+.Librarysongs-R2{
+    position: absolute;
+    margin-top: 110px;
+}
+
 .Librarysongs-1{
     padding-left: 500px;
     color: white;
     font-size: 25px;
-    
-
 }
 
 .Librarysongs-2{
@@ -409,9 +416,8 @@ top: -1px;
 .Librarymusic{
     height: 50px;
     width: 1400px;
-    padding: 30px;
+    padding: 40px;
     padding-left: 500px;
-  
 }
 /*--------------------------------------------Jednotlive zanry-------------------------------------------------------*/
 
