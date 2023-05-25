@@ -542,7 +542,7 @@ top: -1px;
 
 .pozadi-profile{
     background-image: linear-gradient(rgb(216, 158, 0), rgb(40, 40, 40));
-    height: 100vh;
+    background-size: cover;
     
 }
 
@@ -628,4 +628,50 @@ top: -1px;
     margin-left: 1vh;
     margin-top: 2vh;
     font-size: 150%;
+    display: inline-block;
+}
+
+.snd-drpbtn {
+    background-color: rgb(35 35 35);
+    color: rgb(161, 161, 161);
+    padding: 12px;
+    font-size: 17px;    
+    border: none;
+}
+
+.snd-drpdwn {
+    position: absolute;
+    display: inline-block;
+    margin-left: 1500px;
+    margin-bottom: 150px;
+    float: inline-start;
+}
+
+.snd-drpdwn-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(40, 40, 40);
+    min-width: 112px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0,2);
+    z-index: 1;
+    text-align: center;
+}
+
+.snd-drpdwn-content a{
+    color: azure;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.snd-drpdwn-content a:hover{
+    background-color: rgb(35 35 35);
+}
+
+.snd-drpdwn:hover .snd-drpdwn-content{
+    display: block;
+}
+
+.snd-drpdwn:hover .snd-drpbtn{
+    background-color: rgb(50, 50, 50));
 }
