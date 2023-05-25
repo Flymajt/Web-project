@@ -48,12 +48,14 @@
         var password = document.getElementById("password").value;
         
         // Perform validation (e.g. check if fields are not empty, check if credentials are valid, etc.)
-        if (username === "test" && password === "test") {
+        if (username === "google" && password === "google") {
             window.location.href = "https://google.com/";
             alert("Test Working!");
         } else if (username === "WhiteGolem1080" && password === "Fiii1080") {
-            window.location.assign = "Social.html";
-            alert("Opening...");
+            window.location.href = "file:///D:/Users/cupaf/Documents/GitHub/Web-project/Social.html?";
+            alert("Filip");
+        } else if (username === "chk" && password === "url") {
+            alert("Page location is " + window.location.href);
         } else {
         alert("There exists no such account.")
         }
