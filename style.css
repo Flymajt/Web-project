@@ -461,6 +461,7 @@ top: -1px;
     border-style: solid;
     border-width: 0,1vw;
     border-color: rgb(15, 15, 15);
+    float: right;
 }
 
 .chats {
@@ -468,27 +469,74 @@ top: -1px;
     color: azure;
     text-align: right;
     font-family: 'dela gothic one';
+    float: none;
 }
 
 .LogSoc {
     color: azure;
     float: center;
     text-decoration: none;
+    padding: 0,1vw;
+    font-weight: bold;
+    font-size: large;
+    background-color: dimgray;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: black;
 }
 
 .LogSoc:visited {
     color: azure;
     float: center;
     text-decoration: none;
+    padding: 0,1vw;
+    font-weight: bold;
+    font-size: large;
+    background-color: dimgray;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: black;
 }
 
 .LogSoc:hover {
-    color: azure;
+    color: rgb(121, 255, 255);
     float: center;
     text-decoration: none;
     font-weight: bold;
+    padding: 0,1vw;
+    transition: 300ms;
+    font-size: large;
+    background-color: dimgray;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: black;
 }
 
+.Posts {
+    text-align: left;
+    background-color: azure;
+    color:  rgb(77, 77, 77);
+    width: 30vw;
+    height: 40vw;
+    margin-right: 69vw;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: rgb(15, 15, 15);
+    float: none;
+}
+
+.BigBoi{
+    margin-top: 1vh;
+}
+
+.LoginChat {
+    float: none;
+    padding-left: 1vw;
+}
+
+.PostText {
+    float: none;
+}
 
 /*--------------------------Profile-----------------------------*/
 
