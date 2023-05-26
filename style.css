@@ -141,7 +141,7 @@
     height: 140px;
 }
 
-/*------------------------------------Login & Register-------------------------------------------*/
+/*------------------------------------Login, Register, Password reset-------------------------------------------*/
 section{
     display: flex;
     justify-content: center;
@@ -180,6 +180,7 @@ h2{
     color: azure;
     text-align: center;
 }
+
 .inputbox{
     position: relative;
     margin: 30px 0;
@@ -313,6 +314,26 @@ top: -1px;
     font-size: 16px;
 }
 
+.noaccount{
+    margin-left: 5px;
+}
+
+.rstyourpasswordhere{
+    color: azure;
+    font-style: italic;
+}
+
+.loginhere{
+    margin-left: 5px;
+}
+
+.herebtn{
+    margin-left: 5px;
+}
+
+.herebtn:visited{
+    color: azure;
+}
 /*--------------------------------------------Library---------------------------------------------------------*/
 .img-obrazky-jedn{
     width: 300px;
