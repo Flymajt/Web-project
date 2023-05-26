@@ -141,7 +141,41 @@
     height: 140px;
 }
 
-/*------------------------------------Login & Register-------------------------------------------*/
+.btn_img {
+    text-decoration: none;
+    width: 200px;
+    height:200px;
+    object-fit: cover;
+    padding: 10px;
+}
+
+.btn_img:visited {
+    text-decoration: none;
+    color: azure;
+}
+
+.btn_img:hover {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.SP_MP{
+    text-decoration: none;
+    color: azure;
+}
+
+.SP_MP:visited {
+    text-decoration: none;
+    color: azure;
+}
+
+.SP_MP:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: azure;
+}
+
+/*------------------------------------Login, Register, Password reset-------------------------------------------*/
 section{
     display: flex;
     justify-content: center;
@@ -180,6 +214,7 @@ h2{
     color: azure;
     text-align: center;
 }
+
 .inputbox{
     position: relative;
     margin: 30px 0;
@@ -313,6 +348,26 @@ top: -1px;
     font-size: 16px;
 }
 
+.noaccount{
+    margin-left: 5px;
+}
+
+.rstyourpasswordhere{
+    color: azure;
+    font-style: italic;
+}
+
+.loginhere{
+    margin-left: 5px;
+}
+
+.herebtn{
+    margin-left: 5px;
+}
+
+.herebtn:visited{
+    color: azure;
+}
 /*--------------------------------------------Library---------------------------------------------------------*/
 .img-obrazky-jedn{
     width: 300px;
@@ -673,5 +728,5 @@ top: -1px;
 }
 
 .snd-drpdwn:hover .snd-drpbtn{
-    background-color: rgb(50, 50, 50));
+    background-color: rgb(50, 50, 50);
 }
