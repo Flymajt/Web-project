@@ -156,7 +156,6 @@
 
 .btn_img:hover {
     text-decoration: none;
-    font-weight: bold;
 }
 
 .SP_MP{
@@ -171,9 +170,26 @@
 
 .SP_MP:hover {
     text-decoration: none;
-    font-weight: bold;
     color: azure;
 }
+
+.WHATLEY_CRAB{
+    font-size: 10px;
+    text-align: right;
+    text-decoration: none;
+    color: dimgrey;
+}
+
+.WHATLEY_CRAB:visited{
+    text-decoration: none;
+    color: dimgrey;
+}
+
+.WHATLEY_CRAB:hover {
+    text-decoration: none;
+    color: dimgrey;
+}
+
 
 /*------------------------------------Login, Register, Password reset-------------------------------------------*/
 section{
