@@ -146,7 +146,7 @@
     width: 200px;
     height:200px;
     object-fit: cover;
-    padding: 10px;
+    border-radius: 6%;
 }
 
 .btn_img:visited {
@@ -161,6 +161,7 @@
 .SP_MP{
     text-decoration: none;
     color: azure;
+    text-align: center;
 }
 
 .SP_MP:visited {
@@ -190,6 +191,19 @@
     color: dimgrey;
 }
 
+.playlist_popis{
+    text-decoration: none;
+    color: azure;
+    text-align: left;
+}
+
+.playlist_popis:hover{
+    text-decoration: underline;
+}
+
+.playlist_popis:visited{
+    text-decoration: none;
+}
 
 /*------------------------------------Login, Register, Password reset-------------------------------------------*/
 section{
