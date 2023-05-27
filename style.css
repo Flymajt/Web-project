@@ -124,6 +124,10 @@
     color: rgb(155, 152, 152);
 }
 
+.popisky_play{
+    color: rgb(155, 152, 152);
+}
+
 .Music_MP{
     height: 30px;
 }
@@ -161,7 +165,7 @@
 .SP_MP{
     text-decoration: none;
     color: azure;
-    text-align: center;
+    text-align: center; 
 }
 
 .SP_MP:visited {
@@ -357,6 +361,14 @@ top: -1px;
 
 .forgot:visited {
     color: azure;
+}
+
+.looking_for_secrets_are_we{
+    text-decoration: none;
+}
+
+.looking_for_secrets_are_we:visited{
+    text-decoration: none;
 }
 
 .Login {
