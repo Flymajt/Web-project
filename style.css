@@ -429,6 +429,8 @@ top: -1px;
     border: 7px solid #0a0a0a;
     padding: 20px;
     margin-left: 100px;
+    border-radius: 25px;
+
   }
 .Pojmenovani{
     margin-left: 505px;
@@ -516,6 +518,30 @@ top: -1px;
     width: 1400px;
     padding: 40px;
     padding-left: 500px;
+}
+
+.HVR-LB-FG{
+
+    color: black;
+    background-color: lime;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    font-size: 30px; 
+    margin-right: 100px;
+    transition: transform 0.3s ease;
+
+}
+
+.HVR-LB-FG:hover{
+    transform: translateY(-20px);
+    transition-delay: 0.2s;
+}
+
+.container {
+    position: relative;
 }
 /*--------------------------------------------Jednotlive zanry-------------------------------------------------------*/
 
