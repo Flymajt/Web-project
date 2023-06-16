@@ -442,17 +442,18 @@ top: -1px;
 
 .HVR-LB {
     position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    background-color: #f00;
-    color: #fff;
-    border: none;
-    font-size: 16px;
-  }
+    color: black;
+    top: 65%;
+    left: 75%;
+    background-color: lime;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 50%;
+    transition: transform 0.3s ease 0s;
+}
 
-.HVR-LB-FG:hover{
+.HVR-LB:hover{
     transform: translateY(-20px);
     transition-delay: 0.2s;
 }
