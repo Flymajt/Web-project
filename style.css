@@ -520,7 +520,7 @@ top: -1px;
     padding-left: 500px;
 }
 
-.HVR-LB-FG{
+.HVR-LB-FG-Electro{
 
     color: black;
     background-color: lime;
@@ -532,10 +532,95 @@ top: -1px;
     font-size: 30px; 
     margin-right: 100px;
     transition: transform 0.3s ease;
+    margin-left: 14vw;
 
 }
 
-.HVR-LB-FG:hover{
+.HVR-LB-FG-Jazz{
+
+    color: black;
+    background-color: lime;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    font-size: 30px; 
+    margin-right: 100px;
+    transition: transform 0.3s ease;
+    margin-left: 11vw;
+
+}
+
+.HVR-LB-FG-Myplaylist{
+
+    color: black;
+    background-color: lime;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    font-size: 30px; 
+    margin-right: 100px;
+    transition: transform 0.3s ease;
+    margin-left: 11vw;
+
+}
+
+.HVR-LB-FG-Hiphop{
+
+    color: black;
+    background-color: lime;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    font-size: 30px; 
+    margin-right: 100px;
+    transition: transform 0.3s ease;
+    margin-left: 10vw;
+
+}
+
+.HVR-LB-FG-Country{
+
+    color: black;
+    background-color: lime;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    font-size: 30px; 
+    margin-right: 100px;
+    transition: transform 0.3s ease;
+    margin-left: 11vw;
+
+}
+
+.HVR-LB-FG-Electro:hover{
+    transform: translateY(-20px);
+    transition-delay: 0.2s;
+}
+
+.HVR-LB-FG-Jazz:hover{
+    transform: translateY(-20px);
+    transition-delay: 0.2s;
+}
+
+.HVR-LB-FG-Myplaylist:hover{
+    transform: translateY(-20px);
+    transition-delay: 0.2s;
+}
+
+.HVR-LB-FG-Hiphop:hover{
+    transform: translateY(-20px);
+    transition-delay: 0.2s;
+}
+
+.HVR-LB-FG-Country:hover{
     transform: translateY(-20px);
     transition-delay: 0.2s;
 }
