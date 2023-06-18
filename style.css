@@ -426,12 +426,38 @@ top: -1px;
     width: 200px;
     height: 200px;
     object-fit: cover;
-    border: 7px solid #0a0a0a;
-    padding: 20px;
     margin-left: 100px;
+    display: inline-block;
+    border-width: 7px;
+    border-style: solid;
+    border-color: rgb(10, 10, 10);
+    padding: 20px;
     border-radius: 25px;
+}
 
-  }
+.LB-container {
+    position: relative;
+    display: inline-block;
+}
+
+.HVR-LB {
+    position: absolute;
+    color: black;
+    top: 65%;
+    left: 75%;
+    background-color: lime;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 50%;
+    transition: transform 0.3s ease 0s;
+}
+
+.HVR-LB:hover{
+    transform: translateY(-20px);
+    transition-delay: 0.2s;
+}
+
 .Pojmenovani{
     margin-left: 505px;
     margin-bottom: 100px;
@@ -518,115 +544,6 @@ top: -1px;
     width: 1400px;
     padding: 40px;
     padding-left: 500px;
-}
-
-.HVR-LB-FG-Electro{
-
-    color: black;
-    background-color: lime;
-    border-radius: 50%;
-    border: none;
-    padding: 0;
-    width: 50px;
-    height: 50px;
-    font-size: 30px; 
-    margin-right: 100px;
-    transition: transform 0.3s ease;
-    margin-left: 14vw;
-
-}
-
-.HVR-LB-FG-Jazz{
-
-    color: black;
-    background-color: lime;
-    border-radius: 50%;
-    border: none;
-    padding: 0;
-    width: 50px;
-    height: 50px;
-    font-size: 30px; 
-    margin-right: 100px;
-    transition: transform 0.3s ease;
-    margin-left: 11vw;
-
-}
-
-.HVR-LB-FG-Myplaylist{
-
-    color: black;
-    background-color: lime;
-    border-radius: 50%;
-    border: none;
-    padding: 0;
-    width: 50px;
-    height: 50px;
-    font-size: 30px; 
-    margin-right: 100px;
-    transition: transform 0.3s ease;
-    margin-left: 11vw;
-
-}
-
-.HVR-LB-FG-Hiphop{
-
-    color: black;
-    background-color: lime;
-    border-radius: 50%;
-    border: none;
-    padding: 0;
-    width: 50px;
-    height: 50px;
-    font-size: 30px; 
-    margin-right: 100px;
-    transition: transform 0.3s ease;
-    margin-left: 10vw;
-
-}
-
-.HVR-LB-FG-Country{
-
-    color: black;
-    background-color: lime;
-    border-radius: 50%;
-    border: none;
-    padding: 0;
-    width: 50px;
-    height: 50px;
-    font-size: 30px; 
-    margin-right: 100px;
-    transition: transform 0.3s ease;
-    margin-left: 11vw;
-
-}
-
-.HVR-LB-FG-Electro:hover{
-    transform: translateY(-20px);
-    transition-delay: 0.2s;
-}
-
-.HVR-LB-FG-Jazz:hover{
-    transform: translateY(-20px);
-    transition-delay: 0.2s;
-}
-
-.HVR-LB-FG-Myplaylist:hover{
-    transform: translateY(-20px);
-    transition-delay: 0.2s;
-}
-
-.HVR-LB-FG-Hiphop:hover{
-    transform: translateY(-20px);
-    transition-delay: 0.2s;
-}
-
-.HVR-LB-FG-Country:hover{
-    transform: translateY(-20px);
-    transition-delay: 0.2s;
-}
-
-.container {
-    position: relative;
 }
 /*--------------------------------------------Jednotlive zanry-------------------------------------------------------*/
 
