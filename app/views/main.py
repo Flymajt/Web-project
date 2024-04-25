@@ -5,7 +5,7 @@ import json
 app = Flask (__name__)
 app.config["SECRET_KEY"] = "123456789"
 
-def prectijson(nazevsouboru):
+def precti_json(nazevsouboru):
     aktivni_soubor = os.path.dirname(__file)
     SITE_ROOT = os.path.realpath(aktivni_soubor)
     json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
@@ -44,7 +44,7 @@ def zpracuj_registraci():
         if u ["username"] == username:
             return redirect(url_for("prihlaseni"))
         
-    novy_uzivatel ={
+    novy_uzivatel = {
         "username": username,
         "password": password,
     }
@@ -57,7 +57,11 @@ def prihlaseni():
     username = request.form.get("username")
     password = request.form.get("password")
 
-    uzivatele
+    uzivatele = precti_json("users")
+    for u in uzivatele:
+        if u["username"] == username:
+            return redirect(url_for("profile"))
+        return redirect(url_for("prihlaseni"))
 
 
 
