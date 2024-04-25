@@ -29,3 +29,15 @@ def rozcestnik():
 def registrace():
     return render_template("registrace.html")
 
+@app.route('/zpracuj-registraci', methods=["POST"])
+def zpracuj_registraci():
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+
+    uzivatele = precti_json("users")
+    for u in uzivatele:
+        if u ["username"] == username:
+            return redirect(url_for("prihlaseni"))
+
+
