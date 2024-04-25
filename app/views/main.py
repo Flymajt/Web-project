@@ -24,10 +24,10 @@ def zapis_do_json(nazev_souboru, data_na_zapis):
 
 
 @app.route('/')
-def rozcestnik():
+def homePage():
     if "username" in session:
-        return redirect(url_for("zobraz_ucet"))
-    return redirect(url_for("prihlaseni"))
+        return redirect(url_for("profile"))
+    return redirect(url_for("index"))
 
 
 @app.route('/registrace')
@@ -51,6 +51,13 @@ def zpracuj_registraci():
     zapis_do_json("users", novy_uzivatel)
 
     return redirect(url_for("prihlaseni"))
+
+@app.route("/prihlaseni")
+def prihlaseni():
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+    uzivatele
 
 
 
