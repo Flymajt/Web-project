@@ -34,10 +34,18 @@ def zpracuj_registraci():
     username = request.form.get("username")
     password = request.form.get("password")
 
-
     uzivatele = precti_json("users")
     for u in uzivatele:
         if u ["username"] == username:
             return redirect(url_for("prihlaseni"))
+        
+    novy_uzivatel ={
+        "username": username,
+        "password": password,
+    }
+    zapis_do_json("users", novy_uzivatel)
+
+    return redirect(url_for("prihlaseni"))
+
 
 
