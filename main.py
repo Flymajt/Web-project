@@ -16,3 +16,16 @@ def zapis_do_json(nazev_souboru, data_na_zapis):
         json.dump(UZIVATELE, outline)
 
     return
+
+
+@app.route('/')
+def rozcestnik():
+    if "username" in session:
+        return redirect(url_for("zobraz_ucet"))
+    return redirect(url_for("prihlaseni"))
+
+
+@app.route('/registrace')
+def registrace():
+    return render_template("registrace.html")
+
