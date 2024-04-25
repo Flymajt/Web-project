@@ -5,7 +5,12 @@ import json
 app = Flask (__name__)
 app.config["SECRET_KEY"] = "123456789"
 
-
+def prectijson(nazevsouboru):
+    aktivni_soubor = os.path.dirname(__file)
+    SITE_ROOT = os.path.realpath(aktivni_soubor)
+    json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
+    UZIVATELE = json.load(open(json_url,"r",encoding="utf-8"))
+    return UZIVATELE
 def zapis_do_json(nazev_souboru, data_na_zapis):
     aktivni_soubor = os.path.dirname(__file__)
     SITE_ROOT = os.path.realpath(aktivni_soubor)
