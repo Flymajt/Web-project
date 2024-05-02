@@ -5,21 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <div class="nav">
-        <h1><a href="index.html" class="titleLogin">Toney</a></h1>
+        <h1><a href="/" class="titleLogin">Toney</a></h1>
         
     </div>
     <section>
         <div class="Regform-box">
             <div class="form-value">
-                <form action="">
+                <form action="{{ url_for('zpracuj_registraci') }}" method="POST">
                     <h2>Register</h2>
                     <div class="Usernameinputbox" class="Username">
                         <ion-icon name="person-outline" class="login-icons"></ion-icon>
-                        <input type="text" required>
+                        <input type="text" name="username" required>
                         <label for="" class="NameLabel">Username</label>
                     <div class="inputbox">
                         <ion-icon name="mail-outline" class="login-icons"></ion-icon>
@@ -28,12 +28,12 @@
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline" class="login-icons"></ion-icon>
-                        <input type="password" required>
+                        <input type="password" name="password" required>
                         <label for="" class="PasswordLabel">Password</label>
                     </div>
-                    <button class="login-button">Register</button>
+                    <input type="submit" class="login-button" value="Register">
                     <div class="Login">
-                        <p>Already have an account? <a href="Login_test.html" class="reg">Login</a></p>
+                        <p>Already have an account? <a href="login" class="reg">Login</a></p>
                     </div>
                 </form>
             </div>        
