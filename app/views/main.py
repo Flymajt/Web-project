@@ -25,9 +25,8 @@ def zapis_do_json(nazev_souboru, data_na_zapis):
 
 @app.route('/')
 def index():
-    if "username" in session:
-        return redirect(url_for("profile"))
-    #return redirect(url_for("index"))
+    #if "username" in session:
+    #    return redirect(url_for("prihlaseni"))
     return render_template("index.html")
 
 
@@ -61,9 +60,9 @@ def prihlaseni():
     uzivatele = precti_json("users")
     for u in uzivatele:
         if u["username"] == username:
-            return redirect(url_for("profile"))
-        return redirect(url_for("prihlaseni"))
+            return render_template("profile.html")
+        return render_template("login_test.html")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 
