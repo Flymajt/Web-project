@@ -2,8 +2,11 @@ from flask import Flask, request, render_template, redirect, session, url_for, m
 import os
 import json
 
+UPLOAD_FOLDER = "app/views/static/data/songs/"
+
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "123456789"
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 def precti_json(nazev_souboru):
     aktivni_soubor = os.path.dirname(__file__)
@@ -134,11 +137,15 @@ def zpracuj_song():
     for u in songs:
         if u ["title"] == title:
             return redirect(url_for("index"))
-        
+
+    songfile = request.files["songfile"]
+    songfile.save(os.path.join(app.config["UPLOAD_FOLDER"], songfile.filename))
+
     new_song = {
         "title": title,
         "author": author,
-        "album": album
+        "album": album,
+        "songfile": songfile.filename
     }
     zapis_do_json_songs("songs", new_song)
 
