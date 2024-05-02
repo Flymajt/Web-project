@@ -46,6 +46,30 @@ def index():
     #    return redirect(url_for("prihlaseni"))
     return render_template("index.html")
 
+@app.route('/social')
+def social():
+    #if "username" in session:
+    #    return redirect(url_for("prihlaseni"))
+    return render_template("Social.html")
+
+@app.route('/profile')
+def profile():
+    #if "username" in session:
+    #    return redirect(url_for("prihlaseni"))
+    return render_template("profile.html")
+
+@app.route('/explore')
+def explore():
+    #if "username" in session:
+    #    return redirect(url_for("prihlaseni"))
+    return render_template("explore.html")
+
+@app.route('/library')
+def library():
+    #if "username" in session:
+    #    return redirect(url_for("prihlaseni"))
+    return render_template("library.html")
+
 
 @app.route('/register')
 def registrace():
