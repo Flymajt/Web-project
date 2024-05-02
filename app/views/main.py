@@ -73,7 +73,7 @@ def library():
 
 @app.route('/register')
 def registrace():
-    return render_template("registrace.html")
+    return render_template("register.html")
 
 @app.route('/zpracuj-registraci', methods=["POST"])
 def zpracuj_registraci():
