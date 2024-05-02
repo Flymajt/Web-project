@@ -22,6 +22,23 @@ def zapis_do_json(nazev_souboru, data_na_zapis):
 
     return
 
+def precti_json_songs(nazev_souboru):
+    aktivni_soubor = os.path.dirname(__file__)
+    SITE_ROOT = os.path.realpath(aktivni_soubor)
+    json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
+    SONGS = json.load(open(json_url,"r",encoding="utf-8"))
+    return SONGS
+def zapis_do_json_songs(nazev_souboru, data_na_zapis):
+    aktivni_soubor = os.path.dirname(__file__)
+    SITE_ROOT = os.path.realpath(aktivni_soubor)
+    json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
+    SONGS = json.load(open(json_url,"r",encoding="utf-8"))
+    SONGS.append(data_na_zapis)
+    with open(json_url, "w", encoding="utf-8") as outline:
+        json.dump(SONGS, outline)
+
+    return
+
 
 @app.route('/')
 def index():
