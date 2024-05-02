@@ -15,35 +15,35 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="">
+                <form action="{{url_for('zpracuj_prihlaseni')}}" method="POST">
                     <div title="Looking for secrets, are we?">
                         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="looking_for_secrets_are_we"><h2>Login</h2></a>
                     </div>
                     <div class="inputbox">
                         <ion-icon class="login-icons" name="mail-outline"></ion-icon>
-                        <input type="text" required id="username">
+                        <input type="text" name="username" id="username" required>
                         <label for="" class="EmailLabel">Email or Username</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon class="login-icons" name="lock-closed-outline"></ion-icon>
-                        <input type="password" required id="password">
+                        <input type="password" name="password" id="password" required>
                         <label for="" class="PasswordLabel">Password</label>
                     </div>
                     <div class="forget">
                         <label for=""><input type="checkbox">Remember me</label>
                     </div>
-                    <button class="login-button" onclick="validateForm()">Login</button>
+                    <input class="login-button" type="submit" name="" id="" value="Login"/><br/>
                     <div class="Register">
                         <p>Don't have an account? <a href="register" class="reg">Register</a></p>
                     </div>
                     <div class="forgorPass">
-                        <p><a href="PasswordReset.html" class="forgot">Forgot password</a></p>
+                        <p><a href="password-reset" class="forgot">Forgot password</a></p>
                     </div>
                 </form>
             </div>        
         </div>
     </section>
-    <script>
+    <!-- <script>
         function validateForm() {
         // Get the values entered in the form fields
         var username = document.getElementById("username").value;
@@ -73,7 +73,7 @@
         }
       }
         
-    </script>
+    </script> -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
