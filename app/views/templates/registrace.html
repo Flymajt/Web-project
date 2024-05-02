@@ -5,12 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+<!-- proč tahle stranka vubec existuje kdyz uz existuje register.html??? budu pracovat tam -Vojta -->
 <form action="{{ url_for('zpracuj_registraci') }}" method="POST">
     <label for="">Username:</label>
     <input type="text" name="username" required/><br/>
     <label for ="">Password:</label>
     <input type="password" name="password" required/><br/>
     <input type="submit" value="Zpracuj">
+    
+    
 </form>
 </body>
 </html>

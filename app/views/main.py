@@ -96,6 +96,17 @@ def zpracuj_registraci():
 
     return redirect(url_for("prihlaseni"))
 
+@app.route("/zpracuj-prihlaseni", methods=["POST"])
+def zpracuj_prihlaseni():
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+    uzivatele = precti_json("users")
+    for u in uzivatele:
+        if u["username"] == username:
+            return redirect(url_for("profile"))
+        return redirect(url_for("registrace"))
+
 @app.route("/login")
 def prihlaseni():
     username = request.form.get("username")
@@ -106,7 +117,12 @@ def prihlaseni():
         if u["username"] == username:
             return render_template("profile.html")
         return render_template("login_test.html")
-    
+
+@app.route("/password-reset")
+def password_reset():
+    return render_template("passwordreset.html")
+
+
 @app.route('/add-song')
 def add_song():
     return render_template("add_music.html")
