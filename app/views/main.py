@@ -22,16 +22,16 @@ def zapis_do_json(nazev_souboru, data_na_zapis):
 
     return
 
-def precti_json_songs(nazev_souboru):
+def precti_json_songs(songs):
     aktivni_soubor = os.path.dirname(__file__)
     SITE_ROOT = os.path.realpath(aktivni_soubor)
-    json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
+    json_url = os.path.join(SITE_ROOT, "static/data", f"{songs}.json")
     SONGS = json.load(open(json_url,"r",encoding="utf-8"))
     return SONGS
-def zapis_do_json_songs(nazev_souboru, data_na_zapis):
+def zapis_do_json_songs(songs, data_na_zapis):
     aktivni_soubor = os.path.dirname(__file__)
     SITE_ROOT = os.path.realpath(aktivni_soubor)
-    json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
+    json_url = os.path.join(SITE_ROOT, "static/data", f"{songs}.json")
     SONGS = json.load(open(json_url,"r",encoding="utf-8"))
     SONGS.append(data_na_zapis)
     with open(json_url, "w", encoding="utf-8") as outline:
@@ -79,6 +79,30 @@ def prihlaseni():
         if u["username"] == username:
             return render_template("profile.html")
         return render_template("login_test.html")
+    
+@app.route('/add-song')
+def add_song():
+    return render_template("add_music.html")
+
+@app.route('/zpracuj-song', methods=["POST"])
+def zpracuj_song():
+    title = request.form.get("title")
+    author = request.form.get("author")
+    album = request.form.get("album")
+
+    songs = precti_json_songs("songs")
+    for u in songs:
+        if u ["title"] == title:
+            return redirect(url_for("index"))
+        
+    new_song = {
+        "title": title,
+        "author": author,
+        "album": album
+    }
+    zapis_do_json_songs("users", new_song)
+
+    return redirect(url_for("index"))
 
 if __name__ == "__main__":
     app.run(debug=True)
