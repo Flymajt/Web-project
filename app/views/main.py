@@ -2,11 +2,11 @@ from flask import Flask, request, render_template, redirect, session, url_for, m
 import os
 import json
 
-app = Flask (__name__)
+app = Flask(__name__)
 app.config["SECRET_KEY"] = "123456789"
 
-def precti_json(nazevsouboru):
-    aktivni_soubor = os.path.dirname(__file)
+def precti_json(nazev_souboru):
+    aktivni_soubor = os.path.dirname(__file__)
     SITE_ROOT = os.path.realpath(aktivni_soubor)
     json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
     UZIVATELE = json.load(open(json_url,"r",encoding="utf-8"))
@@ -24,13 +24,14 @@ def zapis_do_json(nazev_souboru, data_na_zapis):
 
 
 @app.route('/')
-def homePage():
+def index():
     if "username" in session:
         return redirect(url_for("profile"))
-    return redirect(url_for("index"))
+    #return redirect(url_for("index"))
+    return render_template("index.html")
 
 
-@app.route('/registrace')
+@app.route('/register')
 def registrace():
     return render_template("registrace.html")
 
@@ -52,7 +53,7 @@ def zpracuj_registraci():
 
     return redirect(url_for("prihlaseni"))
 
-@app.route("/prihlaseni")
+@app.route("/login")
 def prihlaseni():
     username = request.form.get("username")
     password = request.form.get("password")
@@ -63,5 +64,6 @@ def prihlaseni():
             return redirect(url_for("profile"))
         return redirect(url_for("prihlaseni"))
 
-
+if __name__ == "__main__":
+    app.run()
 
