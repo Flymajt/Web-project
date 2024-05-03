@@ -2,11 +2,15 @@ from flask import Flask, request, render_template, redirect, session, url_for, m
 import os
 import json
 
-UPLOAD_FOLDER = "app/views/static/data/songs/"
+UPLOAD_FOLDER = "./static/data/songs/"
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "123456789"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
+def slozka_existuje(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 def precti_json(nazev_souboru):
     aktivni_soubor = os.path.dirname(__file__)
@@ -132,6 +136,8 @@ def zpracuj_song():
     title = request.form.get("title")
     author = request.form.get("author")
     album = request.form.get("album")
+
+    slozka_existuje(app.config["UPLOAD_FOLDER"])
 
     songs = precti_json_songs("songs")
     for u in songs:
