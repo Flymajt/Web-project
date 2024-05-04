@@ -18,10 +18,15 @@
 }
 
 .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 98%;
     background-color: rgb(15, 15, 15); 
     font-size: 20px;
     padding: 20px;
     text-align: center;
+    z-index: 2;
 }
 
 .title {
