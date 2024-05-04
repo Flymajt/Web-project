@@ -157,7 +157,7 @@ def zpracuj_song():
 
     songfile = request.files["songfile"]
     if songfile.filename.endswith(".mp3"):
-        songfile.save(os.path.join(app.config["UPLOAD_FOLDER" + "/songs"], songfile.filename))
+        songfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/songs", songfile.filename))
         
         new_song = {
         "title": title,
@@ -184,7 +184,7 @@ def zpracuj_album():
 
     albumfile = request.files["albumfile"]
     if albumfile.filename.endswith(".png" or ".jpg" or ".jpeg"):
-        albumfile.save(os.path.join(app.config["UPLOAD_FOLDER" + "/albums"], albumfile.filename))
+        albumfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/albums", albumfile.filename))
         
         new_album = {
         "title": title,
