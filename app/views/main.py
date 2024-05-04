@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, session, url_for, m
 import os
 import json
 
-UPLOAD_FOLDER = "./static/data/songs/"
+UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "static/data/songs")
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "123456789"
