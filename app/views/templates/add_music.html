@@ -16,7 +16,7 @@
         <a href="library" class="btn">Library</a>
         <a href="login" class="btne">Login</a>
         <a href="add-song" class="btn">Add Song</a>
-    </div><br>
+    </div><br><br>
     <div class="nadpisy">
         <h1>Add Song</h1><br>
     <form action="{{ url_for('zpracuj_song') }}" method="POST" enctype="multipart/form-data">
@@ -30,5 +30,21 @@
         <input type="file" name="songfile" accept=".mp3" required><br>
         <input type="submit" value="Add">
     </form>
+    </div>
+
+    <div class="nadpisy">
+        <h1>Add Album</h1><br>
+    <form action="{{ url_for('zpracuj_album') }}" method="POST" enctype="multipart/form-data">
+        <label for="">Title:</label>
+        <input type="text" name="title" required/><br>
+        <label for ="">Author:</label>
+        <input type="text" name="author" required/><br>
+        <label for ="">Release Date:</label>
+        <input type="number" name="release" required/><br>
+        <label for ="">Album Cover:</label>
+        <input type="file" name="albumfile" accept=".png, .jpg, .jpeg" required><br>
+        <input type="submit" value="Add">
+    </form>
+    </div>
 </body>
 </html>
