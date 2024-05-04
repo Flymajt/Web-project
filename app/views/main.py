@@ -184,7 +184,7 @@ def zpracuj_album():
             return redirect(url_for("index"))
 
     albumfile = request.files["albumfile"]
-    if albumfile.filename.endswith(".png" or ".jpg" or ".jpeg"):
+    if albumfile.filename.endswith((".png", ".jpg",".jpeg")):
         albumfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/albums", albumfile.filename))
         
         new_album = {
