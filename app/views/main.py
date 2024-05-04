@@ -142,7 +142,8 @@ def password_reset():
 
 @app.route('/add-song')
 def add_song():
-    return render_template("add_music.html")
+    albums = precti_json_songs("albums")
+    return render_template("add_music.html", albums=albums)
 
 @app.route('/zpracuj-song', methods=["POST"])
 def zpracuj_song():

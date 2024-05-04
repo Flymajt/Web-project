@@ -19,17 +19,21 @@
     </div><br><br>
     <div class="nadpisy">
         <h1>Add Song</h1><br>
-    <form action="{{ url_for('zpracuj_song') }}" method="POST" enctype="multipart/form-data">
-        <label for="">Title:</label>
-        <input type="text" name="title" required/><br>
-        <label for ="">Author:</label>
-        <input type="text" name="author" required/><br>
-        <label for ="">Album:</label>
-        <input type="text" name="album" required/><br>
-        <label for ="">Song:</label>
-        <input type="file" name="songfile" accept=".mp3" required><br>
-        <input type="submit" value="Add">
-    </form>
+        <form action="{{ url_for('zpracuj_song') }}" method="POST" enctype="multipart/form-data">
+            <label for="">Title:</label>
+            <input type="text" name="title" required/><br>
+            <label for ="">Author:</label>
+            <input type="text" name="author" required/><br>
+            <label for ="">Album:</label>
+            <select name="album" required>
+                {% for album in albums %}
+                    <option value="{{ album.title }}">{{ album.title }}</option>
+                {% endfor %}
+            </select><br>
+            <label for ="">Song:</label>
+            <input type="file" name="songfile" accept=".mp3" required><br>
+            <input type="submit" value="Add">
+        </form>
     </div>
 
     <div class="nadpisy">
