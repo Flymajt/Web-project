@@ -627,6 +627,7 @@ top: -1px;
     padding: 0,1vw;
     font-weight: bold;
     font-size: large;
+    margin-left: 1vw;
 }
 
 .LogSoc:visited {

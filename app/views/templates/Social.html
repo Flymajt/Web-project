@@ -18,8 +18,10 @@
             {% if username is none %}
             <br>
             <h4 class="LoginChat">You have to be logged in to be able to do that!</h4>
-            <br>
             <a href="login" class="LogSoc">Log In</a>
+            {% else %}
+            <br>
+            <h4 class="LoginChat">There dont seem to be any chats right now :(</h4>
             {% endif %}
         </div>
         <div class="Posts">
