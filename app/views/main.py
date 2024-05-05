@@ -59,7 +59,6 @@ def zapis_do_json_albums(nazev_souboru, data_na_zapis):
 
     return
 
-
 @app.route('/')
 def index():
     #if "username" in session:
@@ -169,8 +168,15 @@ def password_reset():
 
 @app.route('/add-song')
 def add_song():
-    albums = precti_json_songs("albums")
-    return render_template("add_music.html", albums=albums)
+    if "uzivatel" in session:
+        username = session["uzivatel"]
+    
+        if username == "admin":
+            albums = precti_json_songs("albums")
+            return render_template("add_music.html", albums=albums)
+        
+    else:
+        return redirect(url_for("index"))
 
 @app.route('/zpracuj-song', methods=["POST"])
 def zpracuj_song():
@@ -228,4 +234,3 @@ def zpracuj_album():
     
 if __name__ == "__main__":
     app.run(debug=True)
-
