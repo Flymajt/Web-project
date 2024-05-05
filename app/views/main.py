@@ -93,7 +93,7 @@ def zpracuj_post():
         "code": post_id,
     }
     zapis_do_json("posts", novy_post)
-
+    # note to self: jde jich dysplaynout max 5 + ten hard coded
     return redirect(url_for("social"))
 
 @app.route("/profile")

@@ -42,7 +42,7 @@
             {% endfor %}
             {% if username is not none %}
             <form action="{{ url_for('zpracuj_post') }}" method="POST" class="postSender">
-                <input type="text" name="post_content" id="post_content" class="postInput">
+                <input type="text" name="post_content" id="post_content" class="postInput" autocomplete="off">
                 <input type="submit" value="Send" class="postButton">
             </form>
             {% endif %}
