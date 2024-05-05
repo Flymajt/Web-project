@@ -923,3 +923,7 @@ input:checked + .slider:before {
     position: absolute;
 
 }
+
+.selecter{
+    width: 200px;
+}
