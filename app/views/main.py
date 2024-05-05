@@ -70,7 +70,10 @@ def social():
     #if "username" in session:
     #    return redirect(url_for("prihlaseni"))
     username = session.get("uzivatel")
-    return render_template("Social.html", username=username)
+
+    posts = precti_json("posts")
+
+    return render_template("Social.html", username=username, posts=posts)
 
 @app.route('/zpracuj-post', methods=["POST"])
 def zpracuj_post():
