@@ -35,12 +35,16 @@
             <h3 class="posttitle">Posts</h3>
             <br>
             <div class="postarea">
-                <h4 class="PostText">EXAMPLE POST</h4>
-                <h5 class="PostText">Description example</h5>
+                <h4 class="PostText">EXAMPLE USER</h4>
+                <h5 class="PostText">Post example</h5>
                 <br>
-                <img src="https://cdn.discordapp.com/attachments/1054816477032755282/1118791265337741422/image.png" alt="">
             </div>
-            
+            {% if username is not none %}
+            <form action="{{ url_for('zpracuj_post') }}" method="POST" class="postSender">
+                <input type="text" name="post_content" id="post_content">
+                <input type="submit" value="Send">
+            </form>
+            {% endif %}
         </div>
     </div>
     

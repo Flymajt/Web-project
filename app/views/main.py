@@ -73,6 +73,27 @@ def social():
     username = session.get("uzivatel")
     return render_template("Social.html", username=username)
 
+@app.route('/zpracuj-post', methods=["POST"])
+def zpracuj_post():
+    username = session.get("uzivatel")
+    content = request.form.get("post_content")
+
+    post_id = 0
+
+    posty = precti_json("posts")
+    for p in posty:
+        if p["code"] == post_id:
+            post_id += 1
+
+    novy_post = {
+        "username": username,
+        "content": content,
+        "code": post_id,
+    }
+    zapis_do_json("posts", novy_post)
+
+    return redirect(url_for("social"))
+
 @app.route("/profile")
 def profile():
     if "uzivatel" in session:
