@@ -658,6 +658,13 @@ top: -1px;
     border-width: 0,1vw;
     border-color: rgb(15, 15, 15);
     float: none;
+    margin-top: 40px;
+    position: relative;
+}
+
+.postSender {
+    position: absolute;
+    bottom: 5px;
 }
 
 .BigBoi{
