@@ -107,6 +107,10 @@ def zpracuj_prihlaseni():
             return redirect(url_for("profile"))
         return redirect(url_for("registrace"))
 
+@app.route("/logout")
+def logout():
+    return redirect(url_for("index"))
+
 @app.route("/login")
 def prihlaseni():
     username = request.form.get("username")

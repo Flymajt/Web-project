@@ -16,29 +16,37 @@
         <div class="form-box">
             <div class="form-value">
                 <form action="{{url_for('zpracuj_prihlaseni')}}" method="POST">
+
                     <div title="Looking for secrets, are we?">
                         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="looking_for_secrets_are_we"><h2>Login</h2></a>
                     </div>
-                    <div class="inputbox">
+
+                    <div class="inputbox"> <!-- username pole -->
                         <ion-icon class="login-icons" name="mail-outline"></ion-icon>
                         <input type="text" name="username" id="username" required>
                         <label for="" class="EmailLabel">Email or Username</label>
                     </div>
-                    <div class="inputbox">
+
+                    <div class="inputbox"> <!-- password pole -->
                         <ion-icon class="login-icons" name="lock-closed-outline"></ion-icon>
                         <input type="password" name="password" id="password" required>
                         <label for="" class="PasswordLabel">Password</label>
                     </div>
-                    <div class="forget">
+
+                    <div class="forget"> <!-- remember me checkbox -->
                         <label for=""><input type="checkbox">Remember me</label>
                     </div>
-                    <input class="login-button" type="submit" name="" id="" value="Login"/><br/>
-                    <div class="Register">
+
+                    <input class="login-button" type="submit" name="" id="" value="Login"/><br/> <!-- login btn -->
+
+                    <div class="Register"> <!-- register btn -->
                         <p>Don't have an account? <a href="register" class="reg">Register</a></p>
                     </div>
-                    <div class="forgorPass">
+
+                    <div class="forgorPass"> <!-- forgot password btn -->
                         <p><a href="password-reset" class="forgot">Forgot password</a></p>
                     </div>
+
                 </form>
             </div>        
         </div>
