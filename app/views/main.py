@@ -70,7 +70,8 @@ def index():
 def social():
     #if "username" in session:
     #    return redirect(url_for("prihlaseni"))
-    return render_template("Social.html")
+    username = session.get("uzivatel")
+    return render_template("Social.html", username=username)
 
 @app.route("/profile")
 def profile():
