@@ -12,16 +12,16 @@ def precti_json(nazev_souboru):
     aktivni_soubor = os.path.dirname(__file__)
     SITE_ROOT = os.path.realpath(aktivni_soubor)
     json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
-    UZIVATELE = json.load(open(json_url,"r",encoding="utf-8"))
-    return UZIVATELE
+    USERS = json.load(open(json_url,"r",encoding="utf-8"))
+    return USERS
 def zapis_do_json(nazev_souboru, data_na_zapis):
     aktivni_soubor = os.path.dirname(__file__)
     SITE_ROOT = os.path.realpath(aktivni_soubor)
     json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
-    UZIVATELE = json.load(open(json_url,"r",encoding="utf-8"))
-    UZIVATELE.append(data_na_zapis)
+    USERS = json.load(open(json_url,"r",encoding="utf-8"))
+    USERS.append(data_na_zapis)
     with open(json_url, "w", encoding="utf-8") as outline:
-        json.dump(UZIVATELE, outline)
+        json.dump(USERS, outline)
 
     return
 
@@ -98,46 +98,37 @@ def registrace():
 @app.route('/zpracuj-registraci', methods=["POST"])
 def zpracuj_registraci():
     username = request.form.get("username")
+    email = request.form.get("email")
     password = request.form.get("password")
 
     uzivatele = precti_json("users")
     for u in uzivatele:
-        if u ["username"] == username:
+        if u["email"] == email:
             return redirect(url_for("prihlaseni"))
         
     novy_uzivatel = {
         "username": username,
+        "email": email,
         "password": password,
     }
     zapis_do_json("users", novy_uzivatel)
 
     return redirect(url_for("prihlaseni"))
 
-@app.route("/zpracuj-prihlaseni", methods=["POST"])
-def zpracuj_prihlaseni():
-    username = request.form.get("username")
-    password = request.form.get("password")
-
-    uzivatele = precti_json("users")
-    for u in uzivatele:
-        if u["username"] == username:
-            return redirect(url_for("profile"))
-        return redirect(url_for("registrace"))
-
-@app.route("/logout")
-def logout():
-    return redirect(url_for("index"))
-
-@app.route("/login")
+@app.route("/login", methods=["POST", "GET"])
 def prihlaseni():
     username = request.form.get("username")
     password = request.form.get("password")
 
     uzivatele = precti_json("users")
     for u in uzivatele:
-        if u["username"] == username:
-            return render_template("profile.html")
-        return render_template("login_test.html")
+        if u["username"] == username and u["password"] == password:
+            return redirect(url_for("profile"))
+
+    return render_template("login_test.html")
+@app.route("/logout")
+def logout():
+    return redirect(url_for("index"))
 
 @app.route("/password-reset")
 def password_reset():

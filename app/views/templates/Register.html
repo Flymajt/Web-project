@@ -18,19 +18,19 @@
                 <form action="{{ url_for('zpracuj_registraci') }}" method="POST">
                     <h2>Register</h2>
 
-                    <div class="inputbox" class="Username">
+                    <div class="inputbox" class="Username"> <!-- username pole -->
                         <ion-icon name="person-outline" class="login-icons"></ion-icon>
                         <input type="text" name="username" required>
                         <label for="" class="NameLabel">Username</label>
 
 
-                    <div class="inputbox">
+                    <div class="inputbox"> <!-- email pole -->
                         <ion-icon name="mail-outline" class="login-icons"></ion-icon>
                         <input type="email" name="email" required>
                         <label for="" class="EmailLabel">Email</label>
                     </div>
 
-                    <div class="inputbox">
+                    <div class="inputbox"> <!-- password pole -->
                         <ion-icon name="lock-closed-outline" class="login-icons"></ion-icon>
                         <input type="password" name="password" required>
                         <label for="" class="PasswordLabel">Password</label>
