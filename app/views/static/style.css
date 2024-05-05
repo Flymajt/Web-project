@@ -612,11 +612,12 @@ top: -1px;
 }
 
 .postarea {
-    background-color: #999999;
+    background-color:azure;
     width: 300px;
     border-style: solid;
     border-width: 0,1vw;
-    border-color: #888888;
+    border-color: gainsboro;
+    margin-left: 3vw;
 }
 
 .LogSoc {
@@ -650,7 +651,7 @@ top: -1px;
 
 .Posts {
     text-align: left;
-    background-color: azure;
+    background-color:  #888888;
     color:  rgb(77, 77, 77);
     width: 30vw;
     height: 40vw;
@@ -665,7 +666,34 @@ top: -1px;
 .postSender {
     position: absolute;
     bottom: 5px;
+    margin-left: 3vw;
+    background-color:azure;
+    width: 300px;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: gainsboro;
 }
+
+.postInput {
+    background-color:rgb(99, 99, 99);
+    width: 240px;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: rgb(88, 88, 88);
+    color: azure;
+}
+
+.postButton {
+    background-color:rgb(99, 99, 99);
+    width: 50px;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: rgb(88, 88, 88);
+    color: azure;
+    position: absolute;
+    right: 0;
+}
+
 
 .BigBoi{
     margin-top: 1vh;
