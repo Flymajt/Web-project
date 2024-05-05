@@ -30,6 +30,14 @@
                 <h5 class="PostText">Post example</h5>
                 <br>
             </div>
+            {% for post in posts %}
+            <br>
+            <div class="postarea">
+                <h4 class="PostText">{{ post.username }}</h4>
+                <h5 class="PostText">{{ post.content }}</h5>
+                <br>
+            </div>
+            {% endfor %}
             {% if username is not none %}
             <form action="{{ url_for('zpracuj_post') }}" method="POST" class="postSender">
                 <input type="text" name="post_content" id="post_content">
