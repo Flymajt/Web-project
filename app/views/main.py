@@ -72,16 +72,19 @@ def social():
     #    return redirect(url_for("prihlaseni"))
     return render_template("Social.html")
 
-@app.route('/profile')
+@app.route("/profile")
 def profile():
-    #if "username" in session:
-    #    return redirect(url_for("prihlaseni"))
-    return render_template("profile.html")
+    if "uzivatel" in session:
+        jmeno = session["uzivatel"]
+        return render_template("profile.html", jmeno=jmeno)
+    else:
+        return redirect(url_for("prihlaseni"))
 
 @app.route('/explore')
 def explore():
     #if "username" in session:
     #    return redirect(url_for("prihlaseni"))
+
     return render_template("explore.html")
 
 @app.route('/library')
@@ -117,17 +120,24 @@ def zpracuj_registraci():
 
 @app.route("/login", methods=["POST", "GET"])
 def prihlaseni():
-    username = request.form.get("username")
-    password = request.form.get("password")
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
 
-    uzivatele = precti_json("users")
-    for u in uzivatele:
-        if u["username"] == username and u["password"] == password:
-            return redirect(url_for("profile"))
+        uzivatele = precti_json("users")
+        for u in uzivatele:
+            if u["username"] == username and u["password"] == password:
+                session["uzivatel"] = username  # Uložení uživatele do session
+                return redirect(url_for("profile"))
+
+        return render_template("login_test.html", error="Neplatné uživatelské jméno nebo heslo")
 
     return render_template("login_test.html")
-@app.route("/logout")
+
+@app.route("/logout", methods=["POST"])
 def logout():
+    if "uzivatel" in session:
+        del session["uzivatel"]
     return redirect(url_for("index"))
 
 @app.route("/password-reset")

@@ -24,13 +24,14 @@
     <div class="pfp">
         <img class="profile-image" src="https://freesvg.org/img/abstract-user-flat-4.png" alt="profile image"
         width="300px" height="300px">
-        <h3 class="profile-username">{{username}}</h3>
+        <h3 class="profile-username">{{jmeno}}</h3>
         <h1 class="profile-followers"><u>Followers</u>:</h1>
         <h1 class="profile-following"><u>Following</u>:</h1>
         <h1 class="profile-bio">[About me]</h1>
 
-
-        <button class="logout-btn">Log out</button>
+    <form action="/logout" method="POST">
+        <button type="submit" class="logout-btn">Log out</button>
+    </form>
 
 
     </div>
