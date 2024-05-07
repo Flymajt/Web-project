@@ -593,6 +593,9 @@ top: -1px;
     border-color: rgb(15, 15, 15);
     float: none;
     margin-top: 40px;
+    z-index: 2;
+    position: fixed;
+    right: 0;
 }
 
 .chats {
@@ -661,7 +664,8 @@ top: -1px;
     border-color: rgb(15, 15, 15);
     float: none;
     margin-top: 40px;
-    position: relative;
+    position: fixed;
+    z-index: 2;
 }
 
 .postSender {
