@@ -79,6 +79,9 @@ def social():
 def zpracuj_post():
     username = session.get("uzivatel")
     content = request.form.get("post_content")
+    attachment = request.files["post_attachment"]
+
+    attachment.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/attachments", attachment.filename))
 
     post_id = 0
 
@@ -90,6 +93,7 @@ def zpracuj_post():
     novy_post = {
         "username": username,
         "content": content,
+        "attachment": attachment.filename,
         "code": post_id,
     }
     zapis_do_json("posts", novy_post)

@@ -616,8 +616,8 @@ top: -1px;
     width: 300px;
     border-style: solid;
     border-width: 0,1vw;
-    border-color: gainsboro;
-    margin-left: 3vw;
+    border-color: lightgrey;
+    color: rgb(44, 44, 44);
 }
 
 .LogSoc {
@@ -653,7 +653,7 @@ top: -1px;
 .Posts {
     text-align: left;
     background-color: rgb(77, 77, 77);
-    color:  rgb(77, 77, 77);
+    color:  azure;
     width: 30vw;
     height: 40vw;
     border-style: solid;
@@ -717,6 +717,19 @@ top: -1px;
     display: block;
     float: right;
     }
+
+.PostZone
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 80px;
+}
+
+.PostAttachment{
+    max-width: 350vw;
+    max-height: 350vh;
+}
 
 /*--------------------------Profile-----------------------------*/
 
