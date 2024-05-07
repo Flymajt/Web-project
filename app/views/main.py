@@ -81,7 +81,10 @@ def zpracuj_post():
     content = request.form.get("post_content")
     attachment = request.files["post_attachment"]
 
-    attachment.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/attachments", attachment.filename))
+    print(attachment.filename)
+
+    if(attachment.filename != ""):
+        attachment.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/attachments", attachment.filename))
 
     post_id = 0
 
