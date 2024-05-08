@@ -961,3 +961,12 @@ input:checked + .slider:before {
 .selecter{
     width: 200px;
 }
+
+.passCheckbox {
+    color: white
+}
+
+#visibleText{
+    font-weight: bold;
+    color: yellow;
+}

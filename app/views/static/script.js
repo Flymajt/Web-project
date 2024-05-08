@@ -23,3 +23,18 @@ document.querySelectorAll(".playlist_popis").forEach(element => {
 document.querySelectorAll(".popisky_play").forEach(element => {
     element.textContent = playlist_popisky_lenght(element.textContent);
 });
+
+
+function showPassword() {
+    var passwordInput = document.getElementById("password");
+    var visibleText = document.getElementById("visibleText");
+    var passCheckbox = document.getElementById("passCheckbox");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        visibleText.textContent = "VISIBLE";
+    } else {
+        passwordInput.type = "password";
+        visibleText.textContent = "";
+    }
+}

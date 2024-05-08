@@ -30,10 +30,15 @@
                     <div class="inputbox"> <!-- password pole -->
                         <ion-icon class="login-icons" name="lock-closed-outline"></ion-icon>
                         <input type="password" name="password" id="password" required>
-                        <label for="" class="PasswordLabel">Password</label>
+                        <label for="" class="PasswordLabel" id="passwordBox">Password <span id="visibleText"></span></label>
+
                         {% if error %}
                             <h4>{{error}}</h4>
                         {% endif %}
+                    </div>
+
+                    <div class="passCheckbox">
+                        <input type="checkbox" onclick="showPassword()" id="passCheckbox"/>Show password<br/>
                     </div>
 
                     <div class="forget"> <!-- remember me checkbox -->
@@ -87,5 +92,6 @@
     </script> -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../static/script.js"></script>
 </body>
 </html>
