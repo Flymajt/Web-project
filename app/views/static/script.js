@@ -48,3 +48,19 @@ if (loginInputError) {
     }
 
 };
+
+var audio = document.getElementById("audioPlayer");
+var playButton = document.getElementById("playButton");
+
+playButton.addEventListener("click", function(event) {
+    event.preventDefault(); // Zabraňuje výchozímu chování odkazu
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+});
+
+audio.src = "/static/Songy/Main Page Songz/Blinding Lights.mp3"; // Nastaví výchozí zdroj písně
+
+
