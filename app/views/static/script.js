@@ -56,6 +56,7 @@ window.onload = function() {
     var pauseButtonHotbar = document.getElementById("pauseButtonHotbar");
     var rewindButton = document.getElementById("rewindButton");
     var forwardButton = document.getElementById("forwardButton");
+    var volumeRange = document.getElementById("volumeRange");
     var currentSongIndex = 0;
 
     playButtonHotbar.addEventListener("click", function(event) {
@@ -78,6 +79,10 @@ window.onload = function() {
         audio.currentTime += 15;
     });
 
+    volumeRange.addEventListener("input", function() {
+        audio.volume = volumeRange.value;
+    });
+
     hotbar.style.display = "block";
 
     var images = document.querySelectorAll(".playButton");
@@ -92,10 +97,7 @@ window.onload = function() {
     });
 
     audio.addEventListener("ended", function() {
-
     });
 
     audio.src = "";
 };
-
-

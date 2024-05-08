@@ -18,6 +18,7 @@
         <button id="playButtonHotbar">Spustit</button>
         <button id="pauseButtonHotbar">Pauza</button>
         <button id="forwardButton">Přetočit 15s</button>
+        <input type="range" id="volumeRange" min="0" max="1" step="0.1" value="1">
     </div>
 
 
@@ -53,20 +54,14 @@
                 </th>
 
                 <th class="songs">
-                    <h3>Save Your Tears</h3>
-                    <p class="popisky">The Weeknd ♦ After Hours</p>
-                    <audio controls class="Music_MP" src="/static/Songy/Main Page Songz/Save Your Tears.mp3"></audio><br>
+                    <h3>Budu ti vyprávět </h3>
+                    <p class="popisky">Michal Hrůza ♦ Naporad</p>
+                    <a href="#" class="playButton" data-src="/static/Songy/Main Page Songz/Budu ti vypravet.mp3">
+                        <img class="btn_img" src="/static/Images/Playlist covers/Budu ti vypravet Michal hruza.jpg", class="playButton">
+                    </a>
+                    <audio id="audioPlayer" class="Music_MP"></audio>
                 </th>
-            </tr>
 
-            <tr class="TR_MP">
-                <tr>
-                    <th class="songs">
-                        <h3>Budu ti vypravet</h3>
-                        <p class="popisky">Michal Hrůza ♦ Naporad</p>
-                        <audio controls class="Music_MP" src="/static/Songy/Main Page Songz/Budu ti vypravet.mp3"></audio><br>
-                    </th>
-    
                     <th class="songs">
                         <h3>California Dreamin'</h3>
                         <p class="popisky">The Mamas & The Papas ♦ All The Leaves Are Brown: The Golden Era Collection</p>
