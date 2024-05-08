@@ -735,6 +735,23 @@ top: -1px;
     max-height: 350vh;
 }
 
+.chatDiv{
+    margin-left: 1vw;
+    background-color:rgb(37, 37, 37);
+    width: 300px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(15, 15, 15);
+}
+
+.chatUser{
+
+}
+
+.chatMSG{
+    color: gray;
+}
+
 /*--------------------------Profile-----------------------------*/
 
 .pozadi-profile{
