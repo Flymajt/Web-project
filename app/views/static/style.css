@@ -970,3 +970,7 @@ input:checked + .slider:before {
     font-weight: bold;
     color: yellow;
 }
+
+#loginInputError{
+    color: #E75151
+}

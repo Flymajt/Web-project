@@ -128,25 +128,29 @@ def library():
         return redirect(url_for("prihlaseni"))
 
 
-@app.route('/register')
+@app.route('/register', methods=["POST", "GET"])
 def registrace():
-    username = request.form.get("username")
-    email = request.form.get("email")
-    password = request.form.get("password")
+    if "uzivatel" in session:
+        return redirect(url_for("profile"))
+    if request.method == "POST":
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
 
-    uzivatele = precti_json("users")
-    for u in uzivatele:
-        if u["email"] == email:
-            return redirect(url_for("prihlaseni"))
+        uzivatele = precti_json("users")
+        for u in uzivatele:
+            if u["email"] == email:
+                return redirect(url_for("prihlaseni"))
 
-    novy_uzivatel = {
-        "username": username,
-        "email": email,
-        "password": password,
-    }
-    zapis_do_json("users", novy_uzivatel)
+        novy_uzivatel = {
+            "username": username,
+            "email": email,
+            "password": password,
+        }
+        zapis_do_json("users", novy_uzivatel)
+        return redirect(url_for("prihlaseni"))
 
-    return redirect(url_for("prihlaseni"))
+    return render_template("register.html")
 
 
 @app.route("/login", methods=["POST", "GET"])
@@ -154,14 +158,13 @@ def prihlaseni():
     if "uzivatel" in session:
         return redirect(url_for("profile"))
     if request.method == "POST":
-        username = request.form.get("username")
-        email = request.form.get("username")
+        username_or_email = request.form.get("username_or_email")
         password = request.form.get("password")
 
         uzivatele = precti_json("users")
         for u in uzivatele:
-            if u["username"] == username or u["email"] == email and u["password"] == password:
-                session["uzivatel"] = username
+            if u["username"] == username_or_email or u["email"] == username_or_email and u["password"] == password:
+                session["uzivatel"] = u["username"]
                 return redirect(url_for("profile"))
 
         return render_template("login_test.html", error="Neplatné uživatelské jméno nebo heslo")

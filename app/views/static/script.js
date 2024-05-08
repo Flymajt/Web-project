@@ -38,3 +38,13 @@ function showPassword() {
         visibleText.textContent = "";
     }
 }
+
+window.onload = function() {
+var loginInputError = document.getElementById("loginInputError");
+if (loginInputError) {
+        setTimeout(function() {
+        loginInputError.style.display = "none";
+        }, 5000)
+    }
+
+};

@@ -23,7 +23,7 @@
 
                     <div class="inputbox"> <!-- username pole -->
                         <ion-icon class="login-icons" name="mail-outline"></ion-icon>
-                        <input type="text" name="username" id="username" required>
+                        <input type="text" name="username_or_email" id="username" required>
                         <label for="" class="EmailLabel">Email or Username</label>
                     </div>
 
@@ -33,7 +33,7 @@
                         <label for="" class="PasswordLabel" id="passwordBox">Password <span id="visibleText"></span></label>
 
                         {% if error %}
-                            <h4>{{error}}</h4>
+                            <h5 id="loginInputError">{{error}}</h5>
                         {% endif %}
                     </div>
 
