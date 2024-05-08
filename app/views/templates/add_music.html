@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toney</title>
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body class="pozadi">
     {% include "navbar.html" %}
@@ -12,11 +12,11 @@
         <h1>Add Song</h1><br>
         <form action="{{ url_for('zpracuj_song') }}" method="POST" enctype="multipart/form-data">
             <label for="">Title:</label>
-            <input type="text" name="title" required/><br>
+            <input type="text" name="title" required autocomplete="off"/><br>
             <label for ="">Author:</label>
-            <input type="text" name="author" required/><br>
+            <input type="text" name="author" required autocomplete="off"/><br>
             <label for ="">Album:</label>
-            <select name="album" required>
+            <select name="album" required class="selecter">
                 {% for album in albums %}
                     <option value="{{ album.title }}">{{ album.title }}</option>
                 {% endfor %}
@@ -31,11 +31,11 @@
         <h1>Add Album</h1><br>
     <form action="{{ url_for('zpracuj_album') }}" method="POST" enctype="multipart/form-data">
         <label for="">Title:</label>
-        <input type="text" name="title" required/><br>
+        <input type="text" name="title" required autocomplete="off"/><br>
         <label for ="">Author:</label>
-        <input type="text" name="author" required/><br>
+        <input type="text" name="author" required autocomplete="off"/><br>
         <label for ="">Release Date:</label>
-        <input type="number" name="release" required/><br>
+        <input type="number" name="release" required autocomplete="off"/><br>
         <label for ="">Album Cover:</label>
         <input type="file" name="albumfile" accept=".png, .jpg, .jpeg" required><br>
         <input type="submit" value="Add">

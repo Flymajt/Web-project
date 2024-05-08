@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body class="pozadi">
 
@@ -18,13 +18,18 @@
             {% if username is none %}
             <br>
             <h4 class="LoginChat">You have to be logged in to be able to do that!</h4>
-            <br>
             <a href="login" class="LogSoc">Log In</a>
+            {% else %}
+            <br>
+            <div class="chatDiv">
+                <h4 class="chatUser">Toney</h4>
+                <h6 class="chatMSG">Hello! Welcome to Toney!</h6>
+            </div>
+            <h4 class="LoginChat">There dont seem to be any chats right now :(</h4>
             {% endif %}
         </div>
-        <div class="Posts">
-            <h3 class="posttitle">Posts</h3>
-            <br>
+
+        <div class="PostZone">
             <div class="postarea">
                 <h4 class="PostText">EXAMPLE USER</h4>
                 <h5 class="PostText">Post example</h5>
@@ -35,13 +40,20 @@
             <div class="postarea">
                 <h4 class="PostText">{{ post.username }}</h4>
                 <h5 class="PostText">{{ post.content }}</h5>
+                <img src="/static/data/attachments/{{ post.attachment }}" alt="" class="PostAttachment">
                 <br>
             </div>
             {% endfor %}
+        </div>
+
+        <div class="Posts">
+            <h3 class="posttitle">Posts</h3>
+            <br>
             {% if username is not none %}
-            <form action="{{ url_for('zpracuj_post') }}" method="POST" class="postSender">
-                <input type="text" name="post_content" id="post_content">
-                <input type="submit" value="Send">
+            <form action="{{ url_for('zpracuj_post') }}" method="POST" class="postSender" enctype="multipart/form-data">
+                <input type="file" name="post_attachment" id="post_attachment" accept=".png, .jpeg, .jpg">
+                <input type="text" name="post_content" id="post_content" class="postInput" autocomplete="off">
+                <input type="submit" value="Send" class="postButton">
             </form>
             {% endif %}
         </div>

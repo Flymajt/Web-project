@@ -593,6 +593,9 @@ top: -1px;
     border-color: rgb(15, 15, 15);
     float: none;
     margin-top: 40px;
+    z-index: 2;
+    position: fixed;
+    right: 0;
 }
 
 .chats {
@@ -612,11 +615,12 @@ top: -1px;
 }
 
 .postarea {
-    background-color: #999999;
+    background-color:azure;
     width: 300px;
     border-style: solid;
     border-width: 0,1vw;
-    border-color: #888888;
+    border-color: lightgrey;
+    color: rgb(44, 44, 44);
 }
 
 .LogSoc {
@@ -626,6 +630,7 @@ top: -1px;
     padding: 0,1vw;
     font-weight: bold;
     font-size: large;
+    margin-left: 1vw;
 }
 
 .LogSoc:visited {
@@ -650,8 +655,8 @@ top: -1px;
 
 .Posts {
     text-align: left;
-    background-color: azure;
-    color:  rgb(77, 77, 77);
+    background-color: rgb(77, 77, 77);
+    color:  azure;
     width: 30vw;
     height: 40vw;
     border-style: solid;
@@ -659,13 +664,41 @@ top: -1px;
     border-color: rgb(15, 15, 15);
     float: none;
     margin-top: 40px;
-    position: relative;
+    position: fixed;
+    z-index: 2;
 }
 
 .postSender {
     position: absolute;
     bottom: 5px;
+    margin-left: 3vw;
+    background-color:azure;
+    width: 300px;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: gainsboro;
 }
+
+.postInput {
+    background-color:rgb(99, 99, 99);
+    width: 240px;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: rgb(88, 88, 88);
+    color: azure;
+}
+
+.postButton {
+    background-color:rgb(99, 99, 99);
+    width: 50px;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: rgb(88, 88, 88);
+    color: azure;
+    position: absolute;
+    right: 0;
+}
+
 
 .BigBoi{
     margin-top: 1vh;
@@ -688,6 +721,36 @@ top: -1px;
     display: block;
     float: right;
     }
+
+.PostZone
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 80px;
+}
+
+.PostAttachment{
+    max-width: 350vw;
+    max-height: 350vh;
+}
+
+.chatDiv{
+    margin-left: 1vw;
+    background-color:rgb(37, 37, 37);
+    width: 300px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(15, 15, 15);
+}
+
+.chatUser{
+
+}
+
+.chatMSG{
+    color: gray;
+}
 
 /*--------------------------Profile-----------------------------*/
 
@@ -893,4 +956,8 @@ input:checked + .slider:before {
     color: azure;
     position: absolute;
 
+}
+
+.selecter{
+    width: 200px;
 }
