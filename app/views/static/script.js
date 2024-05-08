@@ -54,8 +54,9 @@ window.onload = function() {
     var audio = document.getElementById("audioPlayer");
     var playButtonHotbar = document.getElementById("playButtonHotbar");
     var pauseButtonHotbar = document.getElementById("pauseButtonHotbar");
+    var rewindButton = document.getElementById("rewindButton");
+    var forwardButton = document.getElementById("forwardButton");
     var currentSongIndex = 0;
-
 
     playButtonHotbar.addEventListener("click", function(event) {
         event.preventDefault();
@@ -65,6 +66,16 @@ window.onload = function() {
     pauseButtonHotbar.addEventListener("click", function(event) {
         event.preventDefault();
         audio.pause();
+    });
+
+    rewindButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        audio.currentTime -= 15;
+    });
+
+    forwardButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        audio.currentTime += 15;
     });
 
     hotbar.style.display = "block";
@@ -81,12 +92,7 @@ window.onload = function() {
     });
 
     audio.addEventListener("ended", function() {
-        currentSongIndex++;
-        if (currentSongIndex >= songs.length) {
-            currentSongIndex = 0;
-        }
-        audio.src = songs[currentSongIndex].src;
-        audio.play();
+
     });
 
     audio.src = "";
