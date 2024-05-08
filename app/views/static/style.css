@@ -215,6 +215,22 @@
     text-decoration: none;
 }
 
+.player-mainpage {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.hotbar-mainpage {
+    display: none;
+    background-color: #ccc;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
 /*------------------------------------Login, Register, Password reset-------------------------------------------*/
 section{
     display: flex;

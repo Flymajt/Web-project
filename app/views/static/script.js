@@ -49,18 +49,34 @@ if (loginInputError) {
 
 };
 
-var audio = document.getElementById("audioPlayer");
-var playButton = document.getElementById("playButton");
+window.onload = function() {
+    var hotbar = document.getElementById("hotbar");
+    var audio = document.getElementById("audioPlayer");
+    var playButton = document.getElementById("playButton");
+    var playButtonHotbar = document.getElementById("playButtonHotbar");
+    var pauseButtonHotbar = document.getElementById("pauseButtonHotbar");
 
-playButton.addEventListener("click", function(event) {
-    event.preventDefault(); // Zabraňuje výchozímu chování odkazu
-    if (audio.paused) {
+    playButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    });
+
+    playButtonHotbar.addEventListener("click", function(event) {
+        event.preventDefault();
         audio.play();
-    } else {
+    });
+
+    pauseButtonHotbar.addEventListener("click", function(event) {
+        event.preventDefault();
         audio.pause();
-    }
-});
+    });
 
-audio.src = "/static/Songy/Main Page Songz/Blinding Lights.mp3"; // Nastaví výchozí zdroj písně
+    hotbar.style.display = "block";
 
-
+    audio.src = "/static/Songy/Main Page Songz/Blinding Lights.mp3";
+    audio.play();
+};
