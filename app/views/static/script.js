@@ -52,18 +52,10 @@ if (loginInputError) {
 window.onload = function() {
     var hotbar = document.getElementById("hotbar");
     var audio = document.getElementById("audioPlayer");
-    var playButton = document.getElementById("playButton");
     var playButtonHotbar = document.getElementById("playButtonHotbar");
     var pauseButtonHotbar = document.getElementById("pauseButtonHotbar");
+    var currentSongIndex = 0;
 
-    playButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        if (audio.paused) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
-    });
 
     playButtonHotbar.addEventListener("click", function(event) {
         event.preventDefault();
@@ -77,6 +69,27 @@ window.onload = function() {
 
     hotbar.style.display = "block";
 
-    audio.src = "/static/Songy/Main Page Songz/Blinding Lights.mp3";
-    audio.play();
+    var images = document.querySelectorAll(".playButton");
+    images.forEach(function(image, index) {
+        image.addEventListener("click", function(event) {
+            event.preventDefault();
+            var songSrc = image.getAttribute("data-src");
+            audio.src = songSrc;
+            currentSongIndex = index;
+            audio.play();
+        });
+    });
+
+    audio.addEventListener("ended", function() {
+        currentSongIndex++;
+        if (currentSongIndex >= songs.length) {
+            currentSongIndex = 0;
+        }
+        audio.src = songs[currentSongIndex].src;
+        audio.play();
+    });
+
+    audio.src = "";
 };
+
+
