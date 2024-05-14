@@ -136,11 +136,9 @@ def profile():
 
 @app.route('/explore')
 def explore():
-    if "uzivatel" in session:
-        jmeno = session["uzivatel"]
-        return render_template("explore.html", jmeno=jmeno)
-    else:
-        return redirect(url_for("prihlaseni"))
+    songs = precti_json_songs("songs")
+    albums = precti_json_albums("albums")
+    return render_template("explore.html", albums=albums, songs=songs)
 
 @app.route('/library')
 def library():

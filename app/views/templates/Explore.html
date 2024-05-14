@@ -9,5 +9,19 @@
 </head>
 <body class="pozadi">
     {% include "navbar.html" %}
+
+    <table>
+        <tr class="TR_MP">
+            {% for album in albums %}
+            <th class="songs">
+                <a href="" class="SP_MP">
+                    <img class="btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
+                    <p class="playlist_popis">{{ album.title }}</p>
+                </a>
+                <p class="popisky_play">{{ album.author }}</p>
+            </th>
+            {% endfor %}
+        </tr>
+    </table>
 </body>
 </html>
