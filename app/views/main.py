@@ -73,7 +73,9 @@ def social():
 
     posts = precti_json("posts")
 
-    return render_template("Social.html", username=username, posts=posts)
+    chats = precti_json("chats")
+
+    return render_template("Social.html", username=username, posts=posts, chats=chats)
 
 @app.route('/zpracuj-post', methods=["POST"])
 def zpracuj_post():
@@ -100,6 +102,27 @@ def zpracuj_post():
         "code": post_id,
     }
     zapis_do_json("posts", novy_post)
+    # note to self: jde jich dysplaynout max 5 + ten hard coded
+    return redirect(url_for("social"))
+
+@app.route('/zpracuj-chat', methods=["POST"])
+def zpracuj_chat():
+    username = session.get("uzivatel")
+    username2 = request.form.get("chat_person")
+
+    post_id = 0
+
+    posty = precti_json("chats")
+    for p in posty:
+        if p["code"] == post_id:
+            post_id += 1
+
+    novy_post = {
+        "username": username,
+        "username2": username2,
+        "code": post_id,
+    }
+    zapis_do_json("chats", novy_post)
     # note to self: jde jich dysplaynout max 5 + ten hard coded
     return redirect(url_for("social"))
 

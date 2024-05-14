@@ -23,10 +23,31 @@
             <br>
             <div class="chatDiv">
                 <h4 class="chatUser">Toney</h4>
-                <h6 class="chatMSG">Hello! Welcome to Toney!</h6>
+                <h6 class="chatMSG">This is a test chat!</h6>
             </div>
+            {% for chat in chats %}
+            {% if chat["username"] == username %}
+            <br>
+            <div class="chatDiv">
+                <h4 class="chatUser">{{ chat.username2 }}</h4>
+                <h6 class="chatMSG">Null</h5>
+            </div>
+            {% endif %}
+            {% if chat["username2"] == username %}
+            <br>
+            <div class="chatDiv">
+                <h4 class="chatUser">{{ chat.username }}</h4>
+                <h6 class="chatMSG">Null</h5>
+            </div>
+            {% endif %}
+            {% endfor %}
             <h4 class="LoginChat">There dont seem to be any chats right now :(</h4>
             {% endif %}
+
+            <form action="{{ url_for('zpracuj_chat') }}" method="POST" class="chatSender">
+                <input type="text" name="chat_person" id="chat_person" class="postInput" autocomplete="off" required>
+                <input type="submit" value="Add" class="postButton">
+            </form>
         </div>
 
         <div class="PostZone">

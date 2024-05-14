@@ -768,6 +768,18 @@ top: -1px;
     color: gray;
 }
 
+.chatSender {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    margin-right: 3vw;
+    background-color:azure;
+    width: 300px;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: gainsboro;
+}
+
 /*--------------------------Profile-----------------------------*/
 
 .pozadi-profile{
@@ -789,7 +801,7 @@ top: -1px;
     position: absolute;
     color: orange;
     background-color: rgb(40, 40, 40);
-    margin-left 1000px;
+    /*margin-left: 1000px;*/
     margin-top: 25px;
     width: 150px;
     height: 50px;
