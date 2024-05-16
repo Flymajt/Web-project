@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, session, url_for, make_response
+from flask import Flask, request, render_template, redirect, session, url_for, make_response, jsonify
 import os
 import json
 
@@ -56,6 +56,17 @@ def zapis_do_json_albums(nazev_souboru, data_na_zapis):
     ALBUMS.append(data_na_zapis)
     with open(json_url, "w", encoding="utf-8") as outline:
         json.dump(ALBUMS, outline)
+
+    return
+
+def vytvor_json(nazev_souboru):
+    data_na_zapis = []
+    aktivni_soubor = os.path.dirname(__file__)
+    SITE_ROOT = os.path.realpath(aktivni_soubor)
+    json_url = os.path.join(SITE_ROOT, "static/data/chats", f"{nazev_souboru}.json")
+
+    with open(json_url, 'w', encoding="utf-8") as outfile:
+        json.dump(data_na_zapis, outfile)
 
     return
 
@@ -123,6 +134,8 @@ def zpracuj_chat():
         "code": post_id,
     }
     zapis_do_json("chats", novy_post)
+    chat_json = "post_"+str(post_id)
+    vytvor_json(chat_json)
     # note to self: jde jich dysplaynout max 5 + ten hard coded
     return redirect(url_for("social"))
 
