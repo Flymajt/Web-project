@@ -7,7 +7,39 @@ function popisky_lenght(popisek) {
 
 function playlist_popisky_lenght(popisek) {
     if (popisek.length > 24) {
-        return popisek.slice(0, 23) + "...";
+        if (popisek[22] === " "){
+            return popisek.slice(0, 21) + "...";
+        }
+        else{
+            return popisek.slice(0, 23) + "...";
+        }
+    }
+    return popisek;
+}
+
+function autor_popisky_lenght(popisek) {
+    if (popisek.length > 24) {
+        last_space = popisek.lastIndexOf(' ', 23);
+        if (last_space !== -1) {
+            updated_popisek = popisek.slice(0, last_space) + "<br>" + popisek.slice(last_space + 1);
+            if (updated_popisek.length > 44) {
+                if (updated_popisek[42] === " "){
+                    return updated_popisek.slice(0, 41) + "...";
+                }
+                else{
+                    return updated_popisek.slice(0, 43) + "...";
+                }
+            }
+            return updated_popisek
+        }
+        else{
+            if (popisek[22] === " "){
+                return popisek.slice(0, 21) + "...";
+            }
+            else{
+                return popisek.slice(0, 23) + "...";
+            }
+        }
     }
     return popisek;
 }
@@ -21,7 +53,7 @@ document.querySelectorAll(".playlist_popis").forEach(element => {
 });
 
 document.querySelectorAll(".popisky_play").forEach(element => {
-    element.textContent = playlist_popisky_lenght(element.textContent);
+    element.innerHTML = autor_popisky_lenght(element.innerHTML);
 });
 
 

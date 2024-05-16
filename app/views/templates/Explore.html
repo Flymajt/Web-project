@@ -10,18 +10,26 @@
 <body class="pozadi">
     {% include "navbar.html" %}
 
-    <table>
-        <tr class="TR_MP">
-            {% for album in albums %}
-            <th class="songs">
-                <a href="" class="SP_MP">
-                    <img class="btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
-                    <p class="playlist_popis">{{ album.title }}</p>
-                </a>
-                <p class="popisky_play">{{ album.author }}</p>
-            </th>
-            {% endfor %}
-        </tr>
-    </table>
+    <div class="nadpisy"><br><br>
+        <h1>Albums</h1><br>
+        <div class="scrollmenu">
+            <table> 
+                <tr>
+                    {% for album in albums %}
+                    <th class="songs">
+                        <div class="album">
+                            <a href="" class="SP_MP">
+                                <img class="btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
+                                <p class="playlist_popis">{{ album.title }}</p>
+                            </a>
+                            <p class="popisky_play">{{ album.author }}</p>
+                            <script src="../static/script.js"></script>
+                        </div>
+                    </th>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

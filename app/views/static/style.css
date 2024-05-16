@@ -87,7 +87,7 @@
   }
 /* cesta */
 ::-webkit-scrollbar-track {
-    background-color: rgb(15, 15, 15); 
+    background-color: rgba(15, 15, 15, 0); 
   }
 /* jezdítko */
 ::-webkit-scrollbar-thumb {
@@ -1001,4 +1001,14 @@ input:checked + .slider:before {
 
 #loginInputError{
     color: #E75151
+}
+
+
+.scrollmenu{
+overflow: auto;
+white-space: nowrap;
+}
+
+.album{
+    margin-right: 60px;
 }
