@@ -223,6 +223,7 @@ def add_song():
     
         if username == "admin":
             albums = precti_json_songs("albums")
+            albums = sorted(albums, key=lambda x: x["title"])
             return render_template("add_music.html", albums=albums)
         
     else:
