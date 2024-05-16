@@ -539,10 +539,6 @@ top: -1px;
     color: rgb(0, 127, 150);
 }
 
-.Librarysongs-R1{
-    
-}
-
 .Librarysongs-R2{
     position: absolute;
     margin-top: 110px;
@@ -760,10 +756,6 @@ top: -1px;
     border-color: rgb(15, 15, 15);
 }
 
-.chatUser{
-
-}
-
 .chatMSG{
     color: gray;
 }
@@ -886,7 +878,6 @@ top: -1px;
     display: inline-block;
     margin-left: 1500px;
     margin-bottom: 150px;
-    float: inline-start;
 }
 
 .snd-drpdwn-content {
@@ -1011,4 +1002,28 @@ white-space: nowrap;
 
 .album{
     margin-right: 60px;
+}
+
+.song_btn_img {
+    text-decoration: none;
+    width: 50px;
+    height:50px;
+    object-fit: cover;
+    border-radius: 6%;
+    margin-right: 10px;
+}
+
+.song_btn_img:visited {
+    text-decoration: none;
+    color: azure;
+}
+
+.song_btn_img:hover {
+    text-decoration: none;
+}
+
+.song{
+    margin-right: 60px;
+    display: flex;
+    align-items: center;
 }

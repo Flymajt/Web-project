@@ -19,7 +19,7 @@ function playlist_popisky_lenght(popisek) {
 
 function autor_popisky_lenght(popisek) {
     if (popisek.length > 24) {
-        last_space = popisek.lastIndexOf(' ', 23);
+        last_space = popisek.lastIndexOf(" ", 23);
         if (last_space !== -1) {
             updated_popisek = popisek.slice(0, last_space) + "<br>" + popisek.slice(last_space + 1);
             if (updated_popisek.length > 44) {

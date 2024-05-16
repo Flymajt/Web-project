@@ -23,13 +23,38 @@
                                 <p class="playlist_popis">{{ album.title }}</p>
                             </a>
                             <p class="popisky_play">{{ album.author }}</p>
-                            <script src="../static/script.js"></script>
-                        </div>
+                        </div><br>
                     </th>
                     {% endfor %}
                 </tr>
             </table>
-        </div>
+        </div><br><br>
+        <h1>Songs</h1><br>
+        <div class="scrollmenu">
+            <table> 
+                <tr>
+                    {% for song in songs %}
+                        <th class="songs">
+                            <div class="song">
+                                {% for album in albums %}
+                                    {% if album.title == song.album %}
+                                        <a href="" class="SP_MP">
+                                            <img class="song_btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
+                                        </a>
+                                        <div>
+                                            <a href="" class="SP_MP"><p class="playlist_popis">{{ song.title }}</p></a>
+                                            <p class="popisky_play">{{ song.author }} ♦ {{ song.album }}</p>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </th>
+                    {% endfor %}
+
+                </tr>
+            </table>
+        </div><br><br>
     </div>
+    <script src="../static/script.js"></script>
 </body>
 </html>
