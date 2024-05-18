@@ -30,30 +30,31 @@
             </table>
         </div><br><br>
         <h1>Songs</h1><br>
-        <div class="scrollmenu">
-            <table> 
-                <tr>
-                    {% for song in songs %}
-                        <th class="songs">
-                            <div class="song">
-                                {% for album in albums %}
-                                    {% if album.title == song.album %}
-                                        <a href="" class="SP_MP">
-                                            <img class="song_btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
-                                        </a>
-                                        <div>
-                                            <a href="" class="SP_MP"><p class="playlist_popis">{{ song.title }}</p></a>
-                                            <p class="popisky_play">{{ song.author }} ♦ {{ song.album }}</p>
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        </th>
-                    {% endfor %}
-
-                </tr>
-            </table>
-        </div><br><br>
+        <div class="scrollmenu"> <!--okay přidám sem menší notes jelikož si to nepamatuji-->
+            <div class="columns">
+                {% for song in songs %}
+                    {% if loop.index0 % 4 == 0 and not loop.first %} <!--kontroluje jestli je násobek čtyř a není první píseň (celá tatoč věc funguje že jsou sloupce po čtyrech, jeli dělitelné čtyřma, udělá to nový sloupec)-->
+                        </div><div class="column"> <!--ukončí div a přidá další-->
+                    {% elif loop.first %}
+                        <div class="column"> <!--začne první sloupec-->
+                    {% endif %}
+                    <div class="song">
+                        {% for album in albums %}
+                            {% if album.title == song.album %}
+                                <a href="" class="SP_MP">
+                                    <img class="song_btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
+                                </a>
+                                <div>
+                                    <a href="" class="SP_MP"><b class="playlist_popis">{{ song.title }}</b></a><br>
+                                    <b class="popisky_play">{{ song.author }} ♦ {{ song.album }}</b>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div><br>
+                {% endfor %}
+            </div>
+        </div>
+        <br><br>
     </div>
     <script src="../static/script.js"></script>
 </body>
