@@ -282,6 +282,14 @@ def zpracuj_album():
         return redirect(url_for("index"))
     else:
         return redirect(url_for("add_song"))
+
+@app.route("/album/<int:index>")
+def albums(index):
+   albums = precti_json_albums("albums")
+   if index not in range(len(albums)):
+       return "Searched album has not been found", 404
+   return render_template("album.html", album=albums[index])
+
     
 if __name__ == "__main__":
     app.run(debug=True)
