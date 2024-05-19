@@ -26,6 +26,21 @@
                 <p class="album_details_albumpage">{{ album.author }} ♦ {{ album.release }} ♦ {{ ns.album_songs }} songs</p>
             </div>
         </div>
+        <div class="scrollmenu_albumpage">
+                {% for song in songs %}
+                    {% if album.title == song.album %}
+                        <div class="song">
+                            <a href="" class="SP_MP">
+                                <img class="song_btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
+                            </a>
+                            <div>
+                                <a href="" class="SP_MP"><b class="playlist_popis">{{ song.title }}</b></a><br>
+                                <b class="popisky_play">{{ song.author }} ♦ {{ song.album }}</b>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+        </div>
     </div>
 </body>
 </html>

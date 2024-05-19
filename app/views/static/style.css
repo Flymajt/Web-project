@@ -1068,3 +1068,11 @@ input:checked + .slider:before {
 .album_title_albumpage{
     font-size: 70px;
 }
+
+.scrollmenu_albumpage{
+    border-radius: 1%;
+    margin-top: 50px;
+    overflow: auto;
+    white-space: nowrap;
+    background-color: #0a0a0a1f;
+}
