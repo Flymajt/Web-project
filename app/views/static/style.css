@@ -1076,3 +1076,13 @@ input:checked + .slider:before {
     white-space: nowrap;
     background-color: #0a0a0a1f;
 }
+
+.place_albumpage{
+    width: 30px;
+    text-align: right;
+    font-size: 17px;
+}
+
+.song_details_albumpage{
+    margin-left: 20px;
+}

@@ -27,19 +27,21 @@
             </div>
         </div>
         <div class="scrollmenu_albumpage">
-                {% for song in songs %}
-                    {% if album.title == song.album %}
-                        <div class="song">
-                            <a href="" class="SP_MP">
-                                <img class="song_btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
-                            </a>
-                            <div>
-                                <a href="" class="SP_MP"><b class="playlist_popis">{{ song.title }}</b></a><br>
-                                <b class="popisky_play">{{ song.author }} ♦ {{ song.album }}</b>
-                            </div>
+            {% set ns = namespace(album_song_place=0) %}
+            {% for song in songs %}
+                {% if album.title == song.album %}
+                    <div class="song">
+                        <div class="place_albumpage">
+                        {% set ns.album_song_place = ns.album_song_place + 1 %}
+                        <p>{{ ns.album_song_place }}.</p>
                         </div>
-                    {% endif %}
-                {% endfor %}
+                        <div class="song_details_albumpage">
+                            <a href="" class="SP_MP"><b class="playlist_popis">{{ song.title }}</b></a><br>
+                            <b class="popisky_play">{{ song.author }}</b>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </body>
