@@ -1047,9 +1047,10 @@ input:checked + .slider:before {
 }
 
 .album_cover_albumpage{
-    width: 200px;
-    height:200px;
+    width: 220px;
+    height:220px;
     height: auto;
+    border-radius: 6%;
 }
 
 .details_albumpage{

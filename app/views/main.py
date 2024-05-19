@@ -289,7 +289,7 @@ def albums(index):
    songs = precti_json_songs("songs")
    if index not in range(len(albums)):
        return "Searched album has not been found", 404
-   return render_template("album.html", album=albums[index], song=songs)
+   return render_template("album.html", album=albums[index], songs=songs)
 
     
 if __name__ == "__main__":

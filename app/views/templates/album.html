@@ -8,6 +8,13 @@
 <body class="pozadi">
     {% include "navbar.html" %}
 
+    {% set ns = namespace(album_songs=0) %}
+    {% for song in songs %}
+        {% if album.title == song.album %}
+            {% set ns.album_songs = ns.album_songs + 1 %}
+        {% endif %}
+    {% endfor %}
+
     <div class="nadpisy"><br><br>
         <div class="album_albumpage">
             <div class="cover_albumpage">
@@ -15,8 +22,8 @@
             </div>
             <div class="details_albumpage">
                 <p>Album</p>
-                <h1 class="album_title_albumpage">{{ album.title }}</h1><br>
-                <p class="album_details_albumpage">{{ album.author }} ♦ {{ album.release }}</p>
+                <h1 class="album_title_albumpage">{{ album.title }}</h1>
+                <p class="album_details_albumpage">{{ album.author }} ♦ {{ album.release }} ♦ {{ ns.album_songs }} songs</p>
             </div>
         </div>
     </div>
