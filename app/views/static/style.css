@@ -996,13 +996,14 @@ input:checked + .slider:before {
 
 
 .scrollmenu{
-overflow: auto;
-white-space: nowrap;
-background-color: #0a0a0a1f;
+    overflow: auto;
+    white-space: nowrap;
+    background-color: #0a0a0a1f;
 }
 
 .album{
-    margin-right: 60px;
+    margin-right: 30px;
+    margin-left: 30px;
 }
 
 .song_btn_img {
@@ -1024,7 +1025,8 @@ background-color: #0a0a0a1f;
 }
 
 .song{
-    margin-right: 60px;
+    margin-right: 30px;
+    margin-left: 30px;
     margin-top: 20px;
     display: flex;
     align-items: center;
@@ -1037,5 +1039,31 @@ background-color: #0a0a0a1f;
 .column {
     display: flex;
     flex-direction: column;
-    margin-right: 10px; /* Adjust as needed */
+    margin-right: 10px;
+}
+
+.cover_albumpage{
+    margin-right: 20px;
+}
+
+.album_cover_albumpage{
+    width: 200px;
+    height:200px;
+    height: auto;
+}
+
+.details_albumpage{
+    display: flex;
+    font-weight: bold;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.album_albumpage{
+    display: flex;
+    align-items: center;
+}
+
+.album_title_albumpage{
+    font-size: 70px;
 }

@@ -7,5 +7,18 @@
 </head>
 <body class="pozadi">
     {% include "navbar.html" %}
+
+    <div class="nadpisy"><br><br>
+        <div class="album_albumpage">
+            <div class="cover_albumpage">
+                <img class="album_cover_albumpage" src="../static/data/albums/{{ album.albumfile }}"/>
+            </div>
+            <div class="details_albumpage">
+                <p>Album</p>
+                <h1 class="album_title_albumpage">{{ album.title }}</h1><br>
+                <p class="album_details_albumpage">{{ album.author }} ♦ {{ album.release }}</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

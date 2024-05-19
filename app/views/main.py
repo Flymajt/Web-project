@@ -286,9 +286,10 @@ def zpracuj_album():
 @app.route("/album/<int:index>")
 def albums(index):
    albums = precti_json_albums("albums")
+   songs = precti_json_songs("songs")
    if index not in range(len(albums)):
        return "Searched album has not been found", 404
-   return render_template("album.html", album=albums[index])
+   return render_template("album.html", album=albums[index], song=songs)
 
     
 if __name__ == "__main__":
