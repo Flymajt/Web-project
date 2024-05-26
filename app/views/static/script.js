@@ -89,6 +89,7 @@ window.onload = function() {
     var lastSrc = "";
     var isRepeatOn = false;
     var muteButton = document.getElementById("muteButton");
+    var repeatButton = document.getElementById("repeatButton");
     var playButtonHotbar = document.getElementById("playButtonHotbar");
     var pauseButtonHotbar = document.getElementById("pauseButtonHotbar");
     var rewindButton = document.getElementById("rewindButton");
@@ -169,6 +170,14 @@ window.onload = function() {
          if (isRepeatOn) {
             audio.currentTime = 0;
             audio.play();
+        } else {
+            var nextSongButton = document.querySelector('[data-src="' + lastSrc + '"]').parentNode.nextElementSibling.querySelector('.playButton');
+            if (nextSongButton) {
+                var nextSongSrc = nextSongButton.getAttribute("data-src");
+                audio.src = nextSongSrc;
+                audio.play();
+                lastSrc = nextSongSrc;
+            }
         }
     });
 };
