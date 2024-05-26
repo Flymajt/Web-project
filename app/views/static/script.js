@@ -86,13 +86,26 @@ window.onload = function() {
     var hotbar = document.getElementById("hotbar");
     var audio = new Audio();
 
+    var muteButton = document.getElementById("muteButton");
+
+    muteButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        if (audio.volume !== 0) {
+            audio.volume = 0;
+            muteButton.textContent = "Zapnout zvuk";
+        } else {
+            audio.volume = 1;
+            muteButton.textContent = "Ztišit";
+        }
+    });
+
     playButtons.forEach(function(button) {
         button.addEventListener("click", function(event) {
             event.preventDefault();
             var songSrc = button.getAttribute("data-src");
             audio.src = songSrc;
             audio.play();
-            hotbar.style.display = "flex"; 
+            hotbar.style.display = "flex";
         });
     });
 
