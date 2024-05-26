@@ -96,6 +96,8 @@ window.onload = function() {
     var forwardButton = document.getElementById("forwardButton");
     var volumeRange = document.getElementById("volumeRange");
     var hideHotbarButton = document.getElementById("hideHotbarButton");
+    var previousButton = document.getElementById("previousButton");
+    var nextButton = document.getElementById("nextButton");
 
     muteButton.addEventListener("click", function(event) {
         event.preventDefault();
@@ -129,7 +131,6 @@ window.onload = function() {
             lastSrc = songSrc;
         });
     });
-
 
     playButtonHotbar.addEventListener("click", function(event) {
         event.preventDefault();
@@ -166,8 +167,30 @@ window.onload = function() {
         }, 500);
     });
 
+    previousButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        var previousSongButton = document.querySelector('[data-src="' + lastSrc + '"]').parentNode.previousElementSibling.querySelector('.playButton');
+        if (previousSongButton) {
+            var previousSongSrc = previousSongButton.getAttribute("data-src");
+            audio.src = previousSongSrc;
+            audio.play();
+            lastSrc = previousSongSrc;
+        }
+    });
+
+    nextButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        var nextSongButton = document.querySelector('[data-src="' + lastSrc + '"]').parentNode.nextElementSibling.querySelector('.playButton');
+        if (nextSongButton) {
+            var nextSongSrc = nextSongButton.getAttribute("data-src");
+            audio.src = nextSongSrc;
+            audio.play();
+            lastSrc = nextSongSrc;
+        }
+    });
+
     audio.addEventListener("ended", function() {
-         if (isRepeatOn) {
+        if (isRepeatOn) {
             audio.currentTime = 0;
             audio.play();
         } else {
