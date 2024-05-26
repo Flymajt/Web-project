@@ -82,8 +82,20 @@ if (loginInputError) {
 };
 
 window.onload = function() {
+    var playButtons = document.querySelectorAll(".playButton");
     var hotbar = document.getElementById("hotbar");
-    var audio = document.getElementById("audioPlayer");
+    var audio = new Audio();
+
+    playButtons.forEach(function(button) {
+        button.addEventListener("click", function(event) {
+            event.preventDefault();
+            var songSrc = button.getAttribute("data-src");
+            audio.src = songSrc;
+            audio.play();
+            hotbar.style.display = "flex"; 
+        });
+    });
+
     var playButtonHotbar = document.getElementById("playButtonHotbar");
     var pauseButtonHotbar = document.getElementById("pauseButtonHotbar");
     var rewindButton = document.getElementById("rewindButton");
@@ -116,30 +128,16 @@ window.onload = function() {
     });
 
     hideHotbarButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    hotbar.style.transition = "opacity 0.5s, transform 0.5s";
-    hotbar.style.opacity = "0";
-    hotbar.style.transform = "translateY(100%)";
-    setTimeout(function() {
-        hotbar.style.display = "none";
-    }, 500);
-    });
-
-    hotbar.style.display = "block";
-
-    var images = document.querySelectorAll(".playButton");
-    images.forEach(function(image, index) {
-        image.addEventListener("click", function(event) {
-            event.preventDefault();
-            var songSrc = image.getAttribute("data-src");
-            audio.src = songSrc;
-            audio.play();
-            hotbar.style.display = "flex";
-        });
+        event.preventDefault();
+        hotbar.style.transition = "opacity 0.5s, transform 0.5s";
+        hotbar.style.opacity = "0";
+        hotbar.style.transform = "translateY(100%)";
+        setTimeout(function() {
+            hotbar.style.display = "none";
+        }, 500);
     });
 
     audio.addEventListener("ended", function() {
-    });
 
-    audio.src = "";
+    });
 };
