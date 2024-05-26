@@ -85,17 +85,19 @@ window.onload = function() {
     var playButtons = document.querySelectorAll(".playButton");
     var hotbar = document.getElementById("hotbar");
     var audio = new Audio();
+    var lastVolume = 1;
 
     var muteButton = document.getElementById("muteButton");
 
     muteButton.addEventListener("click", function(event) {
         event.preventDefault();
         if (audio.volume !== 0) {
+            lastVolume = audio.volume;
             audio.volume = 0;
             muteButton.textContent = "Zapnout zvuk";
         } else {
-            audio.volume = 1;
-            muteButton.textContent = "Ztišit";
+            audio.volume = lastVolume;
+            muteButton.textContent = "Vypnout zvuk";
         }
     });
 
@@ -137,7 +139,8 @@ window.onload = function() {
     });
 
     volumeRange.addEventListener("input", function() {
-        audio.volume = volumeRange.value;
+        lastVolume = volumeRange.value;
+        audio.volume = lastVolume;
     });
 
     hideHotbarButton.addEventListener("click", function(event) {
