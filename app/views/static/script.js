@@ -86,8 +86,15 @@ window.onload = function() {
     var hotbar = document.getElementById("hotbar");
     var audio = new Audio();
     var lastVolume = 1;
-
+    var lastSrc = "";
+    var isRepeatOn = false;
     var muteButton = document.getElementById("muteButton");
+    var playButtonHotbar = document.getElementById("playButtonHotbar");
+    var pauseButtonHotbar = document.getElementById("pauseButtonHotbar");
+    var rewindButton = document.getElementById("rewindButton");
+    var forwardButton = document.getElementById("forwardButton");
+    var volumeRange = document.getElementById("volumeRange");
+    var hideHotbarButton = document.getElementById("hideHotbarButton");
 
     muteButton.addEventListener("click", function(event) {
         event.preventDefault();
@@ -101,6 +108,16 @@ window.onload = function() {
         }
     });
 
+    repeatButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        isRepeatOn = !isRepeatOn;
+        if (isRepeatOn) {
+            repeatButton.textContent = "Opakování zapnuto";
+        } else {
+            repeatButton.textContent = "Opakování vypnuto";
+        }
+    });
+
     playButtons.forEach(function(button) {
         button.addEventListener("click", function(event) {
             event.preventDefault();
@@ -108,15 +125,10 @@ window.onload = function() {
             audio.src = songSrc;
             audio.play();
             hotbar.style.display = "flex";
+            lastSrc = songSrc;
         });
     });
 
-    var playButtonHotbar = document.getElementById("playButtonHotbar");
-    var pauseButtonHotbar = document.getElementById("pauseButtonHotbar");
-    var rewindButton = document.getElementById("rewindButton");
-    var forwardButton = document.getElementById("forwardButton");
-    var volumeRange = document.getElementById("volumeRange");
-    var hideHotbarButton = document.getElementById("hideHotbarButton");
 
     playButtonHotbar.addEventListener("click", function(event) {
         event.preventDefault();
@@ -154,6 +166,9 @@ window.onload = function() {
     });
 
     audio.addEventListener("ended", function() {
-
+         if (isRepeatOn) {
+            audio.currentTime = 0;
+            audio.play();
+        }
     });
 };

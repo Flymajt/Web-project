@@ -233,6 +233,12 @@
     width: 100%;
 }
 
+.hotbar-mainpage-hideHotbarButton {
+   position: absolute;
+    right: 25px;
+    bottom: 10px;
+}
+
 /*------------------------------------Login, Register, Password reset-------------------------------------------*/
 section{
     display: flex;

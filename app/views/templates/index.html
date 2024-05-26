@@ -20,7 +20,8 @@
         <button id="forwardButton">Přetočit 15s</button>
         <button id="muteButton">Vypnout zvuk</button>
         <input type="range" id="volumeRange" min="0" max="1" step="0.1" value="1">
-        <button id="hideHotbarButton">Skrýt</button>
+        <button id="repeatButton">Opakovat</button>
+        <button id="hideHotbarButton" class="hotbar-mainpage-hideHotbarButton">Skrýt</button>
     </div>
 
 
@@ -64,27 +65,42 @@
                     <audio id="audioPlayer" class="Music_MP"></audio>
                 </th>
 
-                    <th class="songs">
-                        <h3>California Dreamin'</h3>
-                        <p class="popisky">The Mamas & The Papas ♦ All The Leaves Are Brown: The Golden Era Collection</p>
-                        <audio controls class="Music_MP" src="/static/Songy/Main Page Songz/California Dreamin'.mp3"></audio><br>
-                    </th>
-    
-                    <th class="songs">
-                        <h3>Butterfly</h3>
-                        <p class="popisky">Smile ♦ Smile</p>
-                        <audio controls class="Music_MP" src="/static/Songy/Main Page Songz/Butterfly.mp3"></audio><br>
-                    </th>
+
+
+                <th class="songs">
+                    <h3>California Dreamin'</h3>
+                    <p class="popisky">The Mamas & The Papas ♦ ...</p>
+                    <a href="#" class="playButton" data-src="/static/Songy/Main Page Songz/California Dreamin'.mp3">
+                        <img class="btn_img" src="/static/Images/Playlist covers/California Dreamin  The Mamas & The Papas.jpg", class="playButton">
+                    </a>
+                    <audio id="audioPlayer" class="Music_MP"></audio>
+                </th>
+
             </tr>
 
             <tr class="TR_MP">
                 <tr>
+
                     <th class="songs">
                         <h3>Counting Stars</h3>
                         <p class="popisky">OneRepublic ♦ Native</p>
-                        <audio controls class="Music_MP" src="/static/Songy/Main Page Songz/counting stars.mp3"></audio><br>
+                        <a href="#" class="playButton" data-src="/static/Songy/Main Page Songz/counting stars.mp3">
+                            <img class="btn_img" src="/static/Images/Playlist covers/Counting Stars OneRepublic ♦ Native.jpg", class="playButton">
+                        </a>
+                        <audio id="audioPlayer" class="Music_MP"></audio>
                     </th>
-    
+
+
+                    <th class="songs">
+                        <h3>California Dreamin'</h3>
+                        <p class="popisky">The Mamas & The Papas ♦ ...</p>
+                        <a href="#" class="playButton" data-src="/static/Songy/Main Page Songz/California Dreamin'.mp3">
+                            <img class="btn_img" src="/static/Images/Playlist covers/California Dreamin  The Mamas & The Papas.jpg", class="playButton">
+                        </a>
+                        <audio id="audioPlayer" class="Music_MP"></audio>
+                     </th>
+
+
                     <th class="songs">
                         <h3>Year 3 Billion</h3>
                         <p class="popisky">Kevin Temmer ♦ Year 3 Billion</p>
