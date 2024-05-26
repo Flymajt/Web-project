@@ -115,6 +115,11 @@ window.onload = function() {
         audio.volume = volumeRange.value;
     });
 
+     hideHotbarButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        hotbar.style.display = "none";
+    });
+
     hotbar.style.display = "block";
 
     var images = document.querySelectorAll(".playButton");
