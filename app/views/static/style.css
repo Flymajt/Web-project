@@ -226,6 +226,8 @@
     padding: 10px;
     text-align: center;
     position: fixed;
+    justify-content: center;
+    align-items: center;
     bottom: 0;
     left: 0;
     width: 100%;
