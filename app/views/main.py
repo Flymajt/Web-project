@@ -134,7 +134,7 @@ def zpracuj_chat():
         "code": post_id,
     }
     zapis_do_json("chats", novy_post)
-    chat_json = "post_"+str(post_id)
+    chat_json = "chat_"+str(post_id)
     vytvor_json(chat_json)
     # note to self: jde jich dysplaynout max 5 + ten hard coded
     return redirect(url_for("social"))

@@ -29,14 +29,14 @@
             {% if chat["username"] == username %}
             <br>
             <div class="chatDiv">
-                <h4 class="chatUser">{{ chat.username2 }}</h4>
+                <h4 class="chatUser"><a href="social/chat_url/{{ chat.code }}" class="chatUser">{{ chat.username2 }}</a></h4>
                 <h6 class="chatMSG">Null</h5>
             </div>
             {% endif %}
             {% if chat["username2"] == username %}
             <br>
             <div class="chatDiv">
-                <h4 class="chatUser">{{ chat.username }}</h4>
+                <h4 class="chatUser"><a href="{{ chat.code }}" class="chatUser">{{ chat.username }}</a></h4>
                 <h6 class="chatMSG">Null</h5>
             </div>
             {% endif %}
