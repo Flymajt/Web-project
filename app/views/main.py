@@ -332,6 +332,9 @@ def albums(index):
        return "Searched album has not been found", 404
    return render_template("album.html", album=albums[index], songs=songs)
 
+@app.route("/profile/feedback")
+def feedback():
+    return render_template("feedback.html")
     
 if __name__ == "__main__":
     app.run(debug=True)

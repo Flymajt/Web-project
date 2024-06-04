@@ -78,7 +78,7 @@
     color: azure;
 }
 .btne:hover {
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .logout-btn{
@@ -102,12 +102,12 @@
   }
 /* cesta */
 ::-webkit-scrollbar-track {
-    background-color: rgba(15, 15, 15, 0); 
+    background-color: rgb(15, 15, 15);
   }
 /* jezdítko */
 ::-webkit-scrollbar-thumb {
     background-color: rgb(85, 85, 85);
-    border-radius: 10px;
+
   }
   
 /* jezdítko pokud je na něj najeto */
@@ -797,6 +797,10 @@ top: -1px;
 
 /*--------------------------Profile-----------------------------*/
 
+.choose-background-color{
+background-color: gray;
+}
+
 .pozadi-profile{
     background-image: linear-gradient(rgb(216, 158, 0), rgb(40, 40, 40));
     background-size: cover;
@@ -1090,4 +1094,9 @@ input:checked + .slider:before {
 
 .song_details_albumpage{
     margin-left: 20px;
+}
+
+/* ------------------------- FEEDBACK --------------------------------*/
+.feedback-inputbox{
+background-color: azure;
 }
