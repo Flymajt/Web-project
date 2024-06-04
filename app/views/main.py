@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, session, url_for, make_response, jsonify
+from flask import Flask, request, render_template, redirect, session, url_for, make_response, jsonify, abort
 import os
 import json
 
@@ -131,6 +131,47 @@ def zpracuj_chat():
     novy_post = {
         "username": username,
         "username2": username2,
+        "code": post_id,
+    }
+    zapis_do_json("chats", novy_post)
+    chat_json = "chat_"+str(post_id)
+    vytvor_json(chat_json)
+    # note to self: jde jich dysplaynout max 5 + ten hard coded
+    return redirect(url_for("social"))
+
+@app.route('/social/chat_url/<int:number>', methods=['GET'])
+def get_chat(number):
+    # Construct the file name
+    print("hledání souboru")
+    filename = f'static/data/chats/chat_{number}.json'
+    print("soubor nalezen")
+    
+    # Check if the file exists
+    if not os.path.exists(filename):
+        abort(404)  # Return a 404 error if the file does not exist
+    
+    filename = f'chats/chat_{number}'
+    chats = precti_json(filename)
+
+    return render_template("Chats.html", chats=chats)
+
+@app.route("/posli_chat", methods=["POST"])
+def posli_chat(chat):
+    username = session.get("uzivatel")
+    username2 = request.form.get("chat_person")
+
+    filename = f'chats/chat_{chat}'
+
+    post_id = 0
+
+    posty = precti_json(filename)
+    for p in posty:
+        if p["code"] == post_id:
+            post_id += 1
+
+    novy_post = {
+        "username": username,
+        "content": username2,
         "code": post_id,
     }
     zapis_do_json("chats", novy_post)

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body class="pozadi">
+
+    {% include "navbar.html" %}
+
+    <div class=" BigBoi">
+
+        {% for chat in chats %}
+        <br>
+        <div class="postarea">
+            <h4 class="PostText">{{ chat.username }}</h4>
+            <h5 class="PostText">{{ chat.content }}</h5>
+            <br>
+        </div>
+        {% endfor %}
+        
+
+        <form action="{{ url_for('posli_chat') }}" method="POST" class="chatSender">
+                <input type="text" name="chat_person" id="chat_person" class="postInput" autocomplete="off" required>
+                <input type="submit" value="Add" class="postButton">
+        </form>
+    </div>
+    
+</body>
+</html>
