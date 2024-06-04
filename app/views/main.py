@@ -246,10 +246,10 @@ def prihlaseni():
 
     return render_template("login_test.html")
 
-@app.route("/logout", methods=["POST"])
+@app.route("/logout", methods=["POST", "GET"])
 def logout():
     if "uzivatel" in session:
-        del session["uzivatel"]
+        session.pop("uzivatel", None)
     return redirect(url_for("index"))
 
 @app.route("/password-reset")

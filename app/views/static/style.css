@@ -69,9 +69,10 @@
 
 .btne {
     text-decoration: none;
-    color: azure;
+    color: rgb(0, 127, 150);
     float: right;
     line-height: 150%;
+    font-family: 'Dela Gothic One';
 }
 .btne:visited {
     color: azure;
@@ -80,6 +81,20 @@
     font-weight: bold;
 }
 
+.logout-btn{
+    position: relative;
+    color: orange;
+    float: right;
+    line-height: 150%;
+    font-family: 'Dela Gothic One';
+
+}
+
+.logout-btn:hover{
+    font-weight: bolder;
+    transform: translateY(-5px);
+    transition: 100ms;
+}
 
 /* celá ta jezdící věc */
 ::-webkit-scrollbar {
@@ -797,24 +812,6 @@ top: -1px;
     display: flex;
 }
 
-.logout-btn{
-    position: absolute;
-    color: orange;
-    background-color: rgb(40, 40, 40);
-    /*margin-left: 1000px;*/
-    margin-top: 25px;
-    width: 150px;
-    height: 50px;
-    font-size: 150%;
-    font-family: 'Dela Gothic One';
-    
-}
-
-.logout-btn:hover{
-    font-weight: bolder;
-    transform: translateY(-5px);
-    transition: 100ms;
-}
 
 .profile-image{
     margin: 3vh

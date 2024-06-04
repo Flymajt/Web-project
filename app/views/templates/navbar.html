@@ -7,8 +7,12 @@
     <a href="{{ url_for('index') }}" class="btn">Home</a>
     <a href="{{ url_for('explore') }}" class="btn">Explore</a>
     <a href="{{ url_for('library') }}" class="btn">Library</a>
-    <a href="{{ url_for('prihlaseni') }}" class="btne">Login</a>
     {% if session["uzivatel"] == "admin" %}
         <a href="{{ url_for('add_song') }}" class="btn">Add Song</a>
+    {% endif %}
+    {% if "uzivatel" in session %}
+    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    {% else %}
+    <a href="{{ url_for('prihlaseni') }}" class="btne">Login</a>
     {% endif %}
 </div><br>
