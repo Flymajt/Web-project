@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect, session, url_for, make_response, jsonify, abort
+import uuid
 import os
 import json
 
@@ -69,6 +70,9 @@ def vytvor_json(nazev_souboru):
         json.dump(data_na_zapis, outfile)
 
     return
+
+def generate_id():
+    return str(uuid.uuid4())
 
 @app.route('/')
 def index():
@@ -284,8 +288,10 @@ def zpracuj_song():
     songfile = request.files["songfile"]
     if songfile.filename.endswith(".mp3"):
         songfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/songs", songfile.filename))
+        song_id = generate_id()
         
         new_song = {
+        "song_id": song_id,
         "title": title,
         "author": author,
         "album": album,
@@ -311,8 +317,10 @@ def zpracuj_album():
     albumfile = request.files["albumfile"]
     if albumfile.filename.endswith((".png", ".jpg",".jpeg")):
         albumfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/albums", albumfile.filename))
+        album_id = generate_id()
         
         new_album = {
+        "album_id": album_id,
         "title": title,
         "author": author,
         "release": release,

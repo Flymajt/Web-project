@@ -1008,6 +1008,7 @@ input:checked + .slider:before {
     overflow: auto;
     white-space: nowrap;
     background-color: #0a0a0a1f;
+    border-radius: 2%;
 }
 
 .album{
@@ -1084,6 +1085,8 @@ input:checked + .slider:before {
     overflow: auto;
     white-space: nowrap;
     background-color: #0a0a0a1f;
+    border-radius: 3%;
+    padding-bottom: 10px;
 }
 
 .place_albumpage{
