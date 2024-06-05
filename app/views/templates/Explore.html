@@ -18,7 +18,7 @@
                     {% for album in albums %}
                     <th class="songs">
                         <div class="album">
-                            <a href="{{ url_for('albums', index=loop.index0)}}" class="SP_MP">
+                            <a href="{{ url_for('albums', album_id=album.album_id) }}" class="SP_MP">
                                 <img class="btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
                                 <p class="playlist_popis">{{ album.title }}</p>
                             </a>

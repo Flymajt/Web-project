@@ -299,7 +299,7 @@ def zpracuj_song():
     }
         zapis_do_json_songs("songs", new_song)
 
-        return redirect(url_for("index"))
+        return redirect(url_for("explore"))
     else:
         return redirect(url_for("add_song"))
 
@@ -328,17 +328,22 @@ def zpracuj_album():
     }
         zapis_do_json_albums("albums", new_album)
 
-        return redirect(url_for("index"))
+        return redirect(url_for("explore"))
     else:
         return redirect(url_for("add_song"))
 
-@app.route("/album/<int:index>")
-def albums(index):
-   albums = precti_json_albums("albums")
-   songs = precti_json_songs("songs")
-   if index not in range(len(albums)):
-       return "Searched album has not been found", 404
-   return render_template("album.html", album=albums[index], songs=songs)
+@app.route("/album/<album_id>")
+def albums(album_id):
+    albums = precti_json_albums("albums")
+    songs = precti_json_songs("songs")
+    
+    #tohle projede alba aby to našlo to id
+    album = next((album for album in albums if album['album_id'] == album_id), None)
+    
+    if album == None:
+        return "Searched album has not been found", 404
+    
+    return render_template("album.html", album=album, songs=songs)
 
 @app.route("/profile/feedback")
 def feedback():
