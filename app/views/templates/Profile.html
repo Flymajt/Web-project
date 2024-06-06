@@ -14,6 +14,13 @@
                 background: linear-gradient(to bottom, #d89e00, #282828);
             {% endif %}
         }
+        .choose-background-color {
+            {% if userColor %}
+                background-color: {{ userColor }};
+            {% else %}
+                background-color: dimgrey;
+            {% endif %}
+        }
     </style>
 </head>
 <body>
@@ -26,13 +33,15 @@
         <h1 class="profile-followers"><u>Followers</u>:</h1>
         <h1 class="profile-following"><u>Following</u>:</h1>
         <h1 class="profile-bio">[About me]</h1>
-        <a href="{{ url_for('feedback') }}">Feedback</a>
+        <a href="{{ url_for('feedback') }}" id="feedbackBtn">Feedback</a>
 
     </div>
 
     <div class="profile-settings-bg">
         <h1 class="user-settings"><u>User Settings</u></h1>
-        <p class="snd-quality">Sound quality</p>
+        <br/>
+
+        <p class="profile-settings-text">Sound quality</p>
         <div class="snd-drpdwn">
             <button class="snd-drpbtn">select here</button>
             <div class="snd-drpdwn-content">
@@ -44,17 +53,17 @@
             </div>
         </div>
 
-        <p class="autoplay">Autoplay</p>
+        <br/>
 
-        <label class="autoplayswitch">
-            <input type="checkbox">
-            <span class="slider round"></span>
-        </label>
-        <form action="/profile" method="POST">
-            <label for="" class="forgot">Choose a Background color for your profile:</label>
-            <input type="color" class="choose-background-color" name="setbgcolor">
-            <input type="submit" value="NASTAVIT" id="nastavBarvu">
+        <form action="/profile" method="POST" class="choosebgcolorform">
+            <p class="profile-settings-text">Choose a background color for your profile:</p>
+            <input type="color" class="choose-background-color" name="setbgcolor" id="BgColorPicker">
+            <input type="submit" value="SET COLOR" id="nastavBarvu">
         </form>
+        <script>
+            var userColor = "{{ userColor }}" || "white";
+            document.getElementById("BgColorPicker").setAttribute("value", userColor);
+        </script>
 
     </div>
 

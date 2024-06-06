@@ -214,7 +214,7 @@ def profile():
             bgcolor_resp.set_cookie("userBgColor", pozadi)
             return bgcolor_resp
         else:
-            userColor = request.cookies.get("userBgColor", "white")
+            userColor = request.cookies.get("userBgColor", None)
             return render_template("profile.html", jmeno=jmeno, userColor=userColor)
     else:
         return redirect(url_for("prihlaseni"))
