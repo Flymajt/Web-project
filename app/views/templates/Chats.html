@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social</title>
+    <title>Toney</title>
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body class="pozadi">
@@ -22,11 +23,27 @@
         {% endfor %}
         
 
-        <form action="{{ url_for('posli_chat') }}" method="POST" class="chatSender">
+        <form action="/posli_chat" method="POST" class="chatSender">
                 <input type="text" name="chat_person" id="chat_person" class="postInput" autocomplete="off" required>
-                <input type="submit" value="Add" class="postButton">
+                <input type="hidden" name="chat_number" id="chat_number">
+                <input type="submit" value="Send" class="postButton">
         </form>
     </div>
+
     
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the current URL
+            var url = window.location.href;
+            
+            // Extract the number from the URL using a regular expression
+            var match = url.match(/\/social\/chat_url\/(\d+)/);
+            if (match) {
+                var number = match[1]; // The captured number
+                // Set the value of the hidden input field
+                document.getElementById('chat_number').value = number;
+            }
+        });
+    </script>
 </body>
 </html>

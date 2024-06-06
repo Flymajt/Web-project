@@ -74,6 +74,24 @@ def vytvor_json(nazev_souboru):
 def generate_id():
     return str(uuid.uuid4())
 
+
+def precti_json_chats(nazev_souboru):
+    aktivni_soubor = os.path.dirname(__file__)
+    SITE_ROOT = os.path.realpath(aktivni_soubor)
+    json_url = os.path.join(SITE_ROOT, "static/data/chats", f"{nazev_souboru}.json")
+    USERS = json.load(open(json_url,"r",encoding="utf-8"))
+    return USERS
+def zapis_do_json_chats(nazev_souboru, data_na_zapis):
+    aktivni_soubor = os.path.dirname(__file__)
+    SITE_ROOT = os.path.realpath(aktivni_soubor)
+    json_url = os.path.join(SITE_ROOT, "static/data/chats", f"{nazev_souboru}.json")
+    USERS = json.load(open(json_url,"r",encoding="utf-8"))
+    USERS.append(data_na_zapis)
+    with open(json_url, "w", encoding="utf-8") as outline:
+        json.dump(USERS, outline)
+
+    return
+
 @app.route('/')
 def index():
     #if "username" in session:
@@ -154,21 +172,24 @@ def get_chat(number):
     if not os.path.exists(filename):
         abort(404)  # Return a 404 error if the file does not exist
     
-    filename = f'chats/chat_{number}'
-    chats = precti_json(filename)
+    filename = f'chat_{number}'
+    chats = precti_json_chats(filename)
 
     return render_template("Chats.html", chats=chats)
 
 @app.route("/posli_chat", methods=["POST"])
-def posli_chat(chat):
+def posli_chat():
     username = session.get("uzivatel")
     username2 = request.form.get("chat_person")
+    chat = request.form.get("chat_number")
 
-    filename = f'chats/chat_{chat}'
+    filename = f'chat_{chat}'
+
+    print(filename)
 
     post_id = 0
 
-    posty = precti_json(filename)
+    posty = precti_json_chats(filename)
     for p in posty:
         if p["code"] == post_id:
             post_id += 1
@@ -178,11 +199,9 @@ def posli_chat(chat):
         "content": username2,
         "code": post_id,
     }
-    zapis_do_json("chats", novy_post)
-    chat_json = "chat_"+str(post_id)
-    vytvor_json(chat_json)
+    zapis_do_json_chats(filename, novy_post)
     # note to self: jde jich dysplaynout max 5 + ten hard coded
-    return redirect(url_for("social"))
+    return redirect(url_for("get_chat", number=chat))
 
 @app.route("/profile")
 def profile():

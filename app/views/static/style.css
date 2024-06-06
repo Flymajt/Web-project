@@ -677,6 +677,18 @@ top: -1px;
     font-size: large;
 }
 
+.chatUser:visited {
+    color: azure;
+    float: none;
+    font-weight: bold;
+}
+
+.chatUser {
+    color: azure;
+    float: none;
+    font-weight: bold;
+}
+
 .LogSoc:hover {
     color: rgb(121, 255, 255);
     float: none;
