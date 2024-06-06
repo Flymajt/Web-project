@@ -203,11 +203,19 @@ def posli_chat():
     # note to self: jde jich dysplaynout max 5 + ten hard coded
     return redirect(url_for("get_chat", number=chat))
 
-@app.route("/profile")
+@app.route("/profile", methods=["POST", "GET"])
 def profile():
     if "uzivatel" in session:
         jmeno = session["uzivatel"]
-        return render_template("profile.html", jmeno=jmeno)
+
+        if request.method == "POST":
+            pozadi = request.form["setbgcolor"]
+            bgcolor_resp = make_response(render_template("profile.html", jmeno=jmeno, userColor=pozadi))
+            bgcolor_resp.set_cookie("userBgColor", pozadi)
+            return bgcolor_resp
+        else:
+            userColor = request.cookies.get("userBgColor", "white")
+            return render_template("profile.html", jmeno=jmeno, userColor=userColor)
     else:
         return redirect(url_for("prihlaseni"))
 
@@ -274,6 +282,7 @@ def logout():
     if "uzivatel" in session:
         session.pop("uzivatel", None)
     return redirect(url_for("index"))
+
 
 @app.route("/password-reset")
 def password_reset():

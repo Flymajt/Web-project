@@ -814,7 +814,6 @@ background-color: gray;
 }
 
 .pozadi-profile{
-    background-image: linear-gradient(rgb(216, 158, 0), rgb(40, 40, 40));
     background-size: cover;
     
 }
@@ -997,6 +996,8 @@ input:checked + .slider:before {
     position: absolute;
 
 }
+
+
 
 .selecter{
     width: 200px;

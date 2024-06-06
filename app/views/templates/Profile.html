@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Profile of {{jmeno}}</title>
     <link rel="stylesheet" href="../static/style.css">
+    <style>
+        body {
+            {% if userColor %}
+                background-color: {{ userColor }};
+            {% else %}
+                background: linear-gradient(to bottom, #d89e00, #282828);
+            {% endif %}
+        }
+    </style>
 </head>
-<body class="pozadi-profile">
+<body>
     {% include "navbar.html" %}
 
     <div class="pfp">
@@ -41,9 +50,9 @@
             <input type="checkbox">
             <span class="slider round"></span>
         </label>
-        <form action="">
+        <form action="/profile" method="POST">
             <label for="" class="forgot">Choose a Background color for your profile:</label>
-            <input type="color" class="choose-background-color">
+            <input type="color" class="choose-background-color" name="setbgcolor">
             <input type="submit" value="NASTAVIT" id="nastavBarvu">
         </form>
 
