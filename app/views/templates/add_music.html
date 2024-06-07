@@ -28,6 +28,19 @@
     </div>
 
     <div class="nadpisy">
+    <h1>Delete Song</h1><br>
+    <form action="{{ url_for('del_song') }}" method="POST" enctype="multipart/form-data">
+        <label for="id">Song:</label>
+        <select name="id" required class="selecter">
+            {% for song in songs %}
+                <option value="{{ song.song_id }}">{{ song.title }} by {{ song.author }}</option>
+            {% endfor %}
+        </select><br>
+        <input type="submit" value="Delete">
+    </form>
+</div>
+
+    <div class="nadpisy">
         <h1>Add Album</h1><br>
     <form action="{{ url_for('zpracuj_album') }}" method="POST" enctype="multipart/form-data">
         <label for="">Title:</label>

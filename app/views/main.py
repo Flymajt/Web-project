@@ -39,7 +39,7 @@ def zapis_do_json_songs(nazev_souboru, data_na_zapis):
     SONGS = json.load(open(json_url,"r",encoding="utf-8"))
     SONGS.append(data_na_zapis)
     with open(json_url, "w", encoding="utf-8") as outline:
-        json.dump(SONGS, outline)
+        json.dump(SONGS, outline, indent=2)
 
     return
 
@@ -56,7 +56,7 @@ def zapis_do_json_albums(nazev_souboru, data_na_zapis):
     ALBUMS = json.load(open(json_url,"r",encoding="utf-8"))
     ALBUMS.append(data_na_zapis)
     with open(json_url, "w", encoding="utf-8") as outline:
-        json.dump(ALBUMS, outline)
+        json.dump(ALBUMS, outline, indent=2)
 
     return
 
@@ -289,15 +289,17 @@ def password_reset():
     return render_template("passwordreset.html")
 
 
-@app.route('/add-song')
-def add_song():
+@app.route('/manage-song')
+def manage_song():
     if "uzivatel" in session:
         username = session["uzivatel"]
     
         if username == "admin":
             albums = precti_json_songs("albums")
             albums = sorted(albums, key=lambda x: x["title"])
-            return render_template("add_music.html", albums=albums)
+            songs = precti_json_songs("songs")
+            songs = sorted(songs, key=lambda x: x["title"])
+            return render_template("add_music.html", albums=albums, songs=songs)
         
     else:
         return redirect(url_for("index"))
@@ -329,7 +331,28 @@ def zpracuj_song():
 
         return redirect(url_for("explore"))
     else:
-        return redirect(url_for("add_song"))
+        return redirect(url_for("manage_song"))
+    
+@app.route('/del-song', methods=["POST"])
+def del_song():
+    id = request.form.get("id")
+
+    songs = precti_json_songs("songs")
+
+    updated_songs = [song for song in songs if song.get("song_id") != id]
+
+    for song in songs:
+        if "song_id" in song and song["song_id"] == id:
+            songfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/songs", song.get('songfile', ''))
+            if os.path.exists(songfile):
+                os.remove(songfile)
+
+
+            with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
+                json.dump(updated_songs, file, indent=2)
+            break
+
+    return redirect(url_for("explore"))
 
 @app.route('/zpracuj-album', methods=["POST"])
 def zpracuj_album():
@@ -358,7 +381,7 @@ def zpracuj_album():
 
         return redirect(url_for("explore"))
     else:
-        return redirect(url_for("add_song"))
+        return redirect(url_for("manage_song"))
 
 @app.route("/album/<album_id>")
 def albums(album_id):
