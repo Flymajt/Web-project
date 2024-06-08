@@ -1054,6 +1054,17 @@ top: -1px;
 }
 
 /* ------------------------- FEEDBACK --------------------------------*/
-.feedback-inputbox{
-background-color: azure;
+.feedback {
+    margin-top: 10vh;
+    padding: 10px;
+    border: 5px solid black;
+    border-color: white;
+    color: azure
+}
+#feedbackinput{
+    width: 500px
+}
+
+#feedbacksubmit{
+    width: 50px
 }

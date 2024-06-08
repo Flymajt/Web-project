@@ -396,7 +396,7 @@ def albums(album_id):
     
     return render_template("album.html", album=album, songs=songs)
 
-@app.route("/profile/feedback")
+@app.route("/profile/feedback", methods=["POST", "GET"])
 def feedback():
     return render_template("feedback.html")
     

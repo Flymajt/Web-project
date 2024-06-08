@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Page</title>
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body class="pozadi">
-{% include "navbar.html" %}
+    {% include "navbar.html" %}
 
-<div class="feedback-inputbox">
-    <form action="">
-        <input type="text" name="feedbackField">
-        <label for="">Sem zadejte vaší zpětnou vazbu:</label>
-    </form>
+    <div class="feedback">
+        <form action="{{url_for('feedback')}}" method="POST">
+                <label for="" >Type your feedback here:</label><br/>
+                <input type="text" name="feedbackBox" id="feedbackinput">
+                <input type="submit" value="Send" id="feedbacksubmit">
 
-</div>
-
+        </form>
+    </div>
 
 </body>
 </html>
