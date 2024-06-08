@@ -1068,3 +1068,22 @@ top: -1px;
 #feedbacksubmit{
     width: 50px
 }
+
+/* ------------------------- 404 --------------------------------*/
+.notfound{
+    text-align:center;
+    width:600px; 
+    margin:0 auto;
+    margin-top: 300px;
+    color: azure;
+}
+
+.notfound_pozadi{
+    height: 100vh;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 110%;
+    background-color: rgb(20, 20, 20); /* Pro prohlížeče co nepodporují gradient */
+    background-image: url("https://i.pinimg.com/originals/ef/32/79/ef3279dc6aadf055aafd5ed05bad67da.gif");        
+}
+

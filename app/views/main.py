@@ -98,6 +98,10 @@ def index():
     #    return redirect(url_for("prihlaseni"))
     return render_template("index.html")
 
+@app.errorhandler(404) 
+def not_found(e): 
+  return render_template("404.html") 
+
 @app.route('/social')
 def social():
     #if "username" in session:
@@ -392,7 +396,7 @@ def albums(album_id):
     album = next((album for album in albums if album['album_id'] == album_id), None)
     
     if album == None:
-        return "Searched album has not been found", 404
+        return render_template("404.html") 
     
     return render_template("album.html", album=album, songs=songs)
 
