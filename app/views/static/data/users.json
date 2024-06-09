@@ -1,1 +1,37 @@
-[{"username": "username", "email": "email@email.cz", "password": "password"}, {"username": "rtrt", "email": "vojtahlavatyy@gmail.com", "password": "rtzhtzj"}, {"username": "zkouska", "email": "zkouska@seznam.cz", "password": "zkouskaPass35"}, {"username": "admin", "email": "admin@gmail.com", "password": "admin"}, {"username": "login0012", "email": "goober2@gmail.com", "password": "zDFG_56"}, {"username": "Gotyx96", "email": "holakovskymatyas@seznam.cz", "password": "wowtojecelkemcoolheslongl"}]
+[
+  {
+    "username": "username",
+    "email": "email@email.cz",
+    "password": "password"
+  },
+  {
+    "username": "rtrt",
+    "email": "vojtahlavatyy@gmail.com",
+    "password": "rtzhtzj"
+  },
+  {
+    "username": "zkouska",
+    "email": "zkouska@seznam.cz",
+    "password": "zkouskaPass35"
+  },
+  {
+    "username": "admin",
+    "email": "admin@gmail.com",
+    "password": "admin"
+  },
+  {
+    "username": "login0012",
+    "email": "goober2@gmail.com",
+    "password": "zDFG_56"
+  },
+  {
+    "username": "Gotyx96",
+    "email": "holakovskymatyas@seznam.cz",
+    "password": "wowtojecelkemcoolheslongl"
+  },
+  {
+    "username": "Vojta",
+    "email": "vojta@seznam.cz",
+    "password": "Vojta1"
+  }
+]

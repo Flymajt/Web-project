@@ -22,7 +22,7 @@ def zapis_do_json(nazev_souboru, data_na_zapis):
     USERS = json.load(open(json_url,"r",encoding="utf-8"))
     USERS.append(data_na_zapis)
     with open(json_url, "w", encoding="utf-8") as outline:
-        json.dump(USERS, outline)
+        json.dump(USERS, outline, indent=2)
 
     return
 
@@ -94,8 +94,6 @@ def zapis_do_json_chats(nazev_souboru, data_na_zapis):
 
 @app.route('/')
 def index():
-    #if "username" in session:
-    #    return redirect(url_for("prihlaseni"))
     return render_template("index.html")
 
 @app.errorhandler(404) 

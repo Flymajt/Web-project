@@ -204,3 +204,16 @@ window.onload = function() {
         }
     });
 };
+
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+    const password = document.getElementById("registerPassword").value;
+    const passwordError = document.getElementById("passwordError");
+
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+    if (!passwordPattern.test(password)) {
+        passwordError.style.display = "block";
+        event.preventDefault();
+    } else {
+        passwordError.style.display = "none"
+    }
+})

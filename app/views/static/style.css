@@ -455,6 +455,11 @@ top: -1px;
 .herebtn:visited{
     color: azure;
 }
+
+#passwordError{
+    color: red;
+    display: none;
+}
 /*--------------------------------------------Library---------------------------------------------------------*/
 .img-obrazky-jedn{
     width: 300px;
