@@ -9,8 +9,7 @@
 </head>
 <body>
     <div class="nav">
-        <h1><a href="/" class="titleLogin">Toney</a></h1>
-        
+        <h1><a href="/" class="titleLogin" id="regTitleToney">Toney</a></h1>
     </div>
     <section>
         <div class="Regform-box">
@@ -22,22 +21,22 @@
                         <ion-icon name="person-outline" class="login-icons"></ion-icon>
                         <input type="text" name="username" required>
                         <label for="" class="NameLabel">Username</label>
-
+                    </div>
 
                     <div class="inputbox"> <!-- email pole -->
                         <ion-icon name="mail-outline" class="login-icons"></ion-icon>
                         <input type="email" name="email" required>
-                        <label for="" class="EmailLabel">Email</label>
+                        <label for="" class="NameLabel">Email</label>
                     </div>
 
                     <div class="inputbox"> <!-- password pole -->
                         <ion-icon name="lock-closed-outline" class="login-icons"></ion-icon>
                         <input type="password" name="password" id="registerPassword" required>
-                        <label for="" class="PasswordLabel">Password</label><br/>
+                        <label for="" class="NameLabel">Password</label><br/>
                         <span id="passwordError">Heslo musí obsahovat alespoň jedno VELKÉ písmeno a alespoň jednu ČÍSLICI</span>
                     </div>
 
-                    <input type="submit" class="login-button" value="Register">
+                    <input type="submit" class="login-button" value="Register"><br/>
 
                     <div class="Login">
                         <p>Already have an account? <a href="login" class="reg">Login</a></p>

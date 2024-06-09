@@ -316,28 +316,6 @@ h2{
     font-size: 15px;
     pointer-events: none;
     transition: .2s;
-    margin: -180px 0;
-    color: azure;
-}
-
-.EmailLabel{
-    position: absolute;
-    top: 50%;
-    left: 30px;
-    font-size: 15px;
-    pointer-events: none;
-    transition: .2s;
-    margin: -37px 0;
-    color: azure;
-}
-
-.PasswordLabel{
-    position: absolute;
-    top: 50%;
-    left: 30px;
-    font-size: 15px;
-    pointer-events: none;
-    transition: .2s;
     margin: -37px 0;
     color: azure;
 }
@@ -395,6 +373,9 @@ top: -1px;
 .reg {
     color: azure;
 }
+.reg:hover{
+    font-weight: bolder
+}
 
 .reg:visited {
     color: azure;
@@ -406,6 +387,10 @@ top: -1px;
 
 .forgot:visited {
     color: azure;
+}
+
+.forgot:hover{
+    font-weight: bolder;
 }
 
 .looking_for_secrets_are_we{
@@ -427,12 +412,16 @@ top: -1px;
 .login-button{
     background-color: #001741;
     border: none;
-    color: white;
+    color: azure;
     padding: 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+.login-button:hover{
+    color: yellow;
+    font-weight: bolder
 }
 
 .noaccount{
@@ -1059,6 +1048,13 @@ top: -1px;
 }
 
 /* ------------------------- FEEDBACK --------------------------------*/
+#feedbackBtn{
+    color: black;
+}
+#feedbackBtn:hover{
+    color: rgb(50, 50, 50)
+}
+
 .feedback {
     margin-top: 10vh;
     padding: 10px;
