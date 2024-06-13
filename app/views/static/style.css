@@ -962,6 +962,7 @@ top: -1px;
 .album{
     margin-right: 30px;
     margin-left: 30px;
+    margin-top: 20px;
 }
 
 .song_btn_img {
@@ -1007,7 +1008,7 @@ top: -1px;
 .album_cover_albumpage{
     width: 220px;
     height:220px;
-    height: auto;
+    object-fit: cover;
     border-radius: 6%;
 }
 

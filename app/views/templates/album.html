@@ -10,10 +10,11 @@
 
     {% set ns = namespace(album_songs=0) %}
     {% for song in songs %}
-        {% if album.title == song.album %}
+        {% if album.album_id == song.album %}
             {% set ns.album_songs = ns.album_songs + 1 %}
         {% endif %}
     {% endfor %}
+    <!--totoč přidává pořadí písniček-->
 
     <div class="nadpisy"><br><br>
         <div class="album_albumpage">
@@ -29,7 +30,7 @@
         <div class="scrollmenu_albumpage">
             {% set ns = namespace(album_song_place=0) %}
             {% for song in songs %}
-                {% if album.title == song.album %}
+                {% if album.album_id == song.album %}
                     <div class="song">
                         <div class="place_albumpage">
                         {% set ns.album_song_place = ns.album_song_place + 1 %}

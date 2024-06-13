@@ -384,6 +384,39 @@ def zpracuj_album():
         return redirect(url_for("explore"))
     else:
         return redirect(url_for("manage_song"))
+    
+@app.route('/del-album', methods=["POST"])
+def del_album():
+    id = request.form.get("id")
+
+    songs = precti_json_songs("songs")
+    albums = precti_json_songs("albums")
+
+    updated_songs = [song for song in songs if song.get("album") != id]
+    updated_albums = [album for album in albums if album.get("album_id") != id]
+
+    for album in albums:
+        if "album_id" in album and album["album_id"] == id:
+                albumfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/albums", album.get('albumfile', ''))
+                if os.path.exists(albumfile):
+                    os.remove(albumfile)
+
+
+                with open(os.path.join(UPLOAD_FOLDER, 'albums.json'), 'w') as file:
+                    json.dump(updated_albums, file, indent=2)
+                break
+        for song in songs:
+            if "album" in song and song["album"] == id:
+                songfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/songs", song.get('songfile', ''))
+                if os.path.exists(songfile):
+                    os.remove(songfile)
+
+
+                with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
+                    json.dump(updated_songs, file, indent=2)
+                break
+
+    return redirect(url_for("explore"))
 
 @app.route("/album/<album_id>")
 def albums(album_id):

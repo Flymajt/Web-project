@@ -18,7 +18,7 @@
             <label for ="">Album:</label>
             <select name="album" required class="selecter">
                 {% for album in albums %}
-                    <option value="{{ album.title }}">{{ album.title }}</option>
+                    <option value="{{ album.album_id }}">{{ album.title }}</option>
                 {% endfor %}
             </select><br>
             <label for ="">Song:</label>
@@ -38,7 +38,7 @@
         </select><br>
         <input type="submit" value="Delete">
     </form>
-</div>
+    </div>
 
     <div class="nadpisy">
         <h1>Add Album</h1><br>
@@ -54,5 +54,18 @@
         <input type="submit" value="Add">
     </form>
     </div>
+
+    <div class="nadpisy">
+        <h1>Delete Album</h1><br>
+        <form action="{{ url_for('del_album') }}" method="POST" enctype="multipart/form-data">
+            <label for="id">Album:</label>
+            <select name="id" required class="selecter">
+                {% for album in albums %}
+                    <option value="{{ album.album_id }}">{{ album.title }} by {{ album.author }}</option>
+                {% endfor %}
+            </select><br>
+            <input type="submit" value="Delete">
+        </form>
+        </div>
 </body>
 </html>

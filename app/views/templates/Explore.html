@@ -40,13 +40,13 @@
                     {% endif %}
                     <div class="song">
                         {% for album in albums %}
-                            {% if album.title == song.album %}
+                            {% if album.album_id == song.album %}
                                 <a href="" class="SP_MP">
                                     <img class="song_btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
                                 </a>
                                 <div>
                                     <a href="" class="SP_MP"><b class="playlist_popis">{{ song.title }}</b></a><br>
-                                    <b class="popisky_play">{{ song.author }} ♦ {{ song.album }}</b>
+                                    <b class="popisky_play">{{ song.author }} ♦ {{ album.title }}</b>
                                 </div>
                             {% endif %}
                         {% endfor %}
