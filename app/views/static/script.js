@@ -217,3 +217,5 @@ document.getElementById("registerForm").addEventListener("submit", function(even
         passwordError.style.display = "none"
     }
 })
+
+

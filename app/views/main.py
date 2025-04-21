@@ -431,6 +431,30 @@ def albums(album_id):
     
     return render_template("album.html", album=album, songs=songs)
 
+@app.route('/zpracuj-playlist', methods=["POST"])
+def zpracuj_playlist():
+    name = request.form.get("name")
+    author = session.get("uzivatel")
+    description = request.form.get("description")
+
+    playlistfile = request.files["playlistfile"]
+    if playlistfile.filename.endswith((".png", ".jpg",".jpeg")):
+        playlistfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/playlists", playlistfile.filename))
+        playlist_id = generate_id()
+        
+        new_playlist = {
+        "playlist_id": playlist_id,
+        "author": author,
+        "name": name,
+        "description": description,
+        "playlistfile": playlistfile.filename
+    }
+        zapis_do_json_albums("playlists", new_playlist)
+
+        return redirect(url_for("library"))
+    else:
+        return redirect(url_for("library"))
+
 @app.route("/profile/feedback", methods=["POST", "GET"])
 def feedback():
     return render_template("feedback.html")

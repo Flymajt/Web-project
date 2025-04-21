@@ -450,6 +450,16 @@ top: -1px;
     display: none;
 }
 /*--------------------------------------------Library---------------------------------------------------------*/
+.make-playlist{
+    text-align: center;
+    top: 40%;
+    left: 45%;
+}
+
+::backdrop{
+    background-color: #0a0a0aae;
+}
+
 .img-obrazky-jedn{
     width: 300px;
     height: 300px;
