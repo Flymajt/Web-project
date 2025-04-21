@@ -26,6 +26,34 @@
                 <button onclick=closePlaylistDialog()>Cancel</button>
             </dialog>
         </div>
+    
+        {% set has_playlist = false %}
+        <br><h1>Playlists</h1><br>
+        <div class="scrollmenu">
+            <table> 
+                <tr>
+                    {% for playlist in playlists %}
+                        {% if playlist.author == user %}
+                            {% set has_playlist = true %}
+                            <th class="songs">
+                                <div class="album">
+                                    <a href="" class="SP_MP">
+                                        <img class="btn_img" src="../static/data/playlists/{{ playlist.playlistfile }}"/>
+                                        <p class="playlist_popis">{{ playlist.name }}</p>
+                                    </a>
+                                </div>
+                            </th>
+                        {% endif %}
+                        {% if not has_playlist %}
+                            <div class="notfound">
+                                <h1>You have no playlists!</h1><br>
+                                <p>You can make a playlist by clicking the "Add Playlist" button!</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            </table><br>
+        </div>
     </div>
 <map name="workmap">
   <area shape="default" coords="34,44,270,350" alt="Computer" href="computer.htm">
