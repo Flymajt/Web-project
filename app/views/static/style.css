@@ -883,7 +883,10 @@ top: -1px;
     padding: 2vh;
     padding-bottom: 300px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start; /* nebo center, pokud chceš zarovnat na střed */
+    gap: 20px; /* mezery mezi sekcemi */
+    padding: 20px;
 }
 
 .user-settings{
@@ -897,7 +900,10 @@ top: -1px;
     margin-left: 1vh;
     margin-top: 2vh;
     font-size: 150%;
-    display: block;
+}
+
+.settings-block {
+    width: 100%;
 }
 
 .snd-drpbtn {

@@ -2,12 +2,18 @@ from flask import Flask, request, render_template, redirect, session, url_for, m
 import uuid
 import os
 import json
+from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "static/data")
-
+ALLOWED_EXTENSIONS = {"png", "jpg", "jfif", "jpeg", "gif", "webp", "mp3", "wav"}
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "123456789"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+app.secret_key = "tajnyklic"
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def precti_json(nazev_souboru):
     aktivni_soubor = os.path.dirname(__file__)
@@ -205,21 +211,39 @@ def posli_chat():
     # note to self: jde jich dysplaynout max 5 + ten hard coded
     return redirect(url_for("get_chat", number=chat))
 
+
 @app.route("/profile", methods=["POST", "GET"])
 def profile():
     if "uzivatel" in session:
         jmeno = session["uzivatel"]
+        userColor = request.cookies.get("userBgColor", None)
 
         if request.method == "POST":
-            pozadi = request.form["setbgcolor"]
-            bgcolor_resp = make_response(render_template("profile.html", jmeno=jmeno, userColor=pozadi))
-            bgcolor_resp.set_cookie("userBgColor", pozadi)
-            return bgcolor_resp
-        else:
-            userColor = request.cookies.get("userBgColor", None)
-            return render_template("profile.html", jmeno=jmeno, userColor=userColor)
+            pozadi = request.form.get("setbgcolor")
+            userColor = pozadi or request.cookies.get("userBgColor") or "#ffffff"  # fallback barva
+            resp = make_response(render_template("profile.html", jmeno=jmeno, userColor=userColor))
+
+            if pozadi:
+                resp.set_cookie("userBgColor", pozadi)
+
+            if "userpfp" in request.files:
+                file = request.files["userpfp"]
+                if file and allowed_file(file.filename):
+                    filename = secure_filename(f"{jmeno}_{file.filename}")
+                    file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+                    file.save(file_path)
+                    session["pfp_filename"] = filename
+
+            return resp
+
+        return render_template("profile.html",
+                               jmeno=jmeno,
+                               userColor=userColor,
+                               pfp_filename=session.get("pfp_filename", ""))
+
     else:
         return redirect(url_for("prihlaseni"))
+
 
 @app.route('/explore')
 def explore():
@@ -459,6 +483,6 @@ def zpracuj_playlist():
 @app.route("/profile/feedback", methods=["POST", "GET"])
 def feedback():
     return render_template("feedback.html")
-    
+
 if __name__ == "__main__":
     app.run(debug=True)

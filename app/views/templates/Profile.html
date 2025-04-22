@@ -28,8 +28,9 @@
     {% include "navbar.html" %}
 
     <div class="pfp">
-        <img class="profile-image" src="https://freesvg.org/img/abstract-user-flat-4.png" alt="profile image"
-        width="300px" height="300px">
+        <img class="profile-image"
+     src="{{ url_for('static', filename='data/profilovky/' + (pfp_filename or 'https://freesvg.org/img/abstract-user-flat-4.png')) }}"
+     alt="profile image" width="300px" height="300px">
         <h3 class="profile-username">{{jmeno}}</h3>
         <h1 class="profile-followers"><u>Followers</u>:</h1>
         <h1 class="profile-following"><u>Following</u>:</h1>
@@ -39,9 +40,9 @@
     </div>
 
     <div class="profile-settings-bg">
-        <h1 class="user-settings"><u>User Settings</u></h1>
-        <br/>
+    <h1 class="user-settings"><u>User Settings</u></h1>
 
+    <div class="settings-block">
         <p class="profile-settings-text">Sound quality</p>
         <div class="snd-drpdwn">
             <button class="snd-drpbtn">select here</button>
@@ -53,23 +54,27 @@
                 <a href="#">Best</a>
             </div>
         </div>
+    </div>
 
-        <br/>
-
+    <div class="settings-block">
         <form action="/profile" method="POST" class="choosebgcolorform">
             <p class="profile-settings-text">Choose a background color for your profile:</p>
             <input type="color" class="choose-background-color" name="setbgcolor" id="BgColorPicker">
             <input type="submit" value="SET COLOR" id="nastavBarvu">
         </form>
-        <script>
-            var userColor = "{{ userColor }}" || "white";
-            document.getElementById("BgColorPicker").setAttribute("value", userColor);
-        </script>
+    </div>
+
+    <div class="settings-block">
+        <form action="/profile" method="POST" enctype="multipart/form-data">
+            <p class="profile-settings-text">Change profile picture:</p>
+            <input type="file" name="userpfp"/>
+            <input type="submit" value="UPLOAD"/>
+        </form>
 
     </div>
 
+
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 </body>
 </html>
