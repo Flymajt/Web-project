@@ -14,11 +14,19 @@
     <div class="BigBoiChat">
 
         {% for chat in chats %}
-        <div class="chatpostarea">
-            <h4 class="PostText">{{ chat.username }}</h4>
-            <h5 class="PostText">{{ chat.content }}</h5>
-            <br>
-        </div>
+        {% if chat.username == username %}
+            <div class="chatpostarea2">
+                <h4 class="PostText2">{{ chat.username }}</h4>
+                <h5 class="PostText2">{{ chat.content }}</h5>
+                <br>
+            </div>
+        {% else %}
+            <div class="chatpostarea">
+                <h4 class="PostText">{{ chat.username }}</h4>
+                <h5 class="PostText">{{ chat.content }}</h5>
+                <br>
+            </div>
+        {% endif %}
         {% endfor %}
         
 

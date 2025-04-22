@@ -176,8 +176,9 @@ def get_chat(number):
     
     filename = f'chat_{number}'
     chats = precti_json_chats(filename)
+    username = session.get("uzivatel")
 
-    return render_template("Chats.html", chats=chats)
+    return render_template("Chats.html", chats=chats, username=username)
 
 @app.route("/posli_chat", methods=["POST"])
 def posli_chat():

@@ -672,6 +672,17 @@ top: -1px;
     margin-top: 20px;
 }
 
+.chatpostarea2 {
+    background-color:azure;
+    width: 300px;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: lightgrey;
+    color: rgb(44, 44, 44);
+    margin-top: 20px;
+    text-align: right;
+}
+
 .LogSoc {
     color: azure;
     float: none;
@@ -779,6 +790,11 @@ top: -1px;
 
 .PostText {
     float: none;
+}
+
+.PostText2 {
+    float: none;
+    text-align: right;
 }
 
 .Posts {
