@@ -182,8 +182,9 @@ def get_chat(number):
     
     filename = f'chat_{number}'
     chats = precti_json_chats(filename)
+    username = session.get("uzivatel")
 
-    return render_template("Chats.html", chats=chats)
+    return render_template("Chats.html", chats=chats, username=username)
 
 @app.route("/posli_chat", methods=["POST"])
 def posli_chat():
@@ -260,6 +261,18 @@ def library():
     else:
         return redirect(url_for("prihlaseni"))
 
+@app.route("/playlist/<playlist_id>")
+def playlists(playlist_id):
+    playlists = precti_json_albums("playlists")
+    songs = precti_json_songs("songs")
+    
+    #tohle projede alba aby to našlo to id
+    playlist = next((playlist for playlist in playlists if playlist['playlist_id'] == playlist_id), None)
+    
+    if playlist == None:
+        return render_template("404.html") 
+    
+    return render_template("playlist.html", playlist=playlist, songs=songs)
 
 @app.route('/register', methods=["POST", "GET"])
 def registrace():

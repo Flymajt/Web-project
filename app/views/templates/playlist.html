@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toney</title>
+</head>
+<body class="pozadi">
+    {% include "navbar.html" %}
+
+    {% set ns = namespace(album_songs=0) %}
+    {% for song in songs %}
+        {% if playlist.playlist_id == song.album %}
+            {% set ns.album_songs = ns.album_songs + 1 %}
+        {% endif %}
+    {% endfor %}
+    <!--totoč přidává pořadí písniček-->
+
+    <div class="nadpisy"><br><br>
+        <div class="album_albumpage">
+            <div class="cover_albumpage">
+                <img class="album_cover_albumpage" src="../static/data/playlists/{{ playlist.playlistfile }}"/>
+            </div>
+            <div class="details_albumpage">
+                <p>Playlist</p>
+                <h1 class="album_title_albumpage">{{ playlist.name }}</h1>
+                <p class="album_details_albumpage">{{ playlist.author }} ♦ {{ ns.album_songs }} songs </p><br>
+                <p class="album_details_albumpage">{{ playlist.description }} </p><br>
+            </div>
+        </div>
+        <div class="scrollmenu_albumpage">
+            {% set ns = namespace(album_song_place=0) %}
+            {% for song in songs %}
+                {% if playlist.playlist_id == song.album %}
+                    <div class="song">
+                        <div class="place_albumpage">
+                        {% set ns.album_song_place = ns.album_song_place + 1 %}
+                        <p>{{ ns.album_song_place }}.</p>
+                        </div>
+                        <div class="song_details_albumpage">
+                            <a href="" class="SP_MP"><b class="playlist_popis">{{ song.title }}</b></a><br>
+                            <b class="popisky_play">{{ song.author }}</b>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

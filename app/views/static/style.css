@@ -662,6 +662,27 @@ top: -1px;
     color: rgb(44, 44, 44);
 }
 
+.chatpostarea {
+    background-color:azure;
+    width: 300px;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: lightgrey;
+    color: rgb(44, 44, 44);
+    margin-top: 20px;
+}
+
+.chatpostarea2 {
+    background-color:azure;
+    width: 300px;
+    border-style: solid;
+    border-width: 0,1vw;
+    border-color: lightgrey;
+    color: rgb(44, 44, 44);
+    margin-top: 20px;
+    text-align: right;
+}
+
 .LogSoc {
     color: azure;
     float: none;
@@ -755,6 +776,13 @@ top: -1px;
     margin-top: 1vh;
 }
 
+.BigBoiChat{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 80px;
+}
+
 .LoginChat {
     float: none;
     padding-left: 1vw;
@@ -762,6 +790,11 @@ top: -1px;
 
 .PostText {
     float: none;
+}
+
+.PostText2 {
+    float: none;
+    text-align: right;
 }
 
 .Posts {
@@ -801,14 +834,16 @@ top: -1px;
 
 .chatSender {
     position: absolute;
-    bottom: 5px;
+    bottom: 10px;
     right: 0;
-    margin-right: 3vw;
+    margin-right: 0vw;
     background-color:azure;
     width: 300px;
     border-style: solid;
     border-width: 0,1vw;
     border-color: gainsboro;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /*--------------------------Profile-----------------------------*/
