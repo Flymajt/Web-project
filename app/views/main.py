@@ -236,6 +236,18 @@ def library():
     else:
         return redirect(url_for("prihlaseni"))
 
+@app.route("/playlist/<playlist_id>")
+def playlists(playlist_id):
+    playlists = precti_json_albums("playlists")
+    songs = precti_json_songs("songs")
+    
+    #tohle projede alba aby to našlo to id
+    playlist = next((playlist for playlist in playlists if playlist['playlist_id'] == playlist_id), None)
+    
+    if playlist == None:
+        return render_template("404.html") 
+    
+    return render_template("playlist.html", playlist=playlist, songs=songs)
 
 @app.route('/register', methods=["POST", "GET"])
 def registrace():
