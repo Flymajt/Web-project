@@ -14,6 +14,7 @@
     <div class=" BigBoi">
         
         <div class="ChatList">
+            {% set has_chat = false %}
             <h3 class="chats">Chats</h3>
             {% if username is none %}
             <br>
@@ -27,6 +28,7 @@
             </div>
             {% for chat in chats %}
             {% if chat["username"] == username %}
+            {% set has_chat = true %}
             <br>
             <div class="chatDiv">
                 <h4 class="chatUser"><a href="social/chat_url/{{ chat.code }}" class="chatUser">{{ chat.username2 }}</a></h4>
@@ -34,6 +36,7 @@
             </div>
             {% endif %}
             {% if chat["username2"] == username %}
+            {% set has_chat = true %}
             <br>
             <div class="chatDiv">
                 <h4 class="chatUser"><a href="social/chat_url/{{ chat.code }}" class="chatUser">{{ chat.username }}</a></h4>
@@ -41,7 +44,9 @@
             </div>
             {% endif %}
             {% endfor %}
+            {% if not has_playlist %}
             <h4 class="LoginChat">There dont seem to be any chats right now :(</h4>
+            {% endif %}
             {% endif %}
 
             <form action="{{ url_for('zpracuj_chat') }}" method="POST" class="chatSender">
