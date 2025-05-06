@@ -3,14 +3,28 @@
     "playlist_id": "caa8a4e6-26cd-43bd-b59e-b2399b1c6297",
     "author": "Gotyx96",
     "name": "M\u016fj Cool Ass Playlist",
-    "description": "damn, to je sakra cool playlist Maty\u00e1\u0161i, damn",
-    "playlistfile": "tangliee.png"
+    "description": "damn, to je sakra cool playlist Maty\u0161i, damn",
+    "playlistfile": "tangliee.png",
+    "songs": [
+      "d7c5ba2c-8fa5-4963-b87d-c3c3c5ac6f8c",
+      "3fabd251-1af8-41a1-b4fa-d75f5328bb7b",
+      "044b7713-49bf-44f8-8c7a-37a8e48bdce5"
+    ]
   },
   {
     "playlist_id": "a5e26a57-f9cf-4542-9d87-b89994642642",
     "author": "login0012",
     "name": "Some Silly Bangers",
     "description": "fuck you why cant this field be empty",
-    "playlistfile": "reality_juice.png"
+    "playlistfile": "reality_juice.png",
+    "songs": []
+  },
+  {
+    "playlist_id": "a89d3b26-2d9c-4aea-baee-5ea7f6df30d8",
+    "author": "Gotyx96",
+    "name": "Druhej plejlist k\u016fl",
+    "description": "",
+    "playlistfile": "19cac2d16635e5d0565657818bd89c8d.jpg",
+    "songs": []
   }
 ]

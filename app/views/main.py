@@ -274,6 +274,23 @@ def playlists(playlist_id):
     
     return render_template("playlist.html", playlist=playlist, songs=songs)
 
+@app.route('/add-to-playlist', methods=["POST"])
+def add_to_playlist():
+    playlist_id = request.form.get("playlist")
+    song_id = request.form.get("song")
+
+    playlists = precti_json_songs("playlists")
+
+    for playlist in playlists:
+        if playlist.get("playlist_id") == playlist_id:
+            playlist["songs"].append(song_id)
+            break
+
+    with open(os.path.join(UPLOAD_FOLDER, 'playlists.json'), 'w') as file:
+        json.dump(playlists, file, indent=2)
+
+    return redirect(request.referrer)
+
 @app.route('/register', methods=["POST", "GET"])
 def registrace():
     if "uzivatel" in session:
@@ -460,14 +477,16 @@ def del_album():
 def albums(album_id):
     albums = precti_json_albums("albums")
     songs = precti_json_songs("songs")
-    
+    user = session["uzivatel"]
+    playlists = precti_json_albums("playlists")
+
     #tohle projede alba aby to našlo to id
     album = next((album for album in albums if album['album_id'] == album_id), None)
-    
+
     if album == None:
         return render_template("404.html") 
-    
-    return render_template("album.html", album=album, songs=songs)
+
+    return render_template("album.html", album=album, songs=songs, user=user, playlists=playlists)
 
 @app.route('/zpracuj-playlist', methods=["POST"])
 def zpracuj_playlist():
@@ -485,7 +504,8 @@ def zpracuj_playlist():
         "author": author,
         "name": name,
         "description": description,
-        "playlistfile": playlistfile.filename
+        "playlistfile": playlistfile.filename,
+        "songs": []
     }
         zapis_do_json_albums("playlists", new_playlist)
 
