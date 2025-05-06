@@ -335,6 +335,7 @@ def prihlaseni():
         for u in uzivatele:
             if u["username"] == username_or_email or u["email"] == username_or_email and u["password"] == password:
                 session["uzivatel"] = u["username"]
+                session["role"] = u["role"]
                 return redirect(url_for("profile"))
 
         return render_template("login_test.html", error="Neplatné uživatelské jméno nebo heslo")
@@ -345,6 +346,7 @@ def prihlaseni():
 def logout():
     if "uzivatel" in session:
         session.pop("uzivatel", None)
+        session.pop("role", None)
     return redirect(url_for("index"))
 
 
@@ -356,9 +358,9 @@ def password_reset():
 @app.route('/manage-song')
 def manage_song():
     if "uzivatel" in session:
-        username = session["uzivatel"]
+        role = session["role"]
     
-        if username == "admin":
+        if role == "admin":
             albums = precti_json_songs("albums")
             albums = sorted(albums, key=lambda x: x["title"])
             songs = precti_json_songs("songs")
