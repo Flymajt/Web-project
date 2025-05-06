@@ -299,6 +299,12 @@ def registrace():
         username = request.form.get("username")
         email = request.form.get("email")
         password = request.form.get("password")
+        isArtist = request.form.get("isArtist")
+
+        if isArtist == "on":
+            role = "artist"
+        else:
+            role = "user"
 
         uzivatele = precti_json("users")
         for u in uzivatele:
@@ -309,6 +315,7 @@ def registrace():
             "username": username,
             "email": email,
             "password": password,
+            "role": role
         }
         zapis_do_json("users", novy_uzivatel)
         return redirect(url_for("prihlaseni"))

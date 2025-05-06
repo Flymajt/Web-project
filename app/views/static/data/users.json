@@ -2,36 +2,49 @@
   {
     "username": "username",
     "email": "email@email.cz",
-    "password": "password"
+    "password": "password",
+    "role": "role"
   },
   {
     "username": "rtrt",
     "email": "vojtahlavatyy@gmail.com",
-    "password": "rtzhtzj"
+    "password": "rtzhtzj",
+    "role": "user"
   },
   {
     "username": "zkouska",
     "email": "zkouska@seznam.cz",
-    "password": "zkouskaPass35"
+    "password": "zkouskaPass35",
+    "role": "user"
   },
   {
     "username": "admin",
     "email": "admin@gmail.com",
-    "password": "admin"
+    "password": "admin",
+    "role": "admin"
   },
   {
     "username": "login0012",
     "email": "goober2@gmail.com",
-    "password": "zDFG_56"
+    "password": "zDFG_56",
+    "role": "user"
   },
   {
     "username": "Gotyx96",
     "email": "holakovskymatyas@seznam.cz",
-    "password": "wowtojecelkemcoolheslongl"
+    "password": "wowtojecelkemcoolheslongl",
+    "role": "user"
   },
   {
     "username": "Vojta",
     "email": "vojta@seznam.cz",
-    "password": "Vojta1"
+    "password": "Vojta1",
+    "role": "user"
+  },
+  {
+    "username": "Toney",
+    "email": "toney@gmail.com",
+    "password": "Toney2025",
+    "role": "user"
   }
 ]

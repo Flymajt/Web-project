@@ -21,11 +21,6 @@
             <h4 class="LoginChat">You have to be logged in to be able to do that!</h4>
             <a href="login" class="LogSoc">Log In</a>
             {% else %}
-            <br>
-            <div class="chatDiv">
-                <h4 class="chatUser">Toney</h4>
-                <h6 class="chatMSG">This is a test chat!</h6>
-            </div>
             {% for chat in chats %}
             {% if chat["username"] == username %}
             {% set has_chat = true %}

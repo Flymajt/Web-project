@@ -301,6 +301,22 @@ h2{
 
 }
 
+.checkboxbox{
+    position: relative;
+    margin: 30px 0;
+}
+
+.isartist{
+    width: 25px;
+    height: 25px;
+}
+
+.checkboxbox p,
+.checkboxbox input {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .Usernameinputbox{
     position: relative;
     margin: 25px 0;
@@ -448,6 +464,10 @@ top: -1px;
 #passwordError{
     color: red;
     display: none;
+}
+
+.whitetext{
+    color: white;
 }
 /*--------------------------------------------Library---------------------------------------------------------*/
 .make-playlist{
