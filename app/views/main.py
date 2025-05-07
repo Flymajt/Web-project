@@ -506,21 +506,26 @@ def zpracuj_playlist():
     playlistfile = request.files["playlistfile"]
     if playlistfile.filename.endswith((".png", ".jpg",".jpeg")):
         playlistfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/playlists", playlistfile.filename))
-        playlist_id = generate_id()
-        
-        new_playlist = {
-        "playlist_id": playlist_id,
-        "author": author,
-        "name": name,
-        "description": description,
-        "playlistfile": playlistfile.filename,
-        "songs": []
-    }
-        zapis_do_json_albums("playlists", new_playlist)
-
-        return redirect(url_for("library"))
+        playlistimage = playlistfile.filename
     else:
-        return redirect(url_for("library"))
+        playlistimage = "placeholder.png"
+
+    if name == "" or name.isspace():
+        name = author + "'s playlist"
+
+    playlist_id = generate_id()
+        
+    new_playlist = {
+    "playlist_id": playlist_id,
+    "author": author,
+    "name": name,
+    "description": description,
+    "playlistfile": playlistimage,
+    "songs": []
+    }
+    zapis_do_json_albums("playlists", new_playlist)
+
+    return redirect(url_for("library"))
 
 @app.route("/profile/feedback", methods=["POST", "GET"])
 def feedback():

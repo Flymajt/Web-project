@@ -8,7 +8,9 @@
     "songs": [
       "d7c5ba2c-8fa5-4963-b87d-c3c3c5ac6f8c",
       "3fabd251-1af8-41a1-b4fa-d75f5328bb7b",
-      "044b7713-49bf-44f8-8c7a-37a8e48bdce5"
+      "044b7713-49bf-44f8-8c7a-37a8e48bdce5",
+      "7c8e9fc3-853a-404b-bdd5-2cba8f22c5dc",
+      "044b7713-49bf-44f8-8c7a-37a8e48bdcew"
     ]
   },
   {
@@ -30,6 +32,16 @@
     "name": "Druhej plejlist k\u016fl",
     "description": "",
     "playlistfile": "19cac2d16635e5d0565657818bd89c8d.jpg",
+    "songs": [
+      "044b7713-49bf-44f8-8c7a-37a8e48bdcew"
+    ]
+  },
+  {
+    "playlist_id": "1780593c-d76c-496a-9a0a-7ce7f8fd9f57",
+    "author": "admin",
+    "name": "admin's playlist",
+    "description": "",
+    "playlistfile": "placeholder.png",
     "songs": []
   }
 ]

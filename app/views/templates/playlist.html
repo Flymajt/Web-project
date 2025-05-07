@@ -10,7 +10,7 @@
 
     {% set ns = namespace(album_songs=0) %}
     {% for song in songs %}
-        {% if playlist.playlist_id == song.album %}
+        {% if song.song_id in playlist["songs"] %}
             {% set ns.album_songs = ns.album_songs + 1 %}
         {% endif %}
     {% endfor %}
@@ -31,7 +31,7 @@
         <div class="scrollmenu_albumpage">
             {% set ns = namespace(album_song_place=0) %}
             {% for song in songs %}
-                {% if playlist.playlist_id == song.album %}
+                {% if song.song_id in playlist["songs"] %}
                     <div class="song">
                         <div class="place_albumpage">
                         {% set ns.album_song_place = ns.album_song_place + 1 %}
