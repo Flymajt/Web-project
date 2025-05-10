@@ -278,5 +278,19 @@
     "author": "SEGA SOUND TEAM",
     "album": "9dea3726-f00d-4568-8e33-7cb7ac731a2a",
     "songfile": "Planet Wisp - Act 1.mp3"
+  },
+  {
+    "song_id": "7e2aad51-33ea-44cb-8270-237efe7191f9",
+    "title": "Sonic Boom",
+    "author": "SEGA SOUND TEAM",
+    "album": "e49d44f8-6091-418d-982a-d19a02f2ee04",
+    "songfile": "Sonic Boom - SEGA SOUND TEAM.mp3"
+  },
+  {
+    "song_id": "41482a7b-075e-4a42-8ba2-e4fda96c6620",
+    "title": "Cosmic Eternity - Believe in Yourself",
+    "author": "SEGA SOUND TEAM",
+    "album": "e49d44f8-6091-418d-982a-d19a02f2ee04",
+    "songfile": "Cosmic Eternity - Believe in Yourself - SEGA SOUND TEAM.mp3"
   }
 ]

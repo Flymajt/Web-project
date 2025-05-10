@@ -3,48 +3,63 @@
     "username": "username",
     "email": "email@email.cz",
     "password": "password",
+    "id": "7467fb7f-45a6-4069-a292-cef7615c0ebe",
     "role": "role"
   },
   {
     "username": "rtrt",
     "email": "vojtahlavatyy@gmail.com",
     "password": "rtzhtzj",
+    "id": "7467fb7f-90a6-4067-a292-cef7615c0ebe",
     "role": "user"
   },
   {
     "username": "zkouska",
     "email": "zkouska@seznam.cz",
     "password": "zkouskaPass35",
+    "id": "7467fb7f-90a6-4069-a882-cef7615c0ebe",
     "role": "user"
   },
   {
     "username": "admin",
     "email": "admin@gmail.com",
     "password": "admin",
+    "id": "7467fb7f-00a1-0001-a001-cef7615c0ebe",
     "role": "admin"
   },
   {
     "username": "login0012",
     "email": "goober2@gmail.com",
     "password": "zDFG_56",
+    "id": "7467fb7f-90a6-4068-a292-cef7615c0ebe",
     "role": "user"
   },
   {
     "username": "Gotyx96",
     "email": "holakovskymatyas@seznam.cz",
     "password": "wowtojecelkemcoolheslongl",
+    "id": "7467fb7f-90a6-4096-a292-cef7615c0ebe",
     "role": "user"
   },
   {
     "username": "Vojta",
     "email": "vojta@seznam.cz",
     "password": "Vojta1",
+    "id": "7467fbxf-90a6-4069-a292-cef7615c0ebe",
     "role": "user"
   },
   {
     "username": "Toney",
     "email": "toney@gmail.com",
     "password": "Toney2025",
+    "id": "7467fb7f-90a6-4069-a292-cef7615c0ere",
     "role": "admin"
+  },
+  {
+    "username": "TestAcc001",
+    "email": "edsdfff@seznam.cz",
+    "password": "taknejakeheslO1",
+    "id": "7467fb7f-90a6-4069-a292-cef7615c0ebe",
+    "role": "user"
   }
 ]

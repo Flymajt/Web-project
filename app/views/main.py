@@ -32,40 +32,6 @@ def zapis_do_json(nazev_souboru, data_na_zapis):
 
     return
 
-def precti_json_songs(nazev_souboru):
-    aktivni_soubor = os.path.dirname(__file__)
-    SITE_ROOT = os.path.realpath(aktivni_soubor)
-    json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
-    SONGS = json.load(open(json_url,"r",encoding="utf-8"))
-    return SONGS
-def zapis_do_json_songs(nazev_souboru, data_na_zapis):
-    aktivni_soubor = os.path.dirname(__file__)
-    SITE_ROOT = os.path.realpath(aktivni_soubor)
-    json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
-    SONGS = json.load(open(json_url,"r",encoding="utf-8"))
-    SONGS.append(data_na_zapis)
-    with open(json_url, "w", encoding="utf-8") as outline:
-        json.dump(SONGS, outline, indent=2)
-
-    return
-
-def precti_json_albums(nazev_souboru):
-    aktivni_soubor = os.path.dirname(__file__)
-    SITE_ROOT = os.path.realpath(aktivni_soubor)
-    json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
-    ALBUMS = json.load(open(json_url,"r",encoding="utf-8"))
-    return ALBUMS
-def zapis_do_json_albums(nazev_souboru, data_na_zapis):
-    aktivni_soubor = os.path.dirname(__file__)
-    SITE_ROOT = os.path.realpath(aktivni_soubor)
-    json_url = os.path.join(SITE_ROOT, "static/data", f"{nazev_souboru}.json")
-    ALBUMS = json.load(open(json_url,"r",encoding="utf-8"))
-    ALBUMS.append(data_na_zapis)
-    with open(json_url, "w", encoding="utf-8") as outline:
-        json.dump(ALBUMS, outline, indent=2)
-
-    return
-
 def vytvor_json(nazev_souboru):
     data_na_zapis = []
     aktivni_soubor = os.path.dirname(__file__)
@@ -105,6 +71,8 @@ def index():
 @app.errorhandler(404) 
 def not_found(e): 
   return render_template("404.html") 
+
+# --- Social ---
 
 @app.route('/social')
 def social():
@@ -212,6 +180,7 @@ def posli_chat():
     # note to self: jde jich dysplaynout max 5 + ten hard coded
     return redirect(url_for("get_chat", number=chat))
 
+# --- Profile ---
 
 @app.route("/profile", methods=["POST", "GET"])
 def profile():
@@ -245,26 +214,18 @@ def profile():
     else:
         return redirect(url_for("prihlaseni"))
 
+# --- Explore ---
 
 @app.route('/explore')
 def explore():
-    songs = precti_json_songs("songs")
-    albums = precti_json_albums("albums")
+    songs = precti_json("songs")
+    albums = precti_json("albums")
     return render_template("explore.html", albums=albums, songs=songs)
-
-@app.route('/library')
-def library():
-    if "uzivatel" in session:
-        user = session["uzivatel"]
-        playlists = precti_json_albums("playlists")
-        return render_template("library.html", user=user, playlists=playlists)
-    else:
-        return redirect(url_for("prihlaseni"))
 
 @app.route("/playlist/<playlist_id>")
 def playlists(playlist_id):
-    playlists = precti_json_albums("playlists")
-    songs = precti_json_songs("songs")
+    playlists = precti_json("playlists")
+    songs = precti_json("songs")
     
     #tohle projede alba aby to našlo to id
     playlist = next((playlist for playlist in playlists if playlist['playlist_id'] == playlist_id), None)
@@ -279,7 +240,7 @@ def add_to_playlist():
     playlist_id = request.form.get("playlist")
     song_id = request.form.get("song")
 
-    playlists = precti_json_songs("playlists")
+    playlists = precti_json("playlists")
 
     for playlist in playlists:
         if playlist.get("playlist_id") == playlist_id:
@@ -291,6 +252,193 @@ def add_to_playlist():
 
     return redirect(request.referrer)
 
+@app.route('/zpracuj-playlist', methods=["POST"])
+def zpracuj_playlist():
+    name = request.form.get("name")
+    author = session.get("uzivatel")
+    description = request.form.get("description")
+
+    playlistfile = request.files["playlistfile"]
+    if playlistfile.filename.endswith((".png", ".jpg",".jpeg")):
+        playlistfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/playlists", playlistfile.filename))
+        playlistimage = playlistfile.filename
+    else:
+        playlistimage = "placeholder.png"
+
+    if name == "" or name.isspace():
+        name = author + "'s playlist"
+
+    playlist_id = generate_id()
+        
+    new_playlist = {
+    "playlist_id": playlist_id,
+    "author": author,
+    "name": name,
+    "description": description,
+    "playlistfile": playlistimage,
+    "songs": []
+    }
+    zapis_do_json("playlists", new_playlist)
+
+    return redirect(url_for("library"))
+
+# --- Library ---
+
+@app.route('/library')
+def library():
+    if "uzivatel" in session:
+        user = session["uzivatel"]
+        playlists = precti_json("playlists")
+        return render_template("library.html", user=user, playlists=playlists)
+    else:
+        return redirect(url_for("prihlaseni"))
+
+@app.route("/album/<album_id>")
+def albums(album_id):
+    albums = precti_json("albums")
+    songs = precti_json("songs")
+    user = session["uzivatel"]
+    playlists = precti_json("playlists")
+
+    #tohle projede alba aby to našlo to id
+    album = next((album for album in albums if album['album_id'] == album_id), None)
+
+    if album == None:
+        return render_template("404.html") 
+
+    return render_template("album.html", album=album, songs=songs, user=user, playlists=playlists)
+
+# --- Song Manager ---
+
+@app.route('/manage-song')
+def manage_song():
+    if "uzivatel" in session:
+        role = session["role"]
+    
+        if role == "admin":
+            albums = precti_json("albums")
+            albums = sorted(albums, key=lambda x: x["title"])
+            songs = precti_json("songs")
+            songs = sorted(songs, key=lambda x: x["title"])
+            return render_template("add_music.html", albums=albums, songs=songs)
+        
+    else:
+        return redirect(url_for("index"))
+
+@app.route('/zpracuj-song', methods=["POST"])
+def zpracuj_song():
+    title = request.form.get("title")
+    author = request.form.get("author")
+    album = request.form.get("album")
+
+    songs = precti_json("songs")
+    for u in songs:
+        if u ["title"] == title:
+            return redirect(url_for("index"))
+
+    songfile = request.files["songfile"]
+    if songfile.filename.endswith(".mp3"):
+        songfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/songs", songfile.filename))
+        song_id = generate_id()
+        
+        new_song = {
+        "song_id": song_id,
+        "title": title,
+        "author": author,
+        "album": album,
+        "songfile": songfile.filename
+    }
+        zapis_do_json("songs", new_song)
+
+        return redirect(url_for("explore"))
+    else:
+        return redirect(url_for("manage_song"))
+    
+@app.route('/del-song', methods=["POST"])
+def del_song():
+    id = request.form.get("id")
+
+    songs = precti_json("songs")
+
+    updated_songs = [song for song in songs if song.get("song_id") != id]
+
+    for song in songs:
+        if "song_id" in song and song["song_id"] == id:
+            songfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/songs", song.get('songfile', ''))
+            if os.path.exists(songfile):
+                os.remove(songfile)
+
+
+            with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
+                json.dump(updated_songs, file, indent=2)
+            break
+
+    return redirect(url_for("explore"))
+
+@app.route('/zpracuj-album', methods=["POST"])
+def zpracuj_album():
+    title = request.form.get("title")
+    author = request.form.get("author")
+    release = request.form.get("release")
+
+    albums = precti_json("albums")
+    for u in albums:
+        if u ["title"] == title:
+            return redirect(url_for("index"))
+
+    albumfile = request.files["albumfile"]
+    if albumfile.filename.endswith((".png", ".jpg",".jpeg")):
+        albumfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/albums", albumfile.filename))
+        album_id = generate_id()
+        
+        new_album = {
+        "album_id": album_id,
+        "title": title,
+        "author": author,
+        "release": release,
+        "albumfile": albumfile.filename
+    }
+        zapis_do_json("albums", new_album)
+
+        return redirect(url_for("explore"))
+    else:
+        return redirect(url_for("manage_song"))
+    
+@app.route('/del-album', methods=["POST"])
+def del_album():
+    id = request.form.get("id")
+
+    songs = precti_json("songs")
+    albums = precti_json("albums")
+
+    updated_songs = [song for song in songs if song.get("album") != id]
+    updated_albums = [album for album in albums if album.get("album_id") != id]
+
+    for album in albums:
+        if "album_id" in album and album["album_id"] == id:
+                albumfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/albums", album.get('albumfile', ''))
+                if os.path.exists(albumfile):
+                    os.remove(albumfile)
+
+
+                with open(os.path.join(UPLOAD_FOLDER, 'albums.json'), 'w') as file:
+                    json.dump(updated_albums, file, indent=2)
+                break
+        for song in songs:
+            if "album" in song and song["album"] == id:
+                songfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/songs", song.get('songfile', ''))
+                if os.path.exists(songfile):
+                    os.remove(songfile)
+
+
+                with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
+                    json.dump(updated_songs, file, indent=2)
+                break
+
+    return redirect(url_for("explore"))
+
+# --- Login ---
+
 @app.route('/register', methods=["POST", "GET"])
 def registrace():
     if "uzivatel" in session:
@@ -299,6 +447,7 @@ def registrace():
         username = request.form.get("username")
         email = request.form.get("email")
         password = request.form.get("password")
+        id = generate_id()
         isArtist = request.form.get("isArtist")
 
         if isArtist == "on":
@@ -315,6 +464,7 @@ def registrace():
             "username": username,
             "email": email,
             "password": password,
+            "id": id,
             "role": role
         }
         zapis_do_json("users", novy_uzivatel)
@@ -354,178 +504,6 @@ def logout():
 def password_reset():
     return render_template("passwordreset.html")
 
-
-@app.route('/manage-song')
-def manage_song():
-    if "uzivatel" in session:
-        role = session["role"]
-    
-        if role == "admin":
-            albums = precti_json_songs("albums")
-            albums = sorted(albums, key=lambda x: x["title"])
-            songs = precti_json_songs("songs")
-            songs = sorted(songs, key=lambda x: x["title"])
-            return render_template("add_music.html", albums=albums, songs=songs)
-        
-    else:
-        return redirect(url_for("index"))
-
-@app.route('/zpracuj-song', methods=["POST"])
-def zpracuj_song():
-    title = request.form.get("title")
-    author = request.form.get("author")
-    album = request.form.get("album")
-
-    songs = precti_json_songs("songs")
-    for u in songs:
-        if u ["title"] == title:
-            return redirect(url_for("index"))
-
-    songfile = request.files["songfile"]
-    if songfile.filename.endswith(".mp3"):
-        songfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/songs", songfile.filename))
-        song_id = generate_id()
-        
-        new_song = {
-        "song_id": song_id,
-        "title": title,
-        "author": author,
-        "album": album,
-        "songfile": songfile.filename
-    }
-        zapis_do_json_songs("songs", new_song)
-
-        return redirect(url_for("explore"))
-    else:
-        return redirect(url_for("manage_song"))
-    
-@app.route('/del-song', methods=["POST"])
-def del_song():
-    id = request.form.get("id")
-
-    songs = precti_json_songs("songs")
-
-    updated_songs = [song for song in songs if song.get("song_id") != id]
-
-    for song in songs:
-        if "song_id" in song and song["song_id"] == id:
-            songfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/songs", song.get('songfile', ''))
-            if os.path.exists(songfile):
-                os.remove(songfile)
-
-
-            with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
-                json.dump(updated_songs, file, indent=2)
-            break
-
-    return redirect(url_for("explore"))
-
-@app.route('/zpracuj-album', methods=["POST"])
-def zpracuj_album():
-    title = request.form.get("title")
-    author = request.form.get("author")
-    release = request.form.get("release")
-
-    albums = precti_json_albums("albums")
-    for u in albums:
-        if u ["title"] == title:
-            return redirect(url_for("index"))
-
-    albumfile = request.files["albumfile"]
-    if albumfile.filename.endswith((".png", ".jpg",".jpeg")):
-        albumfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/albums", albumfile.filename))
-        album_id = generate_id()
-        
-        new_album = {
-        "album_id": album_id,
-        "title": title,
-        "author": author,
-        "release": release,
-        "albumfile": albumfile.filename
-    }
-        zapis_do_json_albums("albums", new_album)
-
-        return redirect(url_for("explore"))
-    else:
-        return redirect(url_for("manage_song"))
-    
-@app.route('/del-album', methods=["POST"])
-def del_album():
-    id = request.form.get("id")
-
-    songs = precti_json_songs("songs")
-    albums = precti_json_songs("albums")
-
-    updated_songs = [song for song in songs if song.get("album") != id]
-    updated_albums = [album for album in albums if album.get("album_id") != id]
-
-    for album in albums:
-        if "album_id" in album and album["album_id"] == id:
-                albumfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/albums", album.get('albumfile', ''))
-                if os.path.exists(albumfile):
-                    os.remove(albumfile)
-
-
-                with open(os.path.join(UPLOAD_FOLDER, 'albums.json'), 'w') as file:
-                    json.dump(updated_albums, file, indent=2)
-                break
-        for song in songs:
-            if "album" in song and song["album"] == id:
-                songfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/songs", song.get('songfile', ''))
-                if os.path.exists(songfile):
-                    os.remove(songfile)
-
-
-                with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
-                    json.dump(updated_songs, file, indent=2)
-                break
-
-    return redirect(url_for("explore"))
-
-@app.route("/album/<album_id>")
-def albums(album_id):
-    albums = precti_json_albums("albums")
-    songs = precti_json_songs("songs")
-    user = session["uzivatel"]
-    playlists = precti_json_albums("playlists")
-
-    #tohle projede alba aby to našlo to id
-    album = next((album for album in albums if album['album_id'] == album_id), None)
-
-    if album == None:
-        return render_template("404.html") 
-
-    return render_template("album.html", album=album, songs=songs, user=user, playlists=playlists)
-
-@app.route('/zpracuj-playlist', methods=["POST"])
-def zpracuj_playlist():
-    name = request.form.get("name")
-    author = session.get("uzivatel")
-    description = request.form.get("description")
-
-    playlistfile = request.files["playlistfile"]
-    if playlistfile.filename.endswith((".png", ".jpg",".jpeg")):
-        playlistfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/playlists", playlistfile.filename))
-        playlistimage = playlistfile.filename
-    else:
-        playlistimage = "placeholder.png"
-
-    if name == "" or name.isspace():
-        name = author + "'s playlist"
-
-    playlist_id = generate_id()
-        
-    new_playlist = {
-    "playlist_id": playlist_id,
-    "author": author,
-    "name": name,
-    "description": description,
-    "playlistfile": playlistimage,
-    "songs": []
-    }
-    zapis_do_json_albums("playlists", new_playlist)
-
-    return redirect(url_for("library"))
 
 @app.route("/profile/feedback", methods=["POST", "GET"])
 def feedback():
