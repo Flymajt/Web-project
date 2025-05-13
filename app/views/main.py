@@ -309,6 +309,36 @@ def zpracuj_playlist():
 
     return redirect(url_for("library"))
 
+@app.route('/update-playlist', methods=["POST"])
+def update_playlist():
+    playlist_id = request.form.get("playlist")
+    name = request.form.get("name")
+    author = session.get("uzivatel")
+    description = request.form.get("description")
+
+    playlistfile = request.files["playlistfile"]
+
+
+    if name == "" or name.isspace():
+        name = author + "'s playlist"
+
+    playlists = precti_json("playlists")
+
+    for playlist in playlists:
+        if playlist.get("playlist_id") == playlist_id:
+            playlist["name"] = name
+            playlist["description"] = description
+            if playlistfile.filename.endswith((".png", ".jpg",".jpeg")):
+                playlistfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/playlists", playlistfile.filename))
+                playlistimage = playlistfile.filename
+                playlist["playlistfile"] = playlistimage
+            break
+
+    with open(os.path.join(UPLOAD_FOLDER, 'playlists.json'), 'w') as file:
+        json.dump(playlists, file, indent=2)
+
+    return redirect(request.referrer)
+
 # --- Song Manager ---
 
 @app.route('/manage-song')

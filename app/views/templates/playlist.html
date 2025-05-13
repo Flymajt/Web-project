@@ -30,6 +30,9 @@
                 <p class="album_details_albumpage">{{ playlist.description }} </p><br>
             </div>
         </div>
+        {% if playlist.author == user %}
+            <button style="font-size: large;" onclick="showEditPlaylistDialog()">Edit</button>
+        {% endif %}
         <div class="scrollmenu_albumpage">
             {% set ns = namespace(album_song_place=0) %}
             {% for song in songs %}
@@ -68,17 +71,43 @@
         </dialog>
     </div>
 
+        <div>
+            <dialog id="edit-playlist-dialog" class="make-playlist">
+                <form action="{{ url_for('update_playlist') }}" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="playlistfile" accept=".png, .jpg, .jpeg"><br>
+                    <label for="">Name:</label>
+                    <input type="text" name="name" value="{{ playlist.name }}"/><br>
+                    <label for ="">Description:</label>
+                    <input type="text" name="description" value="{{ playlist.description }}"/><br>
+                    <input type="hidden" name="playlist" value="{{ playlist.playlist_id }}">
+                    <input type="submit" value="Edit">
+                </form>
+                <button onclick=closeEditPlaylistDialog()>Cancel</button>
+            </dialog>
+    </div>
+
     <script>
         const MakePlaylist = document.getElementById("playlist-dialog");
+        const EditPlaylist = document.getElementById("edit-playlist-dialog");
         const songIdInput = document.getElementById("song-id-input");
+        const playlistIdInput = document.getElementById("playlist-id-input");
 
         function showPlaylistDialog(songId) {
             songIdInput.value = songId;
             MakePlaylist.showModal();
         }
 
+            
+        function showEditPlaylistDialog(){
+            EditPlaylist.showModal()
+        }
+
         function closePlaylistDialog() {
             MakePlaylist.close();
+        }
+
+        function closeEditPlaylistDialog() {
+            EditPlaylist.close();
         }
     </script>
 </body>
