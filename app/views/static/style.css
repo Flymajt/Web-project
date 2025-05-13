@@ -129,6 +129,80 @@
 .profile-button:visited{
     color: azure
 }
+
+/* profile bio*/
+
+
+.personal-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 400px;
+    color: #333;
+    text-align: center;
+}
+
+
+.personal-info h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-family: 'varela round', 'dela gothic one', 'sans-serif';
+    color: black;
+}
+
+
+.personal-info p {
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+}
+
+
+.personal-info textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+    font-family: 'varela round', sans-serif;
+    resize: none;
+    text-align: center;
+}
+
+
+.personal-info input[type="submit"] {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'varela round', sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+
+.personal-info input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+.profile-username {
+    font-size: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: azure;
+    text-align: center;
+}
 /*----------------------------------------Main Page----------------------------------------------*/
 .nadpisy{
     padding: 50px;
@@ -1159,4 +1233,6 @@ top: -1px;
     background-color: rgb(20, 20, 20); /* Pro prohlížeče co nepodporují gradient */
     background-image: url("https://i.pinimg.com/originals/ef/32/79/ef3279dc6aadf055aafd5ed05bad67da.gif");        
 }
+
+
 

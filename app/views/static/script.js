@@ -7,10 +7,9 @@ function popisky_lenght(popisek) {
 
 function playlist_popisky_lenght(popisek) {
     if (popisek.length > 24) {
-        if (popisek[22] === " "){
+        if (popisek[22] === " ") {
             return popisek.slice(0, 21) + "...";
-        }
-        else{
+        } else {
             return popisek.slice(0, 23) + "...";
         }
     }
@@ -23,20 +22,17 @@ function autor_popisky_lenght(popisek) {
         if (last_space !== -1) {
             updated_popisek = popisek.slice(0, last_space) + "<br>" + popisek.slice(last_space + 1);
             if (updated_popisek.length > 44) {
-                if (updated_popisek[42] === " "){
+                if (updated_popisek[42] === " ") {
                     return updated_popisek.slice(0, 41) + "...";
-                }
-                else{
+                } else {
                     return updated_popisek.slice(0, 43) + "...";
                 }
             }
-            return updated_popisek
-        }
-        else{
-            if (popisek[22] === " "){
+            return updated_popisek;
+        } else {
+            if (popisek[22] === " ") {
                 return popisek.slice(0, 21) + "...";
-            }
-            else{
+            } else {
                 return popisek.slice(0, 23) + "...";
             }
         }
@@ -56,7 +52,6 @@ document.querySelectorAll(".popisky_play").forEach(element => {
     element.innerHTML = autor_popisky_lenght(element.innerHTML);
 });
 
-
 function showPassword() {
     var passwordInput = document.getElementById("password");
     var visibleText = document.getElementById("visibleText");
@@ -71,17 +66,30 @@ function showPassword() {
     }
 }
 
-window.onload = function() {
-var loginInputError = document.getElementById("loginInputError");
-if (loginInputError) {
-        setTimeout(function() {
-        loginInputError.style.display = "none";
-        }, 5000)
+// First onload (login error fade)
+window.addEventListener("load", function () {
+    var loginInputError = document.getElementById("loginInputError");
+    if (loginInputError) {
+        setTimeout(function () {
+            loginInputError.style.display = "none";
+        }, 5000);
     }
 
-};
+    // Live character count for About Me input
+    const bioInput = document.getElementById("bioInput");
+    const charCount = document.getElementById("charCount");
 
-window.onload = function() {
+    if (bioInput && charCount) {
+        charCount.textContent = `${bioInput.value.length} / 150 characters`;
+
+        bioInput.addEventListener("input", () => {
+            charCount.textContent = `${bioInput.value.length} / 150 characters`;
+        });
+    }
+});
+
+// Second onload (hotbar & audio player logic)
+window.onload = function () {
     var playButtons = document.querySelectorAll(".playButton");
     var hotbar = document.getElementById("hotbar");
     var audio = new Audio();
@@ -99,30 +107,30 @@ window.onload = function() {
     var previousButton = document.getElementById("previousButton");
     var nextButton = document.getElementById("nextButton");
 
-    muteButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        if (audio.volume !== 0) {
-            lastVolume = audio.volume;
-            audio.volume = 0;
-            muteButton.textContent = "Zapnout zvuk";
-        } else {
-            audio.volume = lastVolume;
-            muteButton.textContent = "Vypnout zvuk";
-        }
-    });
+    if (muteButton) {
+        muteButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            if (audio.volume !== 0) {
+                lastVolume = audio.volume;
+                audio.volume = 0;
+                muteButton.textContent = "Zapnout zvuk";
+            } else {
+                audio.volume = lastVolume;
+                muteButton.textContent = "Vypnout zvuk";
+            }
+        });
+    }
 
-    repeatButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        isRepeatOn = !isRepeatOn;
-        if (isRepeatOn) {
-            repeatButton.textContent = "Opakování zapnuto";
-        } else {
-            repeatButton.textContent = "Opakování vypnuto";
-        }
-    });
+    if (repeatButton) {
+        repeatButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            isRepeatOn = !isRepeatOn;
+            repeatButton.textContent = isRepeatOn ? "Opakování zapnuto" : "Opakování vypnuto";
+        });
+    }
 
-    playButtons.forEach(function(button) {
-        button.addEventListener("click", function(event) {
+    playButtons.forEach(function (button) {
+        button.addEventListener("click", function (event) {
             event.preventDefault();
             var songSrc = button.getAttribute("data-src");
             audio.src = songSrc;
@@ -132,64 +140,80 @@ window.onload = function() {
         });
     });
 
-    playButtonHotbar.addEventListener("click", function(event) {
-        event.preventDefault();
-        audio.play();
-    });
-
-    pauseButtonHotbar.addEventListener("click", function(event) {
-        event.preventDefault();
-        audio.pause();
-    });
-
-    rewindButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        audio.currentTime -= 15;
-    });
-
-    forwardButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        audio.currentTime += 15;
-    });
-
-    volumeRange.addEventListener("input", function() {
-        lastVolume = volumeRange.value;
-        audio.volume = lastVolume;
-    });
-
-    hideHotbarButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        hotbar.style.transition = "opacity 0.5s, transform 0.5s";
-        hotbar.style.opacity = "0";
-        hotbar.style.transform = "translateY(100%)";
-        setTimeout(function() {
-            hotbar.style.display = "none";
-        }, 500);
-    });
-
-    previousButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        var previousSongButton = document.querySelector('[data-src="' + lastSrc + '"]').parentNode.previousElementSibling.querySelector('.playButton');
-        if (previousSongButton) {
-            var previousSongSrc = previousSongButton.getAttribute("data-src");
-            audio.src = previousSongSrc;
+    if (playButtonHotbar) {
+        playButtonHotbar.addEventListener("click", function (event) {
+            event.preventDefault();
             audio.play();
-            lastSrc = previousSongSrc;
-        }
-    });
+        });
+    }
 
-    nextButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        var nextSongButton = document.querySelector('[data-src="' + lastSrc + '"]').parentNode.nextElementSibling.querySelector('.playButton');
-        if (nextSongButton) {
-            var nextSongSrc = nextSongButton.getAttribute("data-src");
-            audio.src = nextSongSrc;
-            audio.play();
-            lastSrc = nextSongSrc;
-        }
-    });
+    if (pauseButtonHotbar) {
+        pauseButtonHotbar.addEventListener("click", function (event) {
+            event.preventDefault();
+            audio.pause();
+        });
+    }
 
-    audio.addEventListener("ended", function() {
+    if (rewindButton) {
+        rewindButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            audio.currentTime -= 15;
+        });
+    }
+
+    if (forwardButton) {
+        forwardButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            audio.currentTime += 15;
+        });
+    }
+
+    if (volumeRange) {
+        volumeRange.addEventListener("input", function () {
+            lastVolume = volumeRange.value;
+            audio.volume = lastVolume;
+        });
+    }
+
+    if (hideHotbarButton) {
+        hideHotbarButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            hotbar.style.transition = "opacity 0.5s, transform 0.5s";
+            hotbar.style.opacity = "0";
+            hotbar.style.transform = "translateY(100%)";
+            setTimeout(function () {
+                hotbar.style.display = "none";
+            }, 500);
+        });
+    }
+
+    if (previousButton) {
+        previousButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            var previousSongButton = document.querySelector('[data-src="' + lastSrc + '"]').parentNode.previousElementSibling.querySelector('.playButton');
+            if (previousSongButton) {
+                var previousSongSrc = previousSongButton.getAttribute("data-src");
+                audio.src = previousSongSrc;
+                audio.play();
+                lastSrc = previousSongSrc;
+            }
+        });
+    }
+
+    if (nextButton) {
+        nextButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            var nextSongButton = document.querySelector('[data-src="' + lastSrc + '"]').parentNode.nextElementSibling.querySelector('.playButton');
+            if (nextSongButton) {
+                var nextSongSrc = nextSongButton.getAttribute("data-src");
+                audio.src = nextSongSrc;
+                audio.play();
+                lastSrc = nextSongSrc;
+            }
+        });
+    }
+
+    audio.addEventListener("ended", function () {
         if (isRepeatOn) {
             audio.currentTime = 0;
             audio.play();
@@ -205,17 +229,59 @@ window.onload = function() {
     });
 };
 
-document.getElementById("registerForm").addEventListener("submit", function(event) {
+document.getElementById("registerForm")?.addEventListener("submit", function (event) {
     const password = document.getElementById("registerPassword").value;
     const passwordError = document.getElementById("passwordError");
-
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+
     if (!passwordPattern.test(password)) {
         passwordError.style.display = "block";
         event.preventDefault();
     } else {
-        passwordError.style.display = "none"
+        passwordError.style.display = "none";
     }
-})
+});
 
+
+// bio
+
+
+const bioInput = document.getElementById('bioInput');
+const charCount = document.getElementById('charCount');
+
+bioInput.addEventListener('input', () => {
+    const currentLength = bioInput.value.length;
+    charCount.textContent = `${currentLength} / 150 characters`;
+
+    if (currentLength > 140) {
+        charCount.style.color = 'red';
+    } else if (currentLength > 100) {
+        charCount.style.color = 'orange';
+    } else {
+        charCount.style.color = 'green';
+    }
+});
+
+document.querySelector('form').addEventListener('submit', (event) => {
+    if (bioInput.value.trim() === '') {
+        event.preventDefault();
+        alert('Your bio cannot be empty. Please write something about yourself!');
+    }
+});
+
+bioInput.addEventListener('keypress', (event) => {
+    const invalidChars = ['<', '>', '{', '}', '`', '$', '%', '^', '&', '*', '=', '+', '\\', '|', ';', ':', '"', "'", '[', ']', '~','/' ];
+    if (invalidChars.includes(event.key)) {
+        event.preventDefault();
+        alert(`The character "${event.key}" is not allowed in the bio.`);
+    }
+});
+
+bioInput.addEventListener('input', () => {
+    const invalidCharsRegex = /[<>{}`$%^&*+=\\|;:"'\[\]~]/g;
+    if (invalidCharsRegex.test(bioInput.value)) {
+        bioInput.value = bioInput.value.replace(invalidCharsRegex, '');
+        alert('Invalid characters have been removed from your bio.');
+    }
+});
 

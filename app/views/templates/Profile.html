@@ -12,7 +12,7 @@
                 background-color: {{ userColor }};
             {% else %}
                 background: linear-gradient(to bottom, #d89e00, #282828);
-                background-attachment: fixed;
+                backgroun,d-attachment: fixed;
             {% endif %}
         }
         .choose-background-color {
@@ -29,52 +29,65 @@
 
     <div class="pfp">
         <img class="profile-image"
-     src="{{ url_for('static', filename='data/profilovky/' + (pfp_filename or 'https://freesvg.org/img/abstract-user-flat-4.png')) }}"
-     alt="profile image" width="300px" height="300px">
+            src="{{ url_for('static', filename='data/profilovky/' + (pfp_filename or 'https://freesvg.org/img/abstract-user-flat-4.png')) }}"
+            alt="profile image" width="300px" height="300px">
         <h3 class="profile-username">{{jmeno}}</h3>
+
+        <div class="personal-info">
+            <h4>About Me:</h4>
+            {% if userInfo %}
+                <p>{{ userInfo }}</p>
+            {% else %}
+                <p>Tell us something about yourself!</p>
+            {% endif %}
+            <form action="/profile" method="POST">
+                <textarea name="personalInfo" id="bioInput" placeholder="Write a short bio or your hobbies here..." rows="3" cols="30" maxlength="150"></textarea><br>
+                <small id="charCount">0 / 150 characters</small><br>
+                <input type="submit" value="Save Information">
+            </form>
+        </div>
+
         <h1 class="profile-followers"><u>Followers</u>:</h1>
         <h1 class="profile-following"><u>Following</u>:</h1>
-        <h1 class="profile-bio">[About me]</h1>
-        <h2 id=""><a href="{{ url_for('feedback') }}" id="feedbackBtn">Feedback</a></h2>
-
+        <h2><a href="{{ url_for('feedback') }}" id="feedbackBtn">Feedback</a></h2>
     </div>
 
     <div class="profile-settings-bg">
-    <h1 class="user-settings"><u>User Settings</u></h1>
+        <h1 class="user-settings"><u>User Settings</u></h1>
 
-    <div class="settings-block">
-        <p class="profile-settings-text">Sound quality</p>
-        <div class="snd-drpdwn">
-            <button class="snd-drpbtn">select here</button>
-            <div class="snd-drpdwn-content">
-                <a href="#">Bad</a>
-                <a href="#">Better</a>
-                <a href="#">Good</a>
-                <a href="#">High</a>
-                <a href="#">Best</a>
+        <div class="settings-block">
+            <p class="profile-settings-text">Sound quality</p>
+            <div class="snd-drpdwn">
+                <button class="snd-drpbtn">select here</button>
+                <div class="snd-drpdwn-content">
+                    <a href="#">Bad</a>
+                    <a href="#">Better</a>
+                    <a href="#">Good</a>
+                    <a href="#">High</a>
+                    <a href="#">Best</a>
+                </div>
             </div>
+        </div>
+
+        <div class="settings-block">
+            <form action="/profile" method="POST" class="choosebgcolorform">
+                <p class="profile-settings-text">Choose a background color for your profile:</p>
+                <input type="color" class="choose-background-color" name="setbgcolor" id="BgColorPicker">
+                <input type="submit" value="SET COLOR" id="nastavBarvu">
+            </form>
+        </div>
+
+        <div class="settings-block">
+            <form action="/profile" method="POST" enctype="multipart/form-data">
+                <p class="profile-settings-text">Change profile picture:</p>
+                <input type="file" name="userpfp" />
+                <input type="submit" value="UPLOAD" />
+            </form>
         </div>
     </div>
 
-    <div class="settings-block">
-        <form action="/profile" method="POST" class="choosebgcolorform">
-            <p class="profile-settings-text">Choose a background color for your profile:</p>
-            <input type="color" class="choose-background-color" name="setbgcolor" id="BgColorPicker">
-            <input type="submit" value="SET COLOR" id="nastavBarvu">
-        </form>
-    </div>
-
-    <div class="settings-block">
-        <form action="/profile" method="POST" enctype="multipart/form-data">
-            <p class="profile-settings-text">Change profile picture:</p>
-            <input type="file" name="userpfp"/>
-            <input type="submit" value="UPLOAD"/>
-        </form>
-
-    </div>
-
-
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../static/script.js"></script>
 </body>
 </html>
