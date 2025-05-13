@@ -222,18 +222,45 @@ def explore():
     albums = precti_json("albums")
     return render_template("explore.html", albums=albums, songs=songs)
 
+@app.route("/album/<album_id>")
+def albums(album_id):
+    albums = precti_json("albums")
+    songs = precti_json("songs")
+    user = session["uzivatel"]
+    playlists = precti_json("playlists")
+
+    #tohle projede alba aby to našlo to id
+    album = next((album for album in albums if album['album_id'] == album_id), None)
+
+    if album == None:
+        return render_template("404.html") 
+
+    return render_template("album.html", album=album, songs=songs, user=user, playlists=playlists)
+
+# --- Library ---
+
+@app.route('/library')
+def library():
+    if "uzivatel" in session:
+        user = session["uzivatel"]
+        playlists = precti_json("playlists")
+        return render_template("library.html", user=user, playlists=playlists)
+    else:
+        return redirect(url_for("prihlaseni"))
+
 @app.route("/playlist/<playlist_id>")
 def playlists(playlist_id):
     playlists = precti_json("playlists")
     songs = precti_json("songs")
+    user = session["uzivatel"]
     
-    #tohle projede alba aby to našlo to id
+    #tohle projede playlisty aby to našlo to id
     playlist = next((playlist for playlist in playlists if playlist['playlist_id'] == playlist_id), None)
     
     if playlist == None:
         return render_template("404.html") 
     
-    return render_template("playlist.html", playlist=playlist, songs=songs)
+    return render_template("playlist.html", playlist=playlist, user=user, songs=songs, playlists=playlists)
 
 @app.route('/add-to-playlist', methods=["POST"])
 def add_to_playlist():
@@ -281,32 +308,6 @@ def zpracuj_playlist():
     zapis_do_json("playlists", new_playlist)
 
     return redirect(url_for("library"))
-
-# --- Library ---
-
-@app.route('/library')
-def library():
-    if "uzivatel" in session:
-        user = session["uzivatel"]
-        playlists = precti_json("playlists")
-        return render_template("library.html", user=user, playlists=playlists)
-    else:
-        return redirect(url_for("prihlaseni"))
-
-@app.route("/album/<album_id>")
-def albums(album_id):
-    albums = precti_json("albums")
-    songs = precti_json("songs")
-    user = session["uzivatel"]
-    playlists = precti_json("playlists")
-
-    #tohle projede alba aby to našlo to id
-    album = next((album for album in albums if album['album_id'] == album_id), None)
-
-    if album == None:
-        return render_template("404.html") 
-
-    return render_template("album.html", album=album, songs=songs, user=user, playlists=playlists)
 
 # --- Song Manager ---
 

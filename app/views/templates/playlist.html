@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toney</title>
+    <title>{{playlist.name}}</title>
 </head>
 <body class="pozadi">
     {% include "navbar.html" %}
@@ -24,7 +24,9 @@
             <div class="details_albumpage">
                 <p>Playlist</p>
                 <h1 class="album_title_albumpage">{{ playlist.name }}</h1>
-                <p class="album_details_albumpage">{{ playlist.author }} ♦ {{ ns.album_songs }} songs </p><br>
+                <p class="album_details_albumpage">
+                    <a href="" class="SP_MP">{{ playlist.author }} </a>
+                    ♦ {{ ns.album_songs }} songs </p><br>
                 <p class="album_details_albumpage">{{ playlist.description }} </p><br>
             </div>
         </div>
@@ -38,7 +40,8 @@
                         <p>{{ ns.album_song_place }}.</p>
                         </div>
                         <div class="song_details_albumpage">
-                            <a href="" class="SP_MP"><b class="playlist_popis">{{ song.title }}</b></a><br>
+                            <a href="" class="SP_MP"><b class="playlist_popis">{{ song.title }}</b></a>
+                            <button style="font-size: large;" onclick="showPlaylistDialog('{{ song.song_id }}')">+</button><br>
                             <b class="popisky_play">{{ song.author }}</b>
                         </div>
                     </div>
@@ -46,5 +49,37 @@
             {% endfor %}
         </div>
     </div>
+
+    <div>
+        <dialog id="playlist-dialog" class="make-playlist">
+            <form action="{{ url_for('add_to_playlist') }}" method="POST" enctype="multipart/form-data">
+                <label for="playlist">Playlist:</label>
+                <select name="playlist" required class="selecter">
+                    {% for playlist in playlists %}
+                        {% if playlist.author == user %}
+                            <option value="{{ playlist.playlist_id }}">{{ playlist.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select><br>
+                <input type="hidden" name="song" id="song-id-input">
+                <input type="submit" value="Add">
+            </form>
+            <button onclick="closePlaylistDialog()">Cancel</button>
+        </dialog>
+    </div>
+
+    <script>
+        const MakePlaylist = document.getElementById("playlist-dialog");
+        const songIdInput = document.getElementById("song-id-input");
+
+        function showPlaylistDialog(songId) {
+            songIdInput.value = songId;
+            MakePlaylist.showModal();
+        }
+
+        function closePlaylistDialog() {
+            MakePlaylist.close();
+        }
+    </script>
 </body>
 </html>
