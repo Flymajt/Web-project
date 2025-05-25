@@ -331,7 +331,8 @@ def update_playlist():
             playlist["name"] = name
             playlist["description"] = description
             if playlistfile.filename.endswith((".png", ".jpg",".jpeg")):
-                delete_file(playlist["drive_id"])
+                if playlist["drive_id"] != "1_h26EkMgjuLXFqwe_fMh7goQH2zDL2Ff":
+                    delete_file(playlist["drive_id"])
                 image = upload_image(playlistfile, playlist_id, "playlist")
                 playlist["playlistfile"] = f"https://lh3.googleusercontent.com/d/{image}"
                 playlist["drive_id"] = image
