@@ -3,6 +3,8 @@ import uuid
 import os
 import json
 from werkzeug.utils import secure_filename
+from googledrive import upload_song, upload_image, delete_file
+from googleapiclient.errors import HttpError
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "static/data")
 ALLOWED_EXTENSIONS = {"png", "jpg", "jfif", "jpeg", "gif", "webp", "mp3", "wav"}
@@ -285,24 +287,24 @@ def zpracuj_playlist():
     author = session.get("uzivatel")
     description = request.form.get("description")
 
+    playlist_id = generate_id()
+
     playlistfile = request.files["playlistfile"]
     if playlistfile.filename.endswith((".png", ".jpg",".jpeg")):
-        playlistfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/playlists", playlistfile.filename))
-        playlistimage = playlistfile.filename
+        image = upload_image(playlistfile, playlist_id, "playlist")
     else:
-        playlistimage = "placeholder.png"
+        image = "1_h26EkMgjuLXFqwe_fMh7goQH2zDL2Ff"
 
     if name == "" or name.isspace():
         name = author + "'s playlist"
 
-    playlist_id = generate_id()
-        
     new_playlist = {
     "playlist_id": playlist_id,
     "author": author,
     "name": name,
     "description": description,
-    "playlistfile": playlistimage,
+    "playlistfile": f"https://lh3.googleusercontent.com/d/{image}",
+    "drive_id": image,
     "songs": []
     }
     zapis_do_json("playlists", new_playlist)
@@ -329,9 +331,10 @@ def update_playlist():
             playlist["name"] = name
             playlist["description"] = description
             if playlistfile.filename.endswith((".png", ".jpg",".jpeg")):
-                playlistfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/playlists", playlistfile.filename))
-                playlistimage = playlistfile.filename
-                playlist["playlistfile"] = playlistimage
+                delete_file(playlist["drive_id"])
+                image = upload_image(playlistfile, playlist_id, "playlist")
+                playlist["playlistfile"] = f"https://lh3.googleusercontent.com/d/{image}"
+                playlist["drive_id"] = image
             break
 
     with open(os.path.join(UPLOAD_FOLDER, 'playlists.json'), 'w') as file:
@@ -369,15 +372,17 @@ def zpracuj_song():
 
     songfile = request.files["songfile"]
     if songfile.filename.endswith(".mp3"):
-        songfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/songs", songfile.filename))
         song_id = generate_id()
         
+        song = upload_song(songfile, song_id)
+
         new_song = {
         "song_id": song_id,
         "title": title,
         "author": author,
         "album": album,
-        "songfile": songfile.filename
+        "songfile": f"https://drive.google.com/uc?export=download&id={song}",
+        "drive_id": song
     }
         zapis_do_json("songs", new_song)
 
@@ -399,6 +404,10 @@ def del_song():
             if os.path.exists(songfile):
                 os.remove(songfile)
 
+            drive_id = song.get("drive_id")
+            if drive_id:
+                delete_file(drive_id)
+
 
             with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
                 json.dump(updated_songs, file, indent=2)
@@ -419,15 +428,17 @@ def zpracuj_album():
 
     albumfile = request.files["albumfile"]
     if albumfile.filename.endswith((".png", ".jpg",".jpeg")):
-        albumfile.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/albums", albumfile.filename))
         album_id = generate_id()
         
+        image = upload_image(albumfile, album_id, "album")
+
         new_album = {
         "album_id": album_id,
         "title": title,
         "author": author,
         "release": release,
-        "albumfile": albumfile.filename
+        "albumfile": f"https://lh3.googleusercontent.com/d/{image}",
+        "drive_id": image
     }
         zapis_do_json("albums", new_album)
 
@@ -451,6 +462,16 @@ def del_album():
                 if os.path.exists(albumfile):
                     os.remove(albumfile)
 
+                drive_id = album.get("drive_id")
+                if drive_id:
+                    try:
+                        delete_file(drive_id)
+                    except HttpError as error:
+                        if error.resp.status == 404:
+                            pass
+                        else:
+                            raise
+
 
                 with open(os.path.join(UPLOAD_FOLDER, 'albums.json'), 'w') as file:
                     json.dump(updated_albums, file, indent=2)
@@ -461,6 +482,15 @@ def del_album():
                 if os.path.exists(songfile):
                     os.remove(songfile)
 
+                drive_id_song = song.get("drive_id")
+                if drive_id_song:
+                    try:
+                        delete_file(drive_id_song)
+                    except HttpError as error:
+                        if error.resp.status == 404:
+                            pass
+                        else:
+                            raise
 
                 with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
                     json.dump(updated_songs, file, indent=2)

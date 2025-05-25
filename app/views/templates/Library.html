@@ -37,7 +37,7 @@
                             <th class="songs">
                                 <div class="album">
                                     <a href="{{ url_for('playlists', playlist_id=playlist.playlist_id) }}" class="SP_MP">
-                                        <img class="btn_img" src="../static/data/playlists/{{ playlist.playlistfile }}"/>
+                                        <img class="btn_img" src="{{ playlist.playlistfile }}"/>
                                         <p class="playlist_popis">{{ playlist.name }}</p>
                                     </a>
                                 </div>

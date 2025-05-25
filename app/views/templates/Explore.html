@@ -19,7 +19,7 @@
                     <th class="songs">
                         <div class="album">
                             <a href="{{ url_for('albums', album_id=album.album_id) }}" class="SP_MP">
-                                <img class="btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
+                                <img class="btn_img" src="{{ album.albumfile }}"/>
                                 <p class="playlist_popis">{{ album.title }}</p>
                             </a>
                             <p class="popisky_play">{{ album.author }}</p>
@@ -42,7 +42,7 @@
                         {% for album in albums %}
                             {% if album.album_id == song.album %}
                                 <a href="" class="SP_MP">
-                                    <img class="song_btn_img" src="../static/data/albums/{{ album.albumfile }}"/>
+                                    <img class="song_btn_img" src="{{ album.albumfile }}"/>
                                 </a>
                                 <div>
                                     <a href="" class="SP_MP"><b class="playlist_popis">{{ song.title }}</b></a><br>

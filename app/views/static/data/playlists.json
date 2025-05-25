@@ -4,7 +4,8 @@
     "author": "Gotyx96",
     "name": "Maty\u00e1\u0161\u016fv Cool Playlist",
     "description": "damn, to je sakra cool playlist Maty\u00e1\u0161i",
-    "playlistfile": "e46b7b2e4f5e3da9083280dce864cd1c.jpg",
+    "playlistfile": "https://lh3.googleusercontent.com/d/1olCjcDF8GznNreUAjdoNf35wTuJqunmh",
+    "drive_id": "1olCjcDF8GznNreUAjdoNf35wTuJqunmh",
     "songs": [
       "d7c5ba2c-8fa5-4963-b87d-c3c3c5ac6f8c",
       "3fabd251-1af8-41a1-b4fa-d75f5328bb7b",
@@ -13,7 +14,8 @@
       "044b7713-49bf-44f8-8c7a-37a8e48bdcew",
       "7e2aad51-33ea-44cb-8270-237efe7191f9",
       "41482a7b-075e-4a42-8ba2-e4fda96c6620",
-      "bd90ac23-2c69-4a0b-9d00-5e72616ebd64"
+      "bd90ac23-2c69-4a0b-9d00-5e72616ebd64",
+      "8bcd951e-439c-46e0-b367-18d22b5b8711"
     ]
   },
   {
@@ -21,7 +23,8 @@
     "author": "login0012",
     "name": "Some Silly Bangers",
     "description": "fuck you why cant this field be empty",
-    "playlistfile": "reality_juice.png",
+    "playlistfile": "https://lh3.googleusercontent.com/d/1yJxWGi-2LbKtzTohHQrw73dgb1h2a65r",
+    "drive_id": "1yJxWGi-2LbKtzTohHQrw73dgb1h2a65r",
     "songs": [
       "c9cabc14-97f6-45ef-8692-40009409c346",
       "fe6626db-47bf-4f8c-b4e0-d48ce1f28498",
@@ -34,9 +37,10 @@
   {
     "playlist_id": "a89d3b26-2d9c-4aea-baee-5ea7f6df30d8",
     "author": "Gotyx96",
-    "name": "Druhej plejlist k\u016fl",
-    "description": "",
-    "playlistfile": "19cac2d16635e5d0565657818bd89c8d.jpg",
+    "name": "Gotyx96's playlist",
+    "description": "Ye",
+    "playlistfile": "https://lh3.googleusercontent.com/d/1ug_MrHUK4OO26s3_HFx_VHQTTqJmhewS",
+    "drive_id": "1ug_MrHUK4OO26s3_HFx_VHQTTqJmhewS",
     "songs": [
       "044b7713-49bf-44f8-8c7a-37a8e48bdcew",
       "undefined",
@@ -49,7 +53,35 @@
     "author": "admin",
     "name": "admin's playlist",
     "description": "",
-    "playlistfile": "placeholder.png",
+    "playlistfile": "https://lh3.googleusercontent.com/d/1_h26EkMgjuLXFqwe_fMh7goQH2zDL2Ff",
+    "drive_id": "1_h26EkMgjuLXFqwe_fMh7goQH2zDL2Ff",
+    "songs": []
+  },
+  {
+    "playlist_id": "c720c0be-f928-4857-9dde-eaf0bdd8b0b0",
+    "author": "Gotyx96",
+    "name": "Blejz",
+    "description": "",
+    "playlistfile": "https://lh3.googleusercontent.com/d/1hmoXnPgg2EVqr7kcH4s4igKW9Zfnl1DH",
+    "drive_id": "1dlG1f24bZTYOH3Mu3qamV3eoRuKBHrN1",
+    "songs": []
+  },
+  {
+    "playlist_id": "17dd1045-d75d-4cae-8b0a-083a1934b452",
+    "author": "Gotyx96",
+    "name": "Gotyx96's playlist",
+    "description": "",
+    "playlistfile": "https://lh3.googleusercontent.com/d/1_h26EkMgjuLXFqwe_fMh7goQH2zDL2Ff",
+    "drive_id": "1_h26EkMgjuLXFqwe_fMh7goQH2zDL2Ff",
+    "songs": []
+  },
+  {
+    "playlist_id": "b758ac0f-959a-4ce8-b98d-21e1f70412ee",
+    "author": "Gotyx96",
+    "name": "TextIdk",
+    "description": "yeah",
+    "playlistfile": "https://lh3.googleusercontent.com/d/1ejP0ZrbsX_j8Z37vP5Bpd61akIK_SNq6",
+    "drive_id": "1ejP0ZrbsX_j8Z37vP5Bpd61akIK_SNq6",
     "songs": []
   }
 ]
