@@ -407,7 +407,13 @@ def del_song():
 
             drive_id = song.get("drive_id")
             if drive_id:
-                delete_file(drive_id)
+                try:
+                    delete_file(drive_id)
+                except HttpError as error:
+                    if error.resp.status == 403:
+                        pass
+                    else:
+                        raise
 
 
             with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
@@ -470,6 +476,8 @@ def del_album():
                     except HttpError as error:
                         if error.resp.status == 404:
                             pass
+                        if error.resp.status == 403:
+                            pass
                         else:
                             raise
 
@@ -489,6 +497,8 @@ def del_album():
                         delete_file(drive_id_song)
                     except HttpError as error:
                         if error.resp.status == 404:
+                            pass
+                        if error.resp.status == 403:
                             pass
                         else:
                             raise
