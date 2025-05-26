@@ -332,7 +332,15 @@ def update_playlist():
             playlist["description"] = description
             if playlistfile.filename.endswith((".png", ".jpg",".jpeg")):
                 if playlist["drive_id"] != "1_h26EkMgjuLXFqwe_fMh7goQH2zDL2Ff":
-                    delete_file(playlist["drive_id"])
+                    try:
+                        delete_file(playlist["drive_id"])
+                    except HttpError as error:
+                        if error.resp.status == 404:
+                            pass
+                        if error.resp.status == 403:
+                            pass
+                        else:
+                            raise
                 image = upload_image(playlistfile, playlist_id, "playlist")
                 playlist["playlistfile"] = f"https://lh3.googleusercontent.com/d/{image}"
                 playlist["drive_id"] = image
