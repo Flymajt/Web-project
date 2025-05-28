@@ -2,9 +2,14 @@ from flask import Flask, request, render_template, redirect, session, url_for, m
 import uuid
 import os
 import json
+
+from argon2 import PasswordHasher
 from werkzeug.utils import secure_filename
+
 from googledrive import upload_song, upload_image, delete_file
 from googleapiclient.errors import HttpError
+
+from sql import insert_song, insert_album, insert_playlist, insert_song_to_playlist, insert_updated_playlist, get_data, delete_song, delete_album
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "static/data")
 ALLOWED_EXTENSIONS = {"png", "jpg", "jfif", "jpeg", "gif", "webp", "mp3", "wav"}
@@ -220,16 +225,16 @@ def profile():
 
 @app.route('/explore')
 def explore():
-    songs = precti_json("songs")
-    albums = precti_json("albums")
+    songs = get_data("SONGS")
+    albums = get_data("ALBUMS")
     return render_template("explore.html", albums=albums, songs=songs)
 
 @app.route("/album/<album_id>")
 def albums(album_id):
-    albums = precti_json("albums")
-    songs = precti_json("songs")
+    albums = get_data("ALBUMS")
+    songs = get_data("SONGS")
     user = session["uzivatel"]
-    playlists = precti_json("playlists")
+    playlists = get_data("PLAYLISTS")
 
     #tohle projede alba aby to našlo to id
     album = next((album for album in albums if album['album_id'] == album_id), None)
@@ -245,38 +250,43 @@ def albums(album_id):
 def library():
     if "uzivatel" in session:
         user = session["uzivatel"]
-        playlists = precti_json("playlists")
+        playlists = get_data("PLAYLISTS")
         return render_template("library.html", user=user, playlists=playlists)
     else:
         return redirect(url_for("prihlaseni"))
 
 @app.route("/playlist/<playlist_id>")
 def playlists(playlist_id):
-    playlists = precti_json("playlists")
-    songs = precti_json("songs")
+    playlists = get_data("PLAYLISTS")
+    songs = get_data("SONGS")
+    playlist_songs = get_data("PLAYLIST_SONG")
     user = session["uzivatel"]
     
     #tohle projede playlisty aby to našlo to id
-    playlist = next((playlist for playlist in playlists if playlist['playlist_id'] == playlist_id), None)
-    
+    playlist = next((playlist for playlist in playlists if playlist['id'] == playlist_id), None)
+
+    songs_in_playlist = [song['song_id'] for song in playlist_songs if song['playlist_id'] == playlist['id']]
+
     if playlist == None:
         return render_template("404.html") 
     
-    return render_template("playlist.html", playlist=playlist, user=user, songs=songs, playlists=playlists)
+    return render_template("playlist.html", playlist=playlist, user=user, songs=songs, playlists=playlists, songs_in_playlist=songs_in_playlist)
 
 @app.route('/add-to-playlist', methods=["POST"])
 def add_to_playlist():
     playlist_id = request.form.get("playlist")
     song_id = request.form.get("song")
 
-    playlists = precti_json("playlists")
+    playlists = get_data("PLAYLISTS")
+
+    insert_song_to_playlist(playlist_id, song_id)
 
     for playlist in playlists:
         if playlist.get("playlist_id") == playlist_id:
             playlist["songs"].append(song_id)
             break
 
-    with open(os.path.join(UPLOAD_FOLDER, 'playlists.json'), 'w') as file:
+    with open(os.path.join(UPLOAD_FOLDER, 'BACKUP/playlists.json'), 'w') as file:
         json.dump(playlists, file, indent=2)
 
     return redirect(request.referrer)
@@ -298,16 +308,20 @@ def zpracuj_playlist():
     if name == "" or name.isspace():
         name = author + "'s playlist"
 
+    file = f"https://lh3.googleusercontent.com/d/{image}"
+
     new_playlist = {
     "playlist_id": playlist_id,
     "author": author,
     "name": name,
     "description": description,
-    "playlistfile": f"https://lh3.googleusercontent.com/d/{image}",
+    "playlistfile": file,
     "drive_id": image,
     "songs": []
     }
-    zapis_do_json("playlists", new_playlist)
+
+    insert_playlist(playlist_id, author, name, description, file, image)
+    zapis_do_json("BACKUP/playlists", new_playlist)
 
     return redirect(url_for("library"))
 
@@ -324,12 +338,12 @@ def update_playlist():
     if name == "" or name.isspace():
         name = author + "'s playlist"
 
-    playlists = precti_json("playlists")
+    playlists = get_data("PLAYLISTS")
 
     for playlist in playlists:
-        if playlist.get("playlist_id") == playlist_id:
-            playlist["name"] = name
-            playlist["description"] = description
+        if playlist.get("id") == playlist_id:
+            new_name = name
+            new_description = description
             if playlistfile.filename.endswith((".png", ".jpg",".jpeg")):
                 if playlist["drive_id"] != "1_h26EkMgjuLXFqwe_fMh7goQH2zDL2Ff":
                     try:
@@ -342,11 +356,15 @@ def update_playlist():
                         else:
                             raise
                 image = upload_image(playlistfile, playlist_id, "playlist")
-                playlist["playlistfile"] = f"https://lh3.googleusercontent.com/d/{image}"
-                playlist["drive_id"] = image
+                new_file = f"https://lh3.googleusercontent.com/d/{image}"
+                new_drive_id = image
+            else:
+                new_file = playlist["playlistfile"]
+                new_drive_id = playlist["drive_id"]
+            insert_updated_playlist(new_name, new_description, new_file, new_drive_id, playlist_id)
             break
 
-    with open(os.path.join(UPLOAD_FOLDER, 'playlists.json'), 'w') as file:
+    with open(os.path.join(UPLOAD_FOLDER, 'BACKUP/playlists.json'), 'w') as file:
         json.dump(playlists, file, indent=2)
 
     return redirect(request.referrer)
@@ -359,9 +377,9 @@ def manage_song():
         role = session["role"]
     
         if role == "admin":
-            albums = precti_json("albums")
+            albums = get_data("ALBUMS")
             albums = sorted(albums, key=lambda x: x["title"])
-            songs = precti_json("songs")
+            songs = get_data("SONGS")
             songs = sorted(songs, key=lambda x: x["title"])
             return render_template("add_music.html", albums=albums, songs=songs)
         
@@ -374,7 +392,7 @@ def zpracuj_song():
     author = request.form.get("author")
     album = request.form.get("album")
 
-    songs = precti_json("songs")
+    songs = get_data("SONGS")
     for u in songs:
         if u ["title"] == title:
             return redirect(url_for("index"))
@@ -384,6 +402,7 @@ def zpracuj_song():
         song_id = generate_id()
         
         song = upload_song(songfile, song_id)
+        songfile_url = f"https://drive.google.com/uc?export=download&id={song}"
 
         new_song = {
         "song_id": song_id,
@@ -393,7 +412,8 @@ def zpracuj_song():
         "songfile": f"https://drive.google.com/uc?export=download&id={song}",
         "drive_id": song
     }
-        zapis_do_json("songs", new_song)
+        insert_song(song_id, title, author, album, songfile_url, song)
+        zapis_do_json("BACKUP/songs", new_song)
 
         return redirect(url_for("explore"))
     else:
@@ -403,13 +423,14 @@ def zpracuj_song():
 def del_song():
     id = request.form.get("id")
 
-    songs = precti_json("songs")
+    songs = get_data("SONGS")
+    delete_song(id)
 
     updated_songs = [song for song in songs if song.get("song_id") != id]
 
     for song in songs:
         if "song_id" in song and song["song_id"] == id:
-            songfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/songs", song.get('songfile', ''))
+            songfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/BACKUP/songs", song.get('songfile', ''))
             if os.path.exists(songfile):
                 os.remove(songfile)
 
@@ -424,7 +445,7 @@ def del_song():
                         raise
 
 
-            with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
+            with open(os.path.join(UPLOAD_FOLDER, 'BACKUP/songs.json'), 'w') as file:
                 json.dump(updated_songs, file, indent=2)
             break
 
@@ -436,7 +457,7 @@ def zpracuj_album():
     author = request.form.get("author")
     release = request.form.get("release")
 
-    albums = precti_json("albums")
+    albums = get_data("ALBUMS")
     for u in albums:
         if u ["title"] == title:
             return redirect(url_for("index"))
@@ -446,16 +467,19 @@ def zpracuj_album():
         album_id = generate_id()
         
         image = upload_image(albumfile, album_id, "album")
+        file = f"https://lh3.googleusercontent.com/d/{image}"
 
         new_album = {
         "album_id": album_id,
         "title": title,
         "author": author,
         "release": release,
-        "albumfile": f"https://lh3.googleusercontent.com/d/{image}",
+        "albumfile": file,
         "drive_id": image
     }
-        zapis_do_json("albums", new_album)
+        
+        insert_album(album_id, title, author, release, file, image)
+        zapis_do_json("BACKUP/albums", new_album)
 
         return redirect(url_for("explore"))
     else:
@@ -465,15 +489,17 @@ def zpracuj_album():
 def del_album():
     id = request.form.get("id")
 
-    songs = precti_json("songs")
-    albums = precti_json("albums")
+    songs = get_data("SONGS")
+    albums = get_data("ALBUMS")
+
+    delete_album(id)
 
     updated_songs = [song for song in songs if song.get("album") != id]
     updated_albums = [album for album in albums if album.get("album_id") != id]
 
     for album in albums:
         if "album_id" in album and album["album_id"] == id:
-                albumfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/albums", album.get('albumfile', ''))
+                albumfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/BACKUP/albums", album.get('albumfile', ''))
                 if os.path.exists(albumfile):
                     os.remove(albumfile)
 
@@ -490,12 +516,12 @@ def del_album():
                             raise
 
 
-                with open(os.path.join(UPLOAD_FOLDER, 'albums.json'), 'w') as file:
+                with open(os.path.join(UPLOAD_FOLDER, 'BACKUP/albums.json'), 'w') as file:
                     json.dump(updated_albums, file, indent=2)
                 break
         for song in songs:
             if "album" in song and song["album"] == id:
-                songfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/songs", song.get('songfile', ''))
+                songfile = os.path.join(app.config['UPLOAD_FOLDER'] + "/BACKUP/songs", song.get('songfile', ''))
                 if os.path.exists(songfile):
                     os.remove(songfile)
 
@@ -511,7 +537,7 @@ def del_album():
                         else:
                             raise
 
-                with open(os.path.join(UPLOAD_FOLDER, 'songs.json'), 'w') as file:
+                with open(os.path.join(UPLOAD_FOLDER, 'BACKUP/songs.json'), 'w') as file:
                     json.dump(updated_songs, file, indent=2)
                 break
 

@@ -3,7 +3,7 @@
     "album_id": "9eef9ff0-fb6b-494f-89c9-db1aab6be1f9",
     "title": "Wooden Toaster",
     "author": "Glaze",
-    "release": "2017",
+    "release_date": 2017,
     "albumfile": "https://lh3.googleusercontent.com/d/1-A1STxdxzLcBpyE_e-uAUx7Tc6kp_x4n",
     "drive_id": "1-A1STxdxzLcBpyE_e-uAUx7Tc6kp_x4n"
   },
@@ -11,23 +11,15 @@
     "album_id": "9eef9ff0-fbcb-494f-89c9-db1aab6be199",
     "title": "Caps On, Hats Off",
     "author": "Bossfight",
-    "release": "2012",
+    "release_date": 2012,
     "albumfile": "https://lh3.googleusercontent.com/d/1yU6R6xua90hc_8IrzkiShc607eoUZbeu",
     "drive_id": "1yU6R6xua90hc_8IrzkiShc607eoUZbeu"
-  },
-  {
-    "album_id": "9eef9ff0-fbcb-414f-89c9-db1aab6be1f9",
-    "title": "After Hours",
-    "author": "the weeknd",
-    "release": "2020",
-    "albumfile": "https://lh3.googleusercontent.com/d/1b0xDY7T9QKbshuHvlFaOwgcXUkZCwHgc",
-    "drive_id": "1b0xDY7T9QKbshuHvlFaOwgcXUkZCwHgc"
   },
   {
     "album_id": "9eef9fp0-fbcb-494f-89c9-db1aab6be1f9",
     "title": "Neon Genesis Evangelion (Original Series Soundtrack)",
     "author": "Shiro Sagisu",
-    "release": "2019",
+    "release_date": 2019,
     "albumfile": "https://lh3.googleusercontent.com/d/1z2XMWgPXjITJJbisTaVo4VZIEojf-NoG",
     "drive_id": "1z2XMWgPXjITJJbisTaVo4VZIEojf-NoG"
   },
@@ -35,31 +27,15 @@
     "album_id": "9eof9ff0-fbcb-494f-89c9-db1aab6be1f9",
     "title": "The Normal Album",
     "author": "Will Wood",
-    "release": "2020",
+    "release_date": 2020,
     "albumfile": "https://lh3.googleusercontent.com/d/1pOw7_nrZfm1JX9_YwSvijC3bg8eLswCj",
     "drive_id": "1pOw7_nrZfm1JX9_YwSvijC3bg8eLswCj"
-  },
-  {
-    "album_id": "9eef9ff0-bird-494f-89c9-db1aab6be1f9",
-    "title": "Command & Conquer: Red Alert 2",
-    "author": "Frank Klepacki",
-    "release": "2000",
-    "albumfile": "https://lh3.googleusercontent.com/d/1AZu-omECH_8aLspeDV4LYXZYN5ULziy5",
-    "drive_id": "1AZu-omECH_8aLspeDV4LYXZYN5ULziy5"
-  },
-  {
-    "album_id": "9eef9ff0-fbcb-49ff-89c9-db1aab6be1f9",
-    "title": "Ride the Cyclone: The Musical (World Premiere Cast Recording)",
-    "author": "Brooke Maxwell, Jacob Richmond",
-    "release": "2021",
-    "albumfile": "https://lh3.googleusercontent.com/d/13lLKVJeFDTAxYE-kHoxJ8qumUGOj7eJk",
-    "drive_id": "13lLKVJeFDTAxYE-kHoxJ8qumUGOj7eJk"
   },
   {
     "album_id": "9eef9ff0-fbcb-4f4f-89c9-db1aab6be1f9",
     "title": "The 2\u00a2 Show",
     "author": "Steam Powered Giraffe",
-    "release": "2012",
+    "release_date": 2012,
     "albumfile": "https://lh3.googleusercontent.com/d/1zZvxGf0zD-YEuuM8u1udl-TLMVXsLLuL",
     "drive_id": "1zZvxGf0zD-YEuuM8u1udl-TLMVXsLLuL"
   },
@@ -67,7 +43,7 @@
     "album_id": "9eef9ff0-fbcb-494f-89c9-d51aab6be1f9",
     "title": "Weezer",
     "author": "Weezer",
-    "release": "1994",
+    "release_date": 1994,
     "albumfile": "https://lh3.googleusercontent.com/d/1qA5SN8A3uvLWrvMuUd1gacgDAtHo_v_4",
     "drive_id": "1qA5SN8A3uvLWrvMuUd1gacgDAtHo_v_4"
   },
@@ -75,7 +51,7 @@
     "album_id": "9wwf9ff0-fbcb-494f-89c9-db1aab6be1f9",
     "title": "Voulez-Vous",
     "author": "ABBA",
-    "release": "1979",
+    "release_date": 1979,
     "albumfile": "https://lh3.googleusercontent.com/d/1uWR5cHWu8cTC0wI1qk7VRvvBQl6HqLgX",
     "drive_id": "1uWR5cHWu8cTC0wI1qk7VRvvBQl6HqLgX"
   },
@@ -83,7 +59,7 @@
     "album_id": "9eef9ff0-fbcb-494f-89c9-db1aab6be1f9",
     "title": "It Means Everything",
     "author": "Save Ferris",
-    "release": "1997",
+    "release_date": 1997,
     "albumfile": "https://lh3.googleusercontent.com/d/1jDqLmDtSCuYyBlyTlBZ5iFd8Xb5jLJ3M",
     "drive_id": "1jDqLmDtSCuYyBlyTlBZ5iFd8Xb5jLJ3M"
   },
@@ -91,7 +67,7 @@
     "album_id": "4ea90451-1944-4c09-aef5-98ce295a29d4",
     "title": "Fashionably Late (Deluxe Edition)",
     "author": "Falling In Reverse",
-    "release": "2013",
+    "release_date": 2013,
     "albumfile": "https://lh3.googleusercontent.com/d/1aP4bXxkqMNNGtpqLWwOeWXSr_0KcjW-m",
     "drive_id": "1aP4bXxkqMNNGtpqLWwOeWXSr_0KcjW-m"
   },
@@ -99,7 +75,7 @@
     "album_id": "8418789d-da2a-4bd9-9282-768b0c2322a1",
     "title": "Constant Companions",
     "author": "Jamie Paige",
-    "release": "2024",
+    "release_date": 2024,
     "albumfile": "https://lh3.googleusercontent.com/d/1pMAXmlZIGwvXa8lNKqo0WkGfDOrFBpE7",
     "drive_id": "1pMAXmlZIGwvXa8lNKqo0WkGfDOrFBpE7"
   },
@@ -107,15 +83,15 @@
     "album_id": "9dea3726-f00d-4568-8e33-7cb7ac731a2a",
     "title": "SONIC COLORS ORIGINAL SOUNDTRACK V\u0130V\u0130D SOUND HYBRID COLORS (Vol.1)",
     "author": "SEGA SOUND TEAM",
-    "release": "2010",
+    "release_date": 2010,
     "albumfile": "https://lh3.googleusercontent.com/d/1YiGwa51b4xvMSiAFN5vfXNxyBctIWysP",
     "drive_id": "1YiGwa51b4xvMSiAFN5vfXNxyBctIWysP"
   },
   {
     "album_id": "e49d44f8-6091-418d-982a-d19a02f2ee04",
     "title": "SONIC THE HEDGEHOG CD Original Soundtrack (20th Anniversary Edition)",
-    "author": "SEGA SOUND TEAM ",
-    "release": "2011",
+    "author": "SEGA SOUND TEAM",
+    "release_date": 2011,
     "albumfile": "https://lh3.googleusercontent.com/d/1pBX9E-AmLlGPs-glt9PirtrWZ3ip1ywy",
     "drive_id": "1pBX9E-AmLlGPs-glt9PirtrWZ3ip1ywy"
   },
@@ -123,7 +99,7 @@
     "album_id": "7de6af2a-6b9b-4a85-ab9c-264551593b1b",
     "title": "SONIC RUSH ADVENTURE Original Soundtrack (Bonus Track Version)",
     "author": "SEGA SOUND TEAM",
-    "release": "2007",
+    "release_date": 2007,
     "albumfile": "https://lh3.googleusercontent.com/d/1Wuu7jxZZifvfKz1DjrPIV1AS9h6J4Zxn",
     "drive_id": "1Wuu7jxZZifvfKz1DjrPIV1AS9h6J4Zxn"
   },
@@ -131,7 +107,7 @@
     "album_id": "d050a8ce-4616-473b-bef6-38efd4308144",
     "title": "SONIC THE HEDGEHOG ORIGINAL SOUND TRACK",
     "author": "SEGA SOUND TEAM",
-    "release": "2007",
+    "release_date": 2007,
     "albumfile": "https://lh3.googleusercontent.com/d/1eihb4QG9JZAjUSsLGC5ZwDbAv76zeJGm",
     "drive_id": "1eihb4QG9JZAjUSsLGC5ZwDbAv76zeJGm"
   }

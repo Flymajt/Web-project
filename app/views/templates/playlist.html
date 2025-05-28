@@ -10,7 +10,7 @@
 
     {% set ns = namespace(album_songs=0) %}
     {% for song in songs %}
-        {% if song.song_id in playlist["songs"] %}
+        {% if song.id in songs_in_playlist %}
             {% set ns.album_songs = ns.album_songs + 1 %}
         {% endif %}
     {% endfor %}
@@ -36,7 +36,7 @@
         <div class="scrollmenu_albumpage">
             {% set ns = namespace(album_song_place=0) %}
             {% for song in songs %}
-                {% if song.song_id in playlist["songs"] %}
+                {% if song.id in songs_in_playlist %}
                     <div class="song">
                         <div class="place_albumpage">
                         {% set ns.album_song_place = ns.album_song_place + 1 %}
@@ -44,7 +44,7 @@
                         </div>
                         <div class="song_details_albumpage">
                             <a href="" class="SP_MP"><b class="playlist_popis">{{ song.title }}</b></a>
-                            <button style="font-size: large;" onclick="showPlaylistDialog('{{ song.song_id }}')">+</button><br>
+                            <button style="font-size: large;" onclick="showPlaylistDialog('{{ song.id }}')">+</button><br>
                             <b class="popisky_play">{{ song.author }}</b>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                 <select name="playlist" required class="selecter">
                     {% for playlist in playlists %}
                         {% if playlist.author == user %}
-                            <option value="{{ playlist.playlist_id }}">{{ playlist.name }}</option>
+                            <option value="{{ playlist.id }}">{{ playlist.name }}</option>
                         {% endif %}
                     {% endfor %}
                 </select><br>
@@ -79,7 +79,7 @@
                     <input type="text" name="name" value="{{ playlist.name }}"/><br>
                     <label for ="">Description:</label>
                     <input type="text" name="description" value="{{ playlist.description }}"/><br>
-                    <input type="hidden" name="playlist" value="{{ playlist.playlist_id }}">
+                    <input type="hidden" name="playlist" value="{{ playlist.id }}">
                     <input type="submit" value="Edit">
                 </form>
                 <button onclick=closeEditPlaylistDialog()>Cancel</button>
