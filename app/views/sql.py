@@ -10,22 +10,13 @@ def get_connected():
     )
 
 mydb = get_connected() 
+mydb.autocommit = True # to znamená že data budou furt aktualizovaný
 mycursor = mydb.cursor(dictionary=True) # dictionary=True dělá že v html se to furt může udávat jako např {{ album.albumfile }}
 
 def get_data(table):
-    global mydb, mycursor # je to global jelikož jinak to bude křičet že ty mycurson a mydb nejsou nastavený jelikož je nastavujeme až potom co je použijeme
-
-    sql = f"""
-    SELECT * FROM {table}
-    """
+    sql = f"SELECT * FROM {table}"
     mycursor.execute(sql)
-    data = mycursor.fetchall()
-
-    mycursor.close()
-    mydb.close() # basically se odpojí a připojí pokaždé co bere data aby nebyla zastaralá
-    mydb = get_connected() 
-    mycursor = mydb.cursor(dictionary=True)
-    return data
+    return mycursor.fetchall()
 
 
 
