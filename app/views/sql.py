@@ -96,3 +96,9 @@ def insert_song_to_playlist(playlist_id, song_id):
     mycursor.execute(sql, data)
     mydb.commit()
 
+def delete_playlist(id):
+    sql = """DELETE FROM PLAYLIST_SONG WHERE playlist_id = %s"""
+    mycursor.execute(sql, (id,)) 
+    sql = """DELETE FROM PLAYLISTS WHERE id = %s"""
+    mycursor.execute(sql, (id,)) 
+    mydb.commit()

@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 from googledrive import upload_song, upload_image, delete_file
 from googleapiclient.errors import HttpError
 
-from sql import insert_song, insert_album, insert_playlist, insert_song_to_playlist, insert_updated_playlist, get_data, delete_song, delete_album
+from sql import insert_song, insert_album, insert_playlist, insert_song_to_playlist, insert_updated_playlist, get_data, delete_song, delete_album, delete_playlist
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "static/data")
 ALLOWED_EXTENSIONS = {"png", "jpg", "jfif", "jpeg", "gif", "webp", "mp3", "wav"}
@@ -368,6 +368,34 @@ def update_playlist():
         json.dump(playlists, file, indent=2)
 
     return redirect(request.referrer)
+
+@app.route('/del-playlist', methods=["POST"])
+def del_playlist():
+    id = request.args.get("id")
+
+    playlists = get_data("PLAYLISTS")
+    delete_playlist(id)
+
+    updated_playlists = [playlist for playlist in playlists if playlist.get("id") != id]
+
+    for playlist in playlists:
+        if "id" in playlist and playlist["id"] == id:
+            drive_id = playlist.get("drive_id")
+            if drive_id:
+                try:
+                    delete_file(drive_id)
+                except HttpError as error:
+                    if error.resp.status == 403:
+                        pass
+                    else:
+                        raise
+
+
+            with open(os.path.join(UPLOAD_FOLDER, 'BACKUP/playlists.json'), 'w') as file:
+                json.dump(updated_playlists, file, indent=2)
+            break
+
+    return redirect(url_for("library"))
 
 # --- Song Manager ---
 

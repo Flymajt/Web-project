@@ -32,6 +32,9 @@
         </div>
         {% if playlist.author == user %}
             <button style="font-size: large;" onclick="showEditPlaylistDialog()">Edit</button>
+            <form method="POST" action="{{ url_for('del_playlist', id=playlist.id) }}" onclick="return confirm('Are you sure you want to delete this playlist?')">
+                <button style="font-size: large;">Delete</button>
+            </form>
         {% endif %}
         <div class="scrollmenu_albumpage">
             {% set ns = namespace(album_song_place=0) %}
