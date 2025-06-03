@@ -163,7 +163,7 @@ def get_chat(chat_id):
     print("hledání souboru")
     filename = f'static/data/BACKUP/INDIVIDUAL_CHAT/chat_{chat_id}.json'
     print("soubor nalezen")
-    
+
     
     filename = f'CHAT_{chat_id}'
     chats = get_data(filename)
@@ -203,7 +203,7 @@ def posli_chat():
     send_chat(post_id, username2, username, filename)
     zapis_do_json_chats(filename, novy_post)
     # note to self: jde jich dysplaynout max 5 + ten hard coded
-    return redirect(url_for("get_chat", number=chat))
+    return redirect(url_for("get_chat", chat_id=chat))
 
 # --- Profile ---
 
