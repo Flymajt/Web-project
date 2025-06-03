@@ -201,7 +201,7 @@ def posli_chat():
         "code": post_id,
     }
     send_chat(post_id, username2, username, filename)
-    zapis_do_json_chats(filename, novy_post)
+    # zapis_do_json_chats(filename, novy_post)
     # note to self: jde jich dysplaynout max 5 + ten hard coded
     return redirect(url_for("get_chat", chat_id=chat))
 
