@@ -22,19 +22,19 @@
             <a href="login" class="LogSoc">Log In</a>
             {% else %}
             {% for chat in chats %}
-            {% if chat["username"] == username %}
+            {% if chat["user"] == username %}
             {% set has_chat = true %}
             <br>
             <div class="chatDiv">
-                <h4 class="chatUser"><a href="social/chat_url/{{ chat.code }}" class="chatUser">{{ chat.username2 }}</a></h4>
+                <h4 class="chatUser"><a href="social/chat_url/{{ chat.id }}" class="chatUser">{{ chat.user2 }}</a></h4>
                 <h6 class="chatMSG">Null</h5>
             </div>
             {% endif %}
-            {% if chat["username2"] == username %}
+            {% if chat["user2"] == username %}
             {% set has_chat = true %}
             <br>
             <div class="chatDiv">
-                <h4 class="chatUser"><a href="social/chat_url/{{ chat.code }}" class="chatUser">{{ chat.username }}</a></h4>
+                <h4 class="chatUser"><a href="social/chat_url/{{ chat.id }}" class="chatUser">{{ chat.user }}</a></h4>
                 <h6 class="chatMSG">Null</h5>
             </div>
             {% endif %}

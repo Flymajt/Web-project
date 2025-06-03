@@ -100,7 +100,7 @@ def social():
 
     posts = precti_json("posts")
 
-    chats = precti_json("BACKUP/chats")
+    chats = get_data("CHATS")
 
     return render_template("Social.html", username=username, posts=posts, chats=chats)
 
@@ -157,24 +157,22 @@ def zpracuj_chat():
     # note to self: jde jich dysplaynout max 5 + ten hard coded
     return redirect(url_for("social"))
 
-@app.route('/social/chat_url/<int:number>', methods=['GET'])
-def get_chat(number):
+@app.route('/social/chat_url/<int:chat_id>', methods=['GET'])
+def get_chat(chat_id):
     # Construct the file name
     print("hledání souboru")
-    filename = f'static/data/BACKUP/INDIVIDUAL_CHAT/chat_{number}.json'
+    filename = f'static/data/BACKUP/INDIVIDUAL_CHAT/chat_{chat_id}.json'
     print("soubor nalezen")
     
-    # Check if the file exists
-    if not os.path.exists(filename):
-        abort(404)  # Return a 404 error if the file does not exist
     
-    filename = f'CHAT_{number}'
+    filename = f'CHAT_{chat_id}'
     chats = get_data(filename)
     chat_list = get_data("CHATS")
     username = session.get("uzivatel")
 
     for chat in chat_list:
-        if chat["id"] == number:
+        if chat["id"] == chat_id:
+            print(chat["id"])
             if chat["user"] != username and chat["user2"] != username:
                 return render_template("404.html")
 
