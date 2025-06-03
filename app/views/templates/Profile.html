@@ -77,13 +77,19 @@
             </form>
         </div>
 
-        <div class="settings-block">
-            <form action="/profile" method="POST" enctype="multipart/form-data">
-                <p class="profile-settings-text">Change profile picture:</p>
-                <input type="file" name="userpfp" />
-                <input type="submit" value="UPLOAD" />
-            </form>
-        </div>
+        {% if pfp_filename %}
+        <img src="{{ url_for('static', filename='uploads/' + pfp_filename) }}" alt="Profilový obrázek" width="150" />
+    {% else %}
+        <p>Nemáte nahraný profilový obrázek.</p>
+    {% endif %}
+
+    <div class="settings-block">
+        <form action="{{ url_for('profile') }}" method="POST" enctype="multipart/form-data">
+            <p class="profile-settings-text">Změnit profilový obrázek:</p>
+            <input type="file" name="userpfp" />
+            <input type="submit" value="UPLOAD" />
+        </form>
+    </div>
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
