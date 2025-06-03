@@ -278,8 +278,15 @@ def add_to_playlist():
     song_id = request.form.get("song")
 
     playlists = get_data("PLAYLISTS")
+    song_playlists = get_data("PLAYLIST_SONG")
 
-    insert_song_to_playlist(playlist_id, song_id)
+    placement = 1
+    for song in song_playlists:
+        if song.get("playlist_id") == playlist_id:
+            placement += 1
+
+
+    insert_song_to_playlist(playlist_id, song_id, placement)
 
     for playlist in playlists:
         if playlist.get("playlist_id") == playlist_id:

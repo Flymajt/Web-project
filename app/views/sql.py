@@ -86,13 +86,13 @@ def insert_updated_playlist(name, description, file, drive_id, id):
     mycursor.execute(sql, data) 
     mydb.commit()
 
-def insert_song_to_playlist(playlist_id, song_id):
+def insert_song_to_playlist(playlist_id, song_id, placement):
     sql = """
-    INSERT INTO PLAYLIST_SONG (playlist_id, song_id)
-    VALUES (%s, %s)
+    INSERT INTO PLAYLIST_SONG (playlist_id, song_id, song_playlist_placement)
+    VALUES (%s, %s, %s)
     """
 
-    data = (playlist_id, song_id)
+    data = (playlist_id, song_id, placement)
     mycursor.execute(sql, data)
     mydb.commit()
 
