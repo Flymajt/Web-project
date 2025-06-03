@@ -3,13 +3,13 @@ import uuid
 import os
 import json
 
-from argon2 import PasswordHasher
+# from argon2 import PasswordHasher
 from werkzeug.utils import secure_filename
 
 from googledrive import upload_song, upload_image, delete_file
 from googleapiclient.errors import HttpError
 
-from sql import insert_song, insert_album, insert_playlist, insert_song_to_playlist, insert_updated_playlist, get_data, delete_song, delete_album, delete_playlist
+from sql import insert_song, insert_album, insert_playlist, insert_chat, insert_song_to_playlist, insert_updated_playlist, get_data, delete_song, delete_album, delete_playlist, create_individual_chat, send_chat
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "static/data")
 ALLOWED_EXTENSIONS = {"png", "jpg", "jfif", "jpeg", "gif", "webp", "mp3", "wav"}
@@ -50,6 +50,17 @@ def vytvor_json(nazev_souboru):
 
     return
 
+def vytvor_backup_json(nazev_souboru):
+    data_na_zapis = []
+    aktivni_soubor = os.path.dirname(__file__)
+    SITE_ROOT = os.path.realpath(aktivni_soubor)
+    json_url = os.path.join(SITE_ROOT, f"{nazev_souboru}.json")
+
+    with open(json_url, 'w', encoding="utf-8") as outfile:
+        json.dump(data_na_zapis, outfile)
+
+    return
+
 def generate_id():
     return str(uuid.uuid4())
 
@@ -57,13 +68,13 @@ def generate_id():
 def precti_json_chats(nazev_souboru):
     aktivni_soubor = os.path.dirname(__file__)
     SITE_ROOT = os.path.realpath(aktivni_soubor)
-    json_url = os.path.join(SITE_ROOT, "static/data/chats", f"{nazev_souboru}.json")
+    json_url = os.path.join(SITE_ROOT, "static/data/BACKUP/INDIVIDUAL_CHAT", f"{nazev_souboru}.json")
     USERS = json.load(open(json_url,"r",encoding="utf-8"))
     return USERS
 def zapis_do_json_chats(nazev_souboru, data_na_zapis):
     aktivni_soubor = os.path.dirname(__file__)
     SITE_ROOT = os.path.realpath(aktivni_soubor)
-    json_url = os.path.join(SITE_ROOT, "static/data/chats", f"{nazev_souboru}.json")
+    json_url = os.path.join(SITE_ROOT, "static/data/BACKUP/INDIVIDUAL_CHAT", f"{nazev_souboru}.json")
     USERS = json.load(open(json_url,"r",encoding="utf-8"))
     USERS.append(data_na_zapis)
     with open(json_url, "w", encoding="utf-8") as outline:
@@ -89,7 +100,7 @@ def social():
 
     posts = precti_json("posts")
 
-    chats = precti_json("chats")
+    chats = get_data("CHATS")
 
     return render_template("Social.html", username=username, posts=posts, chats=chats)
 
@@ -128,9 +139,9 @@ def zpracuj_chat():
 
     post_id = 0
 
-    posty = precti_json("chats")
+    posty = get_data("CHATS")
     for p in posty:
-        if p["code"] == post_id:
+        if p["id"] == post_id:
             post_id += 1
 
     novy_post = {
@@ -138,26 +149,32 @@ def zpracuj_chat():
         "username2": username2,
         "code": post_id,
     }
-    zapis_do_json("chats", novy_post)
-    chat_json = "chat_"+str(post_id)
-    vytvor_json(chat_json)
+    insert_chat(post_id, username, username2)
+    zapis_do_json("BACKUP/chats", novy_post)
+    chat_json = "CHAT_"+str(post_id)
+    create_individual_chat(chat_json)
+    vytvor_backup_json("static/data/BACKUP/INDIVIDUAL_CHAT/"+str(chat_json))
     # note to self: jde jich dysplaynout max 5 + ten hard coded
     return redirect(url_for("social"))
 
-@app.route('/social/chat_url/<int:number>', methods=['GET'])
-def get_chat(number):
+@app.route('/social/chat_url/<int:chat_id>', methods=['GET'])
+def get_chat(chat_id):
     # Construct the file name
     print("hledání souboru")
-    filename = f'static/data/chats/chat_{number}.json'
+    filename = f'static/data/BACKUP/INDIVIDUAL_CHAT/chat_{chat_id}.json'
     print("soubor nalezen")
+
     
-    # Check if the file exists
-    if not os.path.exists(filename):
-        abort(404)  # Return a 404 error if the file does not exist
-    
-    filename = f'chat_{number}'
-    chats = precti_json_chats(filename)
+    filename = f'CHAT_{chat_id}'
+    chats = get_data(filename)
+    chat_list = get_data("CHATS")
     username = session.get("uzivatel")
+
+    for chat in chat_list:
+        if chat["id"] == chat_id:
+            print(chat["id"])
+            if chat["user"] != username and chat["user2"] != username:
+                return render_template("404.html")
 
     return render_template("Chats.html", chats=chats, username=username)
 
@@ -167,15 +184,15 @@ def posli_chat():
     username2 = request.form.get("chat_person")
     chat = request.form.get("chat_number")
 
-    filename = f'chat_{chat}'
+    filename = f'CHAT_{chat}'
 
     print(filename)
 
     post_id = 0
 
-    posty = precti_json_chats(filename)
+    posty = get_data(filename)
     for p in posty:
-        if p["code"] == post_id:
+        if p["id"] == post_id:
             post_id += 1
 
     novy_post = {
@@ -183,9 +200,10 @@ def posli_chat():
         "content": username2,
         "code": post_id,
     }
-    zapis_do_json_chats(filename, novy_post)
+    send_chat(post_id, username2, username, filename)
+    # zapis_do_json_chats(filename, novy_post)
     # note to self: jde jich dysplaynout max 5 + ten hard coded
-    return redirect(url_for("get_chat", number=chat))
+    return redirect(url_for("get_chat", chat_id=chat))
 
 # --- Profile ---
 

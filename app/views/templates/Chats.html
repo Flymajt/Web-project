@@ -14,15 +14,15 @@
     <div class="BigBoiChat">
 
         {% for chat in chats %}
-        {% if chat.username == username %}
+        {% if chat.sender == username %}
             <div class="chatpostarea2">
-                <h4 class="PostText2">{{ chat.username }}</h4>
+                <h4 class="PostText2">{{ chat.sender }}</h4>
                 <h5 class="PostText2">{{ chat.content }}</h5>
                 <br>
             </div>
         {% else %}
             <div class="chatpostarea">
-                <h4 class="PostText">{{ chat.username }}</h4>
+                <h4 class="PostText">{{ chat.sender }}</h4>
                 <h5 class="PostText">{{ chat.content }}</h5>
                 <br>
             </div>

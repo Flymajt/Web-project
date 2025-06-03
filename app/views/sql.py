@@ -102,3 +102,34 @@ def delete_playlist(id):
     sql = """DELETE FROM PLAYLISTS WHERE id = %s"""
     mycursor.execute(sql, (id,)) 
     mydb.commit()
+
+def insert_chat(id, user, user2):
+    sql = """
+    INSERT INTO CHATS (id, user, user2)
+    VALUES (%s, %s, %s)
+    """
+
+    data = (id, user, user2)
+    mycursor.execute(sql, data)
+    mydb.commit()
+
+def create_individual_chat(name):
+    sql = f"""
+    CREATE TABLE {name} (
+        id int PRIMARY KEY,
+        content VARCHAR(255),
+        sender VARCHAR(255)
+    )
+    """
+    mycursor.execute(sql)
+    mydb.commit()
+
+def send_chat(id, content, sender, chat_id):
+    sql = f"""
+    INSERT INTO {chat_id} (id, content, sender)
+    VALUES (%s, %s, %s)
+    """
+
+    data = (id, content, sender)
+    mycursor.execute(sql, data)
+    mydb.commit()
