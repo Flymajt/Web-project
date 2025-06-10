@@ -10,6 +10,8 @@ from PyQt5.QtWidgets import (
     QListWidget,
     QListWidgetItem
 )
+
+from sql import get_data
 import os
 import json
 import string
@@ -65,7 +67,7 @@ class UserSelect(QWidget):
         super().__init__()
 
         self.data_path = "./static/data/"
-        self.users = self.load_user(self.data_path+"users.json")
+        self.users = get_data("USERS")
 
         self.setWindowTitle("Toney Admin App - Users")
         self.rozlozeni = QVBoxLayout()
@@ -96,11 +98,7 @@ class UserSelect(QWidget):
         self.rozlozeni.addWidget(self.list_widget)
 
     def load_user(self, path):
-        try:
-            with open(path, "r") as f:
-                return json.load(f)
-        except FileNotFoundError:
-            return []
+        get_data(path)
 
     def save_user(self):
         nazev = self.name_input.text()
