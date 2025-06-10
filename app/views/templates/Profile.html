@@ -28,10 +28,19 @@
     {% include "navbar.html" %}
 
     <div class="pfp">
-        <img class="profile-image"
-            src="{{ url_for('static', filename='data/profilovky/' + (pfp_filename or 'https://freesvg.org/img/abstract-user-flat-4.png')) }}"
-            alt="profile image" width="300px" height="300px">
+        {% if pfp_file_id %}
+            <img class="profile-image"
+         src="https://drive.google.com/uc?export=view&id={{ pfp_file_id }}"
+         alt="profile image" width="300" height="300">
+        {% else %}
+            <img class="profile-image"
+         src="https://freesvg.org/img/abstract-user-flat-4.png"
+         alt="default profile image" width="300" height="300">
+        {% endif %}
         <h3 class="profile-username">{{jmeno}}</h3>
+
+        <h1 class="profile-followers"><u>Followers</u>:</h1>
+        <h1 class="profile-following"><u>Following</u>:</h1>
 
         <div class="personal-info">
             <h4>About Me:</h4>
@@ -47,9 +56,6 @@
             </form>
         </div>
 
-        <h1 class="profile-followers"><u>Followers</u>:</h1>
-        <h1 class="profile-following"><u>Following</u>:</h1>
-        <h2><a href="{{ url_for('feedback') }}" id="feedbackBtn">Feedback</a></h2>
     </div>
 
     <div class="profile-settings-bg">
@@ -77,18 +83,14 @@
             </form>
         </div>
 
-        {% if pfp_filename %}
-        <img src="{{ url_for('static', filename='uploads/' + pfp_filename) }}" alt="Profilový obrázek" width="150" />
-    {% else %}
-        <p>Nemáte nahraný profilový obrázek.</p>
-    {% endif %}
-
     <div class="settings-block">
         <form action="{{ url_for('profile') }}" method="POST" enctype="multipart/form-data">
             <p class="profile-settings-text">Změnit profilový obrázek:</p>
-            <input type="file" name="userpfp" />
+            <input type="file" name="userpfp" accept="image/*" required />
             <input type="submit" value="UPLOAD" />
         </form>
+
+        <h2><a href="{{ url_for('feedback') }}" id="feedbackBtn">Feedback</a></h2>
     </div>
     </div>
 

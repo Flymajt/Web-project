@@ -11,6 +11,7 @@ SONG_FOLDER_ID = "1ddiGTzK0a6XyjzW_RLSepioo_6A3WfG1"
 IMAGE_FOLDER_ID = "1-4rc3DS_Q05WNIXHsilNcBjzPN-R4G-D"
 IMAGE_PLAYLIST_FOLDER_ID = "1US9Oj9a3yA971KlVvDnnKWJ1LG5oyGf5"
 IMAGE_ALBUM_FOLDER_ID = "13n3Dt30QTdLON2q1MIdOYlHMilI4yhkC"
+IMAGE_PFPS_FOLDER_ID = "1djsbfHCY_smgAYu-Q2XyCsFQlC7esmt7"
 
 # basically přihlášení skrz přihlašovací údaje a co za má za práva
 def auth():
@@ -55,6 +56,8 @@ def upload_image(filepath, id, type):
         path = [IMAGE_PLAYLIST_FOLDER_ID]
     elif type == "album":
         path = [IMAGE_ALBUM_FOLDER_ID]
+    elif type == "pfp":
+        path = [IMAGE_PFPS_FOLDER_ID]
     else:
         path = [IMAGE_FOLDER_ID]
 

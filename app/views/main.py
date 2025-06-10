@@ -12,6 +12,7 @@ from googleapiclient.errors import HttpError
 from sql import insert_song, insert_album, insert_playlist, insert_chat, insert_song_to_playlist, insert_updated_playlist, get_data, delete_song, delete_album, delete_playlist, create_individual_chat, send_chat
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "static/data")
+PFP_FOLDER = os.path.join(os.path.dirname(__file__), "static/data/PFPs")
 ALLOWED_EXTENSIONS = {"png", "jpg", "jfif", "jpeg", "gif", "webp", "mp3", "wav"}
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "123456789"
@@ -209,35 +210,50 @@ def posli_chat():
 
 @app.route("/profile", methods=["POST", "GET"])
 def profile():
-    if "uzivatel" in session:
-        jmeno = session["uzivatel"]
-        userColor = request.cookies.get("userBgColor", None)
-
-        if request.method == "POST":
-            pozadi = request.form.get("setbgcolor")
-            userColor = pozadi or request.cookies.get("userBgColor") or "#ffffff"  # fallback barva
-            resp = make_response(render_template("profile.html", jmeno=jmeno, userColor=userColor))
-
-            if pozadi:
-                resp.set_cookie("userBgColor", pozadi)
-
-            if "userpfp" in request.files:
-                file = request.files["userpfp"]
-                if file and allowed_file(file.filename):
-                    filename = secure_filename(f"{jmeno}_{file.filename}")
-                    file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-                    file.save(file_path)
-                    session["pfp_filename"] = filename
-
-            return resp
-
-        return render_template("profile.html",
-                               jmeno=jmeno,
-                               userColor=userColor,
-                               pfp_filename=session.get("pfp_filename", ""))
-
-    else:
+    if "uzivatel" not in session:
         return redirect(url_for("prihlaseni"))
+
+    jmeno = session["uzivatel"]
+    userColor = request.cookies.get("userBgColor", "#ffffff")
+    userInfo = session.get("userInfo", "")
+    pfp_file_id = session.get("pfp_file_id", "")  # Ukládáme Google Drive ID místo názvu souboru
+
+    if request.method == "POST":
+        pozadi = request.form.get("setbgcolor")
+        if pozadi:
+            userColor = pozadi
+
+        if "personalInfo" in request.form:
+            session["userInfo"] = request.form["personalInfo"]
+            userInfo = session["userInfo"]
+
+        if "userpfp" in request.files:
+            file = request.files["userpfp"]
+            if file and allowed_file(file.filename):
+                # Smazat starý obrázek pokud existuje
+                if pfp_file_id:
+                    delete_file(pfp_file_id)
+
+                # Nahrát nový obrázek na Google Drive
+                file_id = upload_image(file, f"{jmeno}_pfp", "profile")
+                session["pfp_file_id"] = file_id
+                pfp_file_id = file_id
+
+        resp = make_response(render_template("profile.html",
+                                             jmeno=jmeno,
+                                             userColor=userColor,
+                                             userInfo=userInfo,
+                                             pfp_file_id=pfp_file_id))
+        if pozadi:
+            resp.set_cookie("userBgColor", pozadi)
+
+        return resp
+
+    return render_template("profile.html",
+                           jmeno=jmeno,
+                           userColor=userColor,
+                           userInfo=userInfo,
+                           pfp_file_id=pfp_file_id)
 
 # --- Explore ---
 

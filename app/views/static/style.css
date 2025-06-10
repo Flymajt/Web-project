@@ -136,14 +136,14 @@
 .personal-info {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20px auto;
+    align-items: right;
+    justify-content: flex-end;
+    margin-left: auto;
     padding: 10px 20px;
     background-color: rgb(40,40,40);
     border: 1px solid #ccc;
     border-radius: 8px;
-    max-width: 400px;
+    max-width: 600px;
     color: #333;
     text-align: center;
 }
@@ -971,6 +971,7 @@ top: -1px;
     margin-left: 5vh;
     margin-right: 5vh;
     margin-bottom: 5vh;
+    padding: 20px;
     display: flex;
 }
 
